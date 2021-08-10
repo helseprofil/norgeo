@@ -131,16 +131,18 @@ merge_geo <- function(dt, cor, geo){
   # dt - Data from get_code
   # cor - Data from get_correspond
   # geo - What geo granularity is the data for
-  DT <- data.table::merge.data.table(dt, cor, by = "code", all = TRUE)
+  if (geo == "fylke"){
+    DT <- data.table::merge.data.table(dt, cor, by.x = "kommune", by.y = "code", all = TRUE)
+  } else {
+    DT <- data.table::merge.data.table(dt, cor, by = "code", all = TRUE)
+  }
+
   DT[is.na(name), name := targetName]
 
   grn <- DT[is.na(level), code]
   DT[code  %in% grn, level := "grunnkrets"]
 
-  dtm <- DT[code  %in% grn,]
-  dtm[, `:=`(code = sourceCode, level = geo)]
-  DT <- data.table::rbindlist(list(DT, dtm))
-
+  DT[, name := targetName]
   DT[, (geo) := sourceCode]
   DT[, c("sourceCode", "sourceName", "targetName") := NULL]
 }
