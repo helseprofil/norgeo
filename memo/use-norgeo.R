@@ -34,3 +34,15 @@ dtg[newCode == 15350309]
 dtt <- norgeo::track_change("g", 2020)
 dtt[currentCode == 15350309]
 dtt[oldName == "Hjelset"]
+
+## cast-geo
+devtools::load_all()
+dk <- find_correspond("komm", "grunn", 2021)
+dk[targetCode == 15390107]
+
+bb <- cast_geo(2021)
+names(bb)
+bb
+bb[code == 15390107]
+bb[grunnkrets == 15390107]
+bb[level == "kommune" & code == 1539]
