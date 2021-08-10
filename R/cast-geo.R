@@ -101,12 +101,15 @@ cast_geo <- function(year = NULL) {
   return(dt[])
 }
 
-## Correspond codes can be empty if nothing has changed in
-## that specific year and need to get from previous year or even
-## year before before previous year etc..etc..
-
+#' @title Find existing correspond
+#' @description Unlike [get_correspond()] functions, this function will find existing
+#'   correspond if the specified year has no correspond codes.
+#'   Correspond codes can be empty if nothing has changed in
+#'   that specific year and need to get from previous year or even
+#'   year before before previous year etc..etc.. This function is needed
+#'   when running [cast_geo()].
+#' @inheritParams get_correspond
 #' @export
-#' @rdname get_correspond
 find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
