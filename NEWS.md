@@ -1,3 +1,6 @@
+# norgeo 0.9.4
+- Fix issues #41.
+
 # norgeo 0.9.3
 
 - All geo codes downloaded via API can be cast for geo granularity with `cast_geo`
