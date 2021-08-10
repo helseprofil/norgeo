@@ -45,15 +45,19 @@ cast_geo <- function(year = NULL) {
   for (i in seq_along(COR)) {
     COR[[i]] <- norgeo::find_correspond(COR[[i]][1], COR[[i]][2], from = year)
 
-    keepCols <- c("sourceCode", "targetCode")
+    keepCols <- c("sourceCode", "sourceName", "targetCode", "targetName")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
     COR[[i]][, (delCol) := NULL]
     data.table::setnames(COR[[i]], "targetCode", "code")
   }
 
-  dt[COR$gr_bydel, on = "code", bydel := sourceCode]
-  dt[COR$gr_kom, on = "code", kommune := sourceCode]
-  dt[COR$kom_fylke, on = c(kommune = "code"), fylke := sourceCode]
+  dt <- merge_geo(dt, COR$gr_bydel, "bydel")
+  dt <- merge_geo(dt, COR$gr_kom, "kommune")
+  dt <- merge_geo(dt, COR$kom_fylke, "fylke")
+  ## dt[COR$gr_bydel, on = "code", bydel := sourceCode]
+  ## dt[COR$gr_kom, on = "code", kommune := sourceCode]
+  ## dt[COR$kom_fylke, on = c(kommune = "code"), fylke := sourceCode]
+
 
   ## Merge geo code
   ## Add higher granularity that aren't available via correspond API
@@ -97,8 +101,6 @@ cast_geo <- function(year = NULL) {
     "code", "name", "validTo", "level",
     "grunnkrets", "kommune", "fylke", "bydel"
   ))
-
-  return(dt[])
 }
 
 ## Correspond codes can be empty if nothing has changed in
@@ -121,4 +123,24 @@ find_correspond <- function(type, correspond, from) {
   }
   message("Data for ", correspond, " to ", type, " is from ", stat$from, " with ", stat$rows, " rows")
   return(dt)
+}
+
+## Grunnkrets that only exist in previous year need to be added if changes
+## only happpened previous years from find_correspond. eg. 15390107
+merge_geo <- function(dt, cor, geo){
+  # dt - Data from get_code
+  # cor - Data from get_correspond
+  # geo - What geo granularity is the data for
+  DT <- data.table::merge.data.table(dt, cor, by = "code", all = TRUE)
+  DT[is.na(name), name := targetName]
+
+  grn <- DT[is.na(level), code]
+  DT[code  %in% grn, level := "grunnkrets"]
+
+  dtm <- DT[code  %in% grn,]
+  dtm[, `:=`(code = sourceCode, level = geo)]
+  DT <- data.table::rbindlist(list(DT, dtm))
+
+  DT[, (geo) := sourceCode]
+  DT[, c("sourceCode", "sourceName", "targetName") := NULL]
 }
