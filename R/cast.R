@@ -1,32 +1,27 @@
-#' Add lower granularity to all files
-#'
+#' @title Add lower granularity to all files
+#' @description
 #' Add all granularity levels for all manually downloaded files.
 #' Here the structure is important.
 #' The the order for types should be similar to the order in files.
 #' OBS! The 6 digits from grunnkrets does not represent bydel.
-#'
-#' @param file Files names with complete path to the files
+#' @param files Files names with complete path to the files
 #' @param type Types equivalent to the file names. Must be the same order with file names
 #' @inheritParams geo_set
 #' @inheritParams cast_code
-#'
 #' @examples
 #' \dontrun{
-#' file <- c(
+#' files <- c(
 #'   "C:/Geo/fylke/fylke2020.csv",
 #'   "C:/Geo/kommune/kommune2020.csv",
 #'   "C:/folder2/bydel2020.csv"
 #' )
-#'
 #' types <- c("fylke", "kommune", "bydel")
-#'
 #' DT <- geo_cast(files = files, type = types, year = 2020)
 #' }
-#'
 #' @import data.table
 #' @export
 
-geo_cast <- function(file,
+geo_cast <- function(files,
                      type = NULL,
                      year = NULL,
                      keep.col = c("code", "name"),
@@ -35,7 +30,7 @@ geo_cast <- function(file,
     stop("Length of file and type is different!")
   }
 
-  allFiles <- file_folder(file, folder.path)
+  allFiles <- file_folder(files, folder.path)
   tblFile <- data.table(file = allFiles, type = type)
 
   ## allocate template for memory use
@@ -72,9 +67,9 @@ geo_cast <- function(file,
 
 
 
-#' Add lower granularity when applicable
+#' @title Add lower granularity when applicable
 #'
-#' This function will add lower granularity to the current granularity when applicable.
+#' @description This function will add lower granularity to the current granularity when applicable.
 #' It means that when casting a kommune file, then columns for fylke will be added.
 #' For grunnkrets file then both kommune and fylke code will be added. This is based on
 #' the available table that can be downloaded from SSB. The file should be in a CSV format.
@@ -83,18 +78,17 @@ geo_cast <- function(file,
 #' @param keep.col Exisiting column names to be kept
 #' @inheritParams geo_set
 #'
-#' @examples
-#' \dontrun{
-#' file <- "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
-#' type <- "grunnkrets"
-#' year <- 2020
-#' cols <- c("code", "name")
-#'
-#' DT <- cast_code(file = file, type = type, year = year, keep.col = cols)
-#' }
-#'
+# \dontrun{
+# file <- "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
+# type <- "grunnkrets"
+# year <- 2020
+# cols <- c("code", "name")
+#
+# DT <- cast_code(file = file, type = type, year = year, keep.col = cols)
+# }
+#
 #' @import data.table
-#' @export
+#' @keywords internal
 
 cast_code <- function(file,
                       type,
