@@ -132,6 +132,7 @@ merge_geo <- function(dt, cor, geo, year){
   # cor - Data from get_correspond
   # geo - What geo granularity is the data for
   # year - Year as in validTo column
+  level <- targetName <- sourceCode <- NULL
   if (geo == "fylke"){
     DT <- data.table::merge.data.table(dt, cor, by.x = "kommune", by.y = "code", all = TRUE)
   } else {
