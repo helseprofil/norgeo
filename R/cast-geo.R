@@ -18,7 +18,7 @@ cast_geo <- function(year = NULL) {
 
   geos <- c("fylke", "kommune", "bydel", "grunnkrets")
 
-  DT <- list()
+  DT <- vector(mode = "list", length = 4)
   ## Get geo codes
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
@@ -51,13 +51,9 @@ cast_geo <- function(year = NULL) {
     data.table::setnames(COR[[i]], "targetCode", "code")
   }
 
-  dt <- merge_geo(dt, COR$gr_bydel, "bydel")
-  dt <- merge_geo(dt, COR$gr_kom, "kommune")
-  dt <- merge_geo(dt, COR$kom_fylke, "fylke")
-  ## dt[COR$gr_bydel, on = "code", bydel := sourceCode]
-  ## dt[COR$gr_kom, on = "code", kommune := sourceCode]
-  ## dt[COR$kom_fylke, on = c(kommune = "code"), fylke := sourceCode]
-
+  dt <- merge_geo(dt, COR$gr_bydel, "bydel", year)
+  dt <- merge_geo(dt, COR$gr_kom, "kommune", year)
+  dt <- merge_geo(dt, COR$kom_fylke, "fylke", year)
 
   ## Merge geo code
   ## Add higher granularity that aren't available via correspond API
@@ -76,6 +72,7 @@ cast_geo <- function(year = NULL) {
   ]
 
   ## Only run this after adding lower granularity
+  ## else it will overwrite kommune and bydel
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
 
@@ -83,11 +80,11 @@ cast_geo <- function(year = NULL) {
   ## then need to add it manually because some raw datasets have this code
   ## and it's needed to be able to merged for summing up for country total
   if (isFALSE(is.element("99999999", dt$code))) {
-    validYr <- dt[level == "grunnkrets", c(validTo)][1]
+    ## validYr <- dt[level == "grunnkrets", c(validTo)][1]
     gk <- list(
       code = "99999999",
       name = "Uoppgitt",
-      validTo = validYr,
+      validTo = year,
       level = "grunnkrets",
       grunnkrets = "99999999",
       kommune = "9999",
@@ -130,22 +127,19 @@ find_correspond <- function(type, correspond, from) {
 
 ## Grunnkrets that only exist in previous year need to be added if changes
 ## only happpened previous years from find_correspond. eg. 15390107
-merge_geo <- function(dt, cor, geo){
+merge_geo <- function(dt, cor, geo, year){
   # dt - Data from get_code
   # cor - Data from get_correspond
   # geo - What geo granularity is the data for
+  # year - Year as in validTo column
   if (geo == "fylke"){
     DT <- data.table::merge.data.table(dt, cor, by.x = "kommune", by.y = "code", all = TRUE)
   } else {
     DT <- data.table::merge.data.table(dt, cor, by = "code", all = TRUE)
   }
 
-  DT[is.na(name), name := targetName]
-
   grn <- DT[is.na(level), code]
-  DT[code  %in% grn, level := "grunnkrets"]
-
-  DT[, name := targetName]
+  DT[code %chin% grn, c("level", "validTo", "name") := list("grunnkrets", year, targetName)]
   DT[, (geo) := sourceCode]
   DT[, c("sourceCode", "sourceName", "targetName") := NULL]
 }
