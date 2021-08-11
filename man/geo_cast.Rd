@@ -5,7 +5,7 @@
 \title{Add lower granularity to all files}
 \usage{
 geo_cast(
-  file,
+  files,
   type = NULL,
   year = NULL,
   keep.col = c("code", "name"),
@@ -13,7 +13,7 @@ geo_cast(
 )
 }
 \arguments{
-\item{file}{Files names with complete path to the files}
+\item{files}{Files names with complete path to the files}
 
 \item{type}{Types equivalent to the file names. Must be the same order with file names}
 
@@ -31,15 +31,12 @@ OBS! The 6 digits from grunnkrets does not represent bydel.
 }
 \examples{
 \dontrun{
-file <- c(
+files <- c(
   "C:/Geo/fylke/fylke2020.csv",
   "C:/Geo/kommune/kommune2020.csv",
   "C:/folder2/bydel2020.csv"
 )
-
 types <- c("fylke", "kommune", "bydel")
-
 DT <- geo_cast(files = files, type = types, year = 2020)
 }
-
 }

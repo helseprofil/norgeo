@@ -1,5 +1,6 @@
 # norgeo 0.9.4
 - Fix issues #41.
+- Function `cast_code` is now internal only.
 
 # norgeo 0.9.3
 

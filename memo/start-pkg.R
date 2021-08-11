@@ -14,12 +14,13 @@ pacman::p_load(pkgs, character.only = TRUE)
 ## Looping
 devtools::load_all()
 devtools::document()
+roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 devtools::test()
 
 
 # Run to build the website
-pkgdown::build_site()
+pkgdown::build_site(new_process = FALSE)
 pkgdown::build_news(preview = TRUE)
 
 # Use CI

@@ -76,7 +76,7 @@ The output can be as xlsx or csv file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -194,21 +194,21 @@ The output can be as <code>xlsx</code> or <code>csv</code> file.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ssb_bydel_jan2004.csv"</span>, <span class='st'>"ssb_bydel_jan2018.csv"</span>, <span class='st'>"ssb_bydel_jan2020.csv"</span><span class='op'>)</span>
-<span class='va'>years</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2004</span>, <span class='fl'>2018</span>, <span class='fl'>2020</span><span class='op'>)</span>
-<span class='va'>folder</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel"</span>
-<span class='va'>des</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel/output"</span>
-
-<span class='fu'>geo_change</span><span class='op'>(</span>
-  files <span class='op'>=</span> <span class='va'>files</span>,
-  years <span class='op'>=</span> <span class='va'>years</span>,
-  type <span class='op'>=</span> <span class='st'>"bydel"</span>,
-  folder.path <span class='op'>=</span> <span class='va'>folder</span>, file.type <span class='op'>=</span> <span class='st'>"xls"</span>, des.path <span class='op'>=</span> <span class='va'>des</span>
-<span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ssb_bydel_jan2004.csv"</span>, <span class='st'>"ssb_bydel_jan2018.csv"</span>, <span class='st'>"ssb_bydel_jan2020.csv"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>years</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2004</span>, <span class='fl'>2018</span>, <span class='fl'>2020</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>folder</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel"</span></span>
+<span class='r-in'><span class='va'>des</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel/output"</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>geo_change</span><span class='op'>(</span></span>
+<span class='r-in'>  files <span class='op'>=</span> <span class='va'>files</span>,</span>
+<span class='r-in'>  years <span class='op'>=</span> <span class='va'>years</span>,</span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"bydel"</span>,</span>
+<span class='r-in'>  folder.path <span class='op'>=</span> <span class='va'>folder</span>, file.type <span class='op'>=</span> <span class='st'>"xls"</span>, des.path <span class='op'>=</span> <span class='va'>des</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

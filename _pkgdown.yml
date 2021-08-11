@@ -40,7 +40,6 @@ reference:
   - read_csv
   - find_change
   - merge_multi
-  - cast_code
   - find_correspond
 
 navbar:

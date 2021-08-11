@@ -2,7 +2,7 @@
 title: "Use API data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Use API}
+  %\VignetteIndexEntry{Use API data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
