@@ -76,7 +76,7 @@ cast_geo <- function(year = NULL) {
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
 
-  ## dt <- recode_missing_gr(dt)
+  dt <- recode_missing_gr(dt)
   dt <- find_missing_kom(dt, year = year)
   dt <- find_missing_gr(dt, "99999999", year = year)
 
