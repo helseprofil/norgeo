@@ -76,28 +76,13 @@ cast_geo <- function(year = NULL) {
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
 
-  ## When enumeration number (grunnkrets) doesn't have missing
-  ## then need to add it manually because some raw datasets have this code
-  ## and it's needed to be able to merged for summing up for country total
-  if (isFALSE(is.element("99999999", dt$code))) {
-    ## validYr <- dt[level == "grunnkrets", c(validTo)][1]
-    gk <- list(
-      code = "99999999",
-      name = "Uoppgitt",
-      validTo = year,
-      level = "grunnkrets",
-      grunnkrets = "99999999",
-      kommune = "9999",
-      fylke = "99",
-      bydel = "999999"
-    )
+  ## dt <- recode_missing_gr(dt)
+  dt <- find_missing_kom(dt, year = year)
+  dt <- find_missing_gr(dt, "99999999", year = year)
 
-    dt <- data.table::rbindlist(list(dt, gk), use.name = TRUE)
-  }
-  data.table::setcolorder(dt, c(
-    "code", "name", "validTo", "level",
-    "grunnkrets", "kommune", "fylke", "bydel"
-  ))
+  data.table::setcolorder(dt,
+                          c("code", "name", "validTo", "level",
+                            "grunnkrets", "kommune", "fylke", "bydel"))
 }
 
 #' @title Find existing correspond
@@ -143,4 +128,89 @@ merge_geo <- function(dt, cor, geo, year){
   DT[code %chin% grn, c("level", "validTo", "name") := list("grunnkrets", year, targetName)]
   DT[, (geo) := sourceCode]
   DT[, c("sourceCode", "sourceName", "targetName") := NULL]
+}
+
+
+## Helper ------------------------------------------------------
+recode_missing_gr <- function(dt){
+  dd <- dt[is.na(code),]
+  dd <- is_missing(dd, "kommune")
+  dd <- is_missing(dd, "fylke")
+  dd[is.na(code), code := "99999999"]
+  dt <- data.table::rbindlist(list(dt, dd), use.names = TRUE)
+}
+
+## other than grunnkrets
+is_missing <- function(dt, col){
+  for (i in seq_len(nrow(dt))){
+    dd <- dt[i]
+    if (isFALSE(is.na(dt[[col]]))){
+      col9 <- missing_number(col = col)
+      val <- paste0(dt[[col]], col9)
+      dt[i, code := val]
+    }
+  }
+  return(dt)
+}
+
+missing_number <- function(col = NULL){
+  data.table::fcase(col == "fylke", "999999",
+                    col == "kommune", "9999",
+                    col == "bydel", "99")
+}
+
+
+find_missing_gr <- function(dt = NULL, code = NULL, year = NULL){
+  ## When enumeration number (grunnkrets) doesn't have missing
+  ## then need to add it manually because some raw datasets have this code
+  ## and it's needed to be able to merged for summing up for country total
+  if (isFALSE(is.element(code, dt$code))) {
+    ## validYr <- dt[level == "grunnkrets", c(validTo)][1]
+    gk <- list(
+      code = code,
+      name = "Uoppgitt",
+      validTo = year,
+      level = "grunnkrets",
+      grunnkrets = code,
+      kommune = "9999",
+      fylke = "99",
+      bydel = "999999"
+    )
+
+    dt <- data.table::rbindlist(list(dt, gk), use.name = TRUE)
+  }
+  return(dt)
+}
+
+
+find_missing_kom <- function(dt = NULL, year = NULL){
+  kom <- unique(dt$kommune)
+  komm <- kom[!is.na(kom)]
+
+  DT <- vector(mode = "list", length = length(komm))
+  for (i in seq_len(length(komm))){
+    naKom <- paste0(komm[i], "9999")
+    dk <- dt[kommune == komm[i]]
+    kk <- komm[i]
+    dd <- recode_missing_kom(dk, code = naKom, komm = kk, year = year)
+    DT[[i]] <- dd
+}
+  dkom <- data.table::rbindlist(DT)
+  out <- data.table::rbindlist(list(dt, dkom), use.names = TRUE)
+}
+
+recode_missing_kom <- function(dd = NULL, code = NULL, komm = NULL, year = NULL){
+
+  if (isFALSE(is.element(code, dd$code))){
+    gk <- list(
+      code = code,
+      name = "Uoppgitt",
+      validTo = year,
+      level = "grunnkrets",
+      grunnkrets = code,
+      kommune = komm,
+      fylke = gsub("\\d{2}$", "", komm),
+      bydel = ""
+    )
+  }
 }
