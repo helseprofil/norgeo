@@ -1,3 +1,8 @@
+# norgeo 0.9.5
+- Some geo code don't have missing codes. Have to add it manually
+  when not available from SSB.
+- Fix issues #42.
+
 # norgeo 0.9.4
 - Fix issues #41.
 - Function `cast_code` is now internal only.

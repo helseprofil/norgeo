@@ -1,4 +1,6 @@
-library(norgeo)
+## library(norgeo)
+devtools::load_all()
+
 dlist <- get_list("fylke", 2019)
 dlist
 dchg <- get_change("fylke", year = 2020, from = 2010)
@@ -39,10 +41,13 @@ dtt[oldName == "Hjelset"]
 devtools::load_all()
 dk <- find_correspond("komm", "grunn", 2021)
 dk[targetCode == 15390107]
+cast_geo()
 
 bb <- cast_geo(2021)
 names(bb)
 bb
+bb[is.na(code)]
+bb[code == "01019999"]
 bb[code == 15390107]
 bb[grunnkrets == 15390107]
 bb[level == "kommune" & code == 1539]

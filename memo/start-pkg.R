@@ -6,10 +6,10 @@ setwd("../")
 library(pacman)
 pkgs <- c(
   "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
-  "data.table", "readxl", "openxlsx"
-)
+  "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
+  )
 pacman::p_load(pkgs, character.only = TRUE)
-
+renv::snapshot()
 
 ## Looping
 devtools::load_all()
