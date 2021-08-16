@@ -144,9 +144,9 @@ recode_missing_gr <- function(dt){
 is_missing <- function(dt, col){
   for (i in seq_len(nrow(dt))){
     dd <- dt[i]
-    if (isFALSE(is.na(dt[[col]]))){
+    if (isFALSE(is.na(dd[[col]]))){
       col9 <- missing_number(col = col)
-      val <- paste0(dt[[col]], col9)
+      val <- paste0(dd[[col]], col9)
       dt[i, code := val]
     }
   }
