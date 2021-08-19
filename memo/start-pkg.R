@@ -3,7 +3,12 @@ pkgs <- c(
   "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
   "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
   )
-install.packages(pkgs)
+## install.packages(pkgs)
+
+install.packages("renv")
+renv::init(bare = TRUE)
+renv::install(pkgs)
+renv::snapshot()
 
 ## Looping
 devtools::load_all()
@@ -12,7 +17,7 @@ roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 devtools::test()
 
-Sys.unsetenv("R_PROFILE_USER")
+## Sys.unsetenv("R_PROFILE_USER")
 devtools::check()
                                         # Run to build the website
 pkgdown::build_site(new_process = FALSE)
