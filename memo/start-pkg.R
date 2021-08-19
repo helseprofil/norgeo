@@ -1,15 +1,9 @@
 ## Make sure the root is at package
-rm(list = ls())
-getwd()
-setwd("../")
-
-library(pacman)
 pkgs <- c(
   "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
   "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
   )
-pacman::p_load(pkgs, character.only = TRUE)
-renv::snapshot()
+install.packages(pkgs)
 
 ## Looping
 devtools::load_all()
@@ -18,8 +12,9 @@ roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 devtools::test()
 
-
-# Run to build the website
+Sys.unsetenv("R_PROFILE_USER")
+devtools::check()
+                                        # Run to build the website
 pkgdown::build_site(new_process = FALSE)
 pkgdown::build_news(preview = TRUE)
 
