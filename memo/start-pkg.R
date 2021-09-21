@@ -5,10 +5,10 @@ pkgs <- c(
   )
 ## install.packages(pkgs)
 
-install.packages("renv")
-renv::init(bare = TRUE)
-renv::install(pkgs)
-renv::snapshot()
+## install.packages("renv")
+## renv::init(bare = TRUE)
+## renv::install(pkgs)
+## renv::snapshot()
 
 ## Looping
 devtools::load_all()
