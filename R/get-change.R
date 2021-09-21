@@ -23,6 +23,12 @@ get_change <- function(type = c(
                        code = TRUE,
                        quiet = FALSE,
                        date = FALSE) {
+
+  inType <- length(type) > 1
+  if (inType){
+    stop(simpleError("Only one type og geographical levels is allowed"))
+  }
+
   type <- match.arg(type)
 
   if (type == "bydel") {
