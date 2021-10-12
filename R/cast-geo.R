@@ -43,7 +43,7 @@ cast_geo <- function(year = NULL) {
   cat("..\n")
 
   for (i in seq_along(COR)) {
-    COR[[i]] <- norgeo::find_correspond(COR[[i]][1], COR[[i]][2], from = year)
+    COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = year)
 
     keepCols <- c("sourceCode", "sourceName", "targetCode", "targetName")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
@@ -76,8 +76,16 @@ cast_geo <- function(year = NULL) {
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
 
+  kombydel99 <- dt[bydel %like% "99$", list(kommune, bydel)]
+  kom_with_bydel99 <- kombydel99$kommune
+  bydel99 <- kombydel99$bydel
+
   dt <- recode_missing_gr(dt)
-  dt <- find_missing_kom(dt, year = year)
+  dt <- find_missing_kom_bydel(dt, bydel99 = kom_with_bydel99, year = year)
+
+  ## Use only after coding for missing kommune and fylke because
+  ## it looks for is.na(bydel) in existing rows while find_missing_kom_bydel add new rows
+  dt <- find_missing_bydel(dt, bydel99)
   dt <- find_missing_gr(dt, "99999999", year = year)
 
   data.table::setcolorder(dt,
@@ -118,9 +126,12 @@ merge_geo <- function(dt, cor, geo, year){
   # geo - What geo granularity is the data for
   # year - Year as in validTo column
   level <- targetName <- sourceCode <- NULL
+
   if (geo == "fylke"){
+    # Fylke uses kommune as id for merging
     DT <- data.table::merge.data.table(dt, cor, by.x = "kommune", by.y = "code", all = TRUE)
   } else {
+    # kommune and bydel use grunnkrets as id for merging
     DT <- data.table::merge.data.table(dt, cor, by = "code", all = TRUE)
   }
 
@@ -132,15 +143,19 @@ merge_geo <- function(dt, cor, geo, year){
 
 
 ## Helper ------------------------------------------------------
+## Some years have missing code eg. 10199999 for grunnkrets, but when not available
+## then add it manually
 recode_missing_gr <- function(dt){
-  dd <- dt[is.na(code),]
+  dd <- dt[is.na(code),] # grunnkrets code
+  dd <- is_missing(dd, "bydel")
   dd <- is_missing(dd, "kommune")
   dd <- is_missing(dd, "fylke")
   dd[is.na(code), code := "99999999"]
   dt <- data.table::rbindlist(list(dt, dd), use.names = TRUE)
 }
 
-## other than grunnkrets
+## other than grunnkrets missing code
+## than needs to be added manually
 is_missing <- function(dt, col){
   for (i in seq_len(nrow(dt))){
     dd <- dt[i]
@@ -153,6 +168,7 @@ is_missing <- function(dt, col){
   return(dt)
 }
 
+
 missing_number <- function(col = NULL){
   data.table::fcase(col == "fylke", "999999",
                     col == "kommune", "9999",
@@ -160,10 +176,10 @@ missing_number <- function(col = NULL){
 }
 
 
+## When enumeration number (grunnkrets) doesn't have missing ie. 99999999
+## then need to add it manually because some raw datasets have this code
+## and it's needed to be able to merged for summing up for country total
 find_missing_gr <- function(dt = NULL, code = NULL, year = NULL){
-  ## When enumeration number (grunnkrets) doesn't have missing
-  ## then need to add it manually because some raw datasets have this code
-  ## and it's needed to be able to merged for summing up for country total
   if (isFALSE(is.element(code, dt$code))) {
     ## validYr <- dt[level == "grunnkrets", c(validTo)][1]
     gk <- list(
@@ -183,24 +199,39 @@ find_missing_gr <- function(dt = NULL, code = NULL, year = NULL){
 }
 
 
-find_missing_kom <- function(dt = NULL, year = NULL){
+## Unknown grunnkrets with known kommune ended with 9999
+## This should be extracted and added in kommune column
+find_missing_kom_bydel <- function(dt = NULL, bydel99 = NULL, year = NULL){
+  kommune <- NULL
   kom <- unique(dt$kommune)
   komm <- kom[!is.na(kom)]
 
   DT <- vector(mode = "list", length = length(komm))
   for (i in seq_len(length(komm))){
+    # Uoppgitt in grunnkrets ended with 9999 for kommune
     naKom <- paste0(komm[i], "9999")
     dk <- dt[kommune == komm[i]]
     kk <- komm[i]
-    dd <- recode_missing_kom(dk, code = naKom, komm = kk, year = year)
+    dd <- recode_missing_kom(dk,
+                             code = naKom,
+                             komm = kk,
+                             bydel99 = bydel99,
+                             year = year)
     DT[[i]] <- dd
-}
+  }
   dkom <- data.table::rbindlist(DT)
   out <- data.table::rbindlist(list(dt, dkom), use.names = TRUE)
 }
 
-recode_missing_kom <- function(dd = NULL, code = NULL, komm = NULL, year = NULL){
 
+recode_missing_kom <- function(dd = NULL,
+                               code = NULL,
+                               komm = NULL,
+                               bydel99 = NULL,
+                               year = NULL){
+  # code - missing code in grunnkrets
+  # dd - subset for seleted kommune code
+  # komm - kommune code
   if (isFALSE(is.element(code, dd$code))){
     gk <- list(
       code = code,
@@ -210,7 +241,29 @@ recode_missing_kom <- function(dd = NULL, code = NULL, komm = NULL, year = NULL)
       grunnkrets = code,
       kommune = komm,
       fylke = gsub("\\d{2}$", "", komm),
-      bydel = ""
+      bydel = missing_kom_bydel(komm, bydel99)
     )
   }
+}
+
+missing_kom_bydel <- function(komm, bydel99){
+  if (isTRUE(is.element(komm, bydel99))){
+    code <- paste0(komm, "99")
+  } else {
+    code <- NA
+  }
+  invisible(code)
+}
+
+## Missing (uoppgitt) bydel ended with xxxx99
+## Apply only after recoding missing kommune and fylke
+find_missing_bydel <- function(dt, bydel99 = NULL){
+  bydel <- NULL
+
+  for (i in seq_len(length(bydel99))){
+    naBydel <- paste0(bydel99[i], "99")
+    bycode <- bydel99[i]
+    dt[code == naBydel & is.na(bydel), bydel := bycode]
+  }
+  invisible(dt)
 }
