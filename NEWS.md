@@ -1,3 +1,6 @@
+# norgeo 1.0.0
+- `cast_geo()` now add unknown grunnkrets to respective bydel, kommune and fylke.
+
 # norgeo 0.9.5
 - Some geo code don't have missing codes. Have to add it manually
   when not available from SSB.
