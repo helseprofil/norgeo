@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="granularity_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="granularity_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Granularity</h1>
@@ -103,8 +103,7 @@
     
 <p>The function <code><a href="../reference/geo_cast.html">geo_cast()</a></code> will add lower granularity to all files when applicable. It means for <em>kommune</em> files, a new <code>fylke</code> column will be added, while column <code>fylke</code> and <code>kommune</code> will be added to a <em>bydel</em> and <em>grunnkrets</em> files.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">## Geo 2019</span>
+<code class="sourceCode R"><span class="co">## Geo 2019</span>
 <span class="va">file2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F:/Geo/fylke/fylke_jan2019.csv"</span>,
               <span class="st">"F:/Geo/kommune/kommune_jan2019.csv"</span>,
               <span class="st">"F:/Geo/bydel/bydel_jan2019.csv"</span>,
