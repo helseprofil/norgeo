@@ -39,3 +39,5 @@ vignettes/*.pdf
 .Renviron
 /start_pkg.R
 *.R#
+/README.html
+/memo/*.R

@@ -16,7 +16,8 @@ the changes have taken place. One of the limitation of this package is
 that it is heavily depending on the codes available from SSB which can
 be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-To use other data than the data structure should mimic those from SSB.
+To use other data than those from SSB, it requires that the data
+structure mimic those from SSB.
 
 ## Installation
 
