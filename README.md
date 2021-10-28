@@ -1,5 +1,10 @@
 
+# norgeo <img src='man/figures/norgeo_logo.png' align="right" height="139" />
+
+<!-- badges: start -->
+
 [![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+<!-- badges: end -->
 
 # norgeo
 
@@ -54,18 +59,18 @@ files manually.
 
 Among the output produced by the function `geo_merge()` is as follows:
 
-![output-result](man/figures/kommune_merge.PNG)
+![output-result](man/figures/kommune_merge.png)
 
 The data elucidate the complexity of all the codes change. For Larvik
 for instance, the manucipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
 Holmestrand? When there are more than 350 manucipalities with different
 changes, then tracking these can be a nightmare. The same with
-enumeration units ie. *grunnkrets* with 14000 units\!
+enumeration units ie. *grunnkrets* with 14000 units!
 
 ## File structure
 
 I would suggest to structure your files in different folders as shown
 below:
 
-![File structure](man/figures/geo_dir2.PNG)
+![File structure](man/figures/geo_dir2.png)
