@@ -19,7 +19,7 @@ geo_cast(
 
 \item{year}{Year of the selected code list}
 
-\item{keep.col}{Exisiting column names to be kept}
+\item{keep.col}{Existing column names to be kept}
 
 \item{folder.path}{Folder path to the files}
 }

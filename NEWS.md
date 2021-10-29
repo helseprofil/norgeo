@@ -20,10 +20,10 @@
   | 0322    | 2021 | kommune | NA      | 03    | 0322    | NA     |
 
 - Gives error message if specification in `get_correspond()` for `type` and
-  `correspond` in oppsite order.
+  `correspond` in opposite order.
 - Give error message if year specification in `from` and `to` in a wrong order.
 - Stop if there is no code change for the specified year when running `track_change()`
-- Add enumerator (_grunnkrets_) for missing with `99999999` when not allready
+- Add enumerator (_grunnkrets_) for missing with `99999999` when not already
   available in the dataset downloaded from API. This is needed for merging
   dataset that has this code to be able to calculate total for the whole dataset.
 
@@ -68,13 +68,13 @@ the second future version of `norgeo 1.3.3` will be much better :-)
 
 ## `dev` branch
 
-All ongoing new ideas will be implemented here. So contibutions
+All ongoing new ideas will be implemented here. So contributions
 and bugs reports are very much welcome.
 
 ## Track changes
 
 * `geo_merge()` function provide output for `split` and `merge` codes,
-but it's only relevant to those that are splitted or merged in the most
+but it's only relevant to those that are split or merged in the most
 recent code list. All that happened prior to this haven't been handled
 properly. So may be you can help to solve this?
 

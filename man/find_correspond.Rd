@@ -7,7 +7,7 @@
 find_correspond(type, correspond, from)
 }
 \arguments{
-\item{type}{Higer granularity from specified correspond arg.}
+\item{type}{Higher granularity from specified correspond arg.}
 
 \item{correspond}{Lower granularity from the specified type arg.}
 

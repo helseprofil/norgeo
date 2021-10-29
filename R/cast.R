@@ -75,7 +75,7 @@ geo_cast <- function(files,
 #' the available table that can be downloaded from SSB. The file should be in a CSV format.
 #'
 #' @param file File names
-#' @param keep.col Exisiting column names to be kept
+#' @param keep.col Existing column names to be kept
 #' @inheritParams geo_set
 #'
 # \dontrun{

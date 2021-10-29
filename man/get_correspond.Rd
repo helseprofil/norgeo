@@ -13,7 +13,7 @@ get_correspond(
 )
 }
 \arguments{
-\item{type}{Higer granularity from specified correspond arg.}
+\item{type}{Higher granularity from specified correspond arg.}
 
 \item{correspond}{Lower granularity from the specified type arg.}
 
@@ -24,7 +24,7 @@ get_correspond(
 \item{dt}{Output as data.table}
 }
 \description{
-This function will get the corresponding geo code of specific granuality via API from SSB whenever available.
+This function will get the corresponding geo code of specific granularity via API from SSB whenever available.
 }
 \examples{
 \dontrun{

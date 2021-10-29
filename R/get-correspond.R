@@ -1,8 +1,8 @@
 #' Get geo corresponds
 #'
-#' This function will get the corresponding geo code of specific granuality via API from SSB whenever available.
+#' This function will get the corresponding geo code of specific granularity via API from SSB whenever available.
 #'
-#' @param type Higer granularity from specified correspond arg.
+#' @param type Higher granularity from specified correspond arg.
 #' @param correspond Lower granularity from the specified type arg.
 #' @param from Specify the starting year for range period. Current year is the default.
 #' @param to Specify the year to end the range period. Current year is used when not specified.

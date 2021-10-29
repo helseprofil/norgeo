@@ -15,7 +15,7 @@ cast_code(file, type, year, folder.path = NULL, keep.col = c("code", "name"))
 
 \item{folder.path}{Folder path to the files}
 
-\item{keep.col}{Exisiting column names to be kept}
+\item{keep.col}{Existing column names to be kept}
 }
 \description{
 This function will add lower granularity to the current granularity when applicable.
