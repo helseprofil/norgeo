@@ -27,3 +27,6 @@ pkgdown::build_news(preview = TRUE)
 usethis::use_git_remote("origin", url = "https://github.com/helseprofil/norgeo.git", overwrite = TRUE)
 usethis::use_github_action_check_standard()
 usethis::use_git_remote("origin", url = "git@work:helseprofil/norgeo.git", overwrite = TRUE)
+
+
+usethis::use_logo("man/figures/norgeo.png")

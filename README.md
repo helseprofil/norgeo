@@ -1,5 +1,5 @@
 
-# norgeo <img src='man/figures/norgeo.png' align="right" height="139" />
+# norgeo <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
