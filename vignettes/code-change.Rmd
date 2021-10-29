@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # Track code changes
 
-You have to download the files from SSB and save it as a `csv` file. For the code changes, they have to be copied and pasted into an Excel file. These code changes can be found under *Endringer* tab in the website. It's advisable to name the file with a specific word to differentiate the file from the `csv` files. I would recommed to add the word `change`. For example `fylke_change_jan2018.xlsx` and the downloaded `csv` file will be `fylke_jan2018.csv`. It's also advisable to add the year to all files to easily differentiate them when running the code. Check the suggested structure [here](https://folkehelseprofil.github.io/norgeo/#file-structure) for naming files.
+You have to download the files from SSB and save it as a `csv` file. For the code changes, they have to be copied and pasted into an Excel file. These code changes can be found under *Endringer* tab in the website. It's advisable to name the file with a specific word to differentiate the file from the `csv` files. I would recommed to add the word `change`. For example `fylke_change_jan2018.xlsx` and the downloaded `csv` file will be `fylke_jan2018.csv`. It's also advisable to add the year to all files to easily differentiate them when running the code. Check the suggested structure [here](https://helseprofil.github.io/norgeo/#file-structure) for naming files.
 
 # Add changes
 
