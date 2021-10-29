@@ -9,7 +9,7 @@ read_csv(
   type = NULL,
   sep = c(NA, ";", ","),
   encoding = NULL,
-  global = FALSE
+  raw = FALSE
 )
 }
 \arguments{
@@ -23,12 +23,12 @@ then, you have to choose the right \code{sep} for the file.}
 
 \item{encoding}{Select the suitable encoding}
 
-\item{global}{If TRUE the objects will be available globally}
+\item{raw}{If TRUE the objects will be available in \code{raw} environment}
 }
 \description{
 Read all CSV files in the folder specified if you prefer not to use \code{apply} family.
-The objects can be available in the .GlobalEnv if argument \code{global = TRUE}.
+The objects can be available in the \code{raw} if argument \code{raw = TRUE}.
 \strong{Important!} Any existing objects of similar names will be replaced without warning.
-The object name will be something like "kommune200825_01" if granularity type is
+The object name will be something like "raw$kommune200825_01" if granularity type is
 \code{kommune} specified in the \code{type} argument.
 }

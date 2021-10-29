@@ -1,16 +1,16 @@
 #' Read raw CSV files downloaded from SSB to R object
 #'
 #' Read all CSV files in the folder specified if you prefer not to use `apply` family.
-#' The objects can be available in the .GlobalEnv if argument `global = TRUE`.
+#' The objects can be available in the `raw` if argument `raw = TRUE`.
 #' **Important!** Any existing objects of similar names will be replaced without warning.
-#' The object name will be something like "kommune200825_01" if granularity type is
+#' The object name will be something like "raw$kommune200825_01" if granularity type is
 #' \code{kommune} specified in the \code{type} argument.
 #'
 #' @param sep The separate symbols in the CSV files ie. `;` or `,`. If you leave it blank then 
 #' appropriate symbols will be selected automatically. But if you should specify `encoding` type
 #' then, you have to choose the right `sep` for the file.
 #' @param encoding Select the suitable encoding
-#' @param global If TRUE the objects will be available globally
+#' @param raw If TRUE the objects will be available in `raw` environment
 #' 
 #' @inheritParams geo_set 
 #'
@@ -20,16 +20,9 @@ read_csv <- function(folder.path,
                      type = NULL,
                      sep = c(NA, ";", ","),
                      encoding = NULL,
-                     global = FALSE){
+                     raw = FALSE){
 
   if (is.null(type)) stop("Please specify granularity type eg. 'kommune'")
-  
-  ## args <- list(...)
-  ## if(names(args) %in% c("grep.change", "change", "grep")) {
-  ##   chgArg <- args[[1]]
-  ## } else {
-  ##   chgArg <- "change"
-  ## }
   
   files <- select_ssb(grep.file = type,
                       grep.change = "change",
@@ -55,10 +48,10 @@ read_csv <- function(folder.path,
     for (j in cols) set(dt, j = j, value = as.numeric(dt[[j]]))
     DT <- list(file = fileName, dt = dt)
 
-    if (global){
+    if (raw){
       ymd <- format(Sys.Date(), '%y%m%d')
       fnum <- paste0(type, ymd, "_0", i)
-      assign(fnum, DT, envir = .GlobalEnv)
+      assign(fnum, DT, envir = raw)
     }
 
     outDT[[i]] <- DT

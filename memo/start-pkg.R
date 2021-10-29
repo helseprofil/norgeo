@@ -30,3 +30,4 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/norgeo.git", overw
 
 
 usethis::use_logo("man/figures/norgeo.png")
+pkgdown::build_favicons(pkg = ".")

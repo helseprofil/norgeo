@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read raw CSV files downloaded from SSB to R object — read_csv • norgeo</title>
+<title>Where raw data will be kept — raw • norgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,12 +46,8 @@
 
 
 
-<meta property="og:title" content="Read raw CSV files downloaded from SSB to R object — read_csv" />
-<meta property="og:description" content="Read all CSV files in the folder specified if you prefer not to use apply family.
-The objects can be available in the raw if argument raw = TRUE.
-Important! Any existing objects of similar names will be replaced without warning.
-The object name will be something like &quot;raw$kommune200825_01&quot; if granularity type is
-kommune specified in the type argument." />
+<meta property="og:title" content="Where raw data will be kept — raw" />
+<meta property="og:description" content="Created object when running norgeo::read_csv()" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,54 +140,21 @@ kommune specified in the type argument." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read raw CSV files downloaded from SSB to R object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/file_setup.R'><code>R/file_setup.R</code></a></small>
-    <div class="hidden name"><code>read_csv.Rd</code></div>
+    <h1>Where raw data will be kept</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/env.R'><code>R/env.R</code></a></small>
+    <div class="hidden name"><code>raw.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read all CSV files in the folder specified if you prefer not to use <code>apply</code> family.
-The objects can be available in the <code>raw</code> if argument <code>raw = TRUE</code>.
-<strong>Important!</strong> Any existing objects of similar names will be replaced without warning.
-The object name will be something like "raw$kommune200825_01" if granularity type is
-<code>kommune</code> specified in the <code>type</code> argument.</p>
+    <p>Created object when running <code><a href='read_csv.html'>norgeo::read_csv()</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_csv</span><span class='op'>(</span>
-  <span class='va'>folder.path</span>,
-  type <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sep <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='st'>";"</span>, <span class='st'>","</span><span class='op'>)</span>,
-  encoding <span class='op'>=</span> <span class='cn'>NULL</span>,
-  raw <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='va'>raw</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>folder.path</th>
-      <td><p>Folder path to the files</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>The separate symbols in the CSV files ie. <code>;</code> or <code>,</code>. If you leave it blank then
-appropriate symbols will be selected automatically. But if you should specify <code>encoding</code> type
-then, you have to choose the right <code>sep</code> for the file.</p></td>
-    </tr>
-    <tr>
-      <th>encoding</th>
-      <td><p>Select the suitable encoding</p></td>
-    </tr>
-    <tr>
-      <th>raw</th>
-      <td><p>If TRUE the objects will be available in <code>raw</code> environment</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>An object of class <code>environment</code> of length 0.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

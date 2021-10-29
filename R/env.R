@@ -5,3 +5,10 @@
 #' @export dataApi
 
 dataApi <- new.env()
+
+
+#' @title Where raw data will be kept
+#' @description Created object when running `norgeo::read_csv()`
+#' @export raw
+
+raw <- new.env()
