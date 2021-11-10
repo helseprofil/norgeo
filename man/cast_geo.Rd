@@ -10,6 +10,11 @@ cast_geo(year = NULL)
 \item{year}{Which year the codes are valid from. If NULL then current year
 will be selected.}
 }
+\value{
+A dataset of class \code{data.table} representing the spreading of
+different geographical levels from lower to higher levels ie. from
+enumeration area codes to county codes, for the selected year.
+}
 \description{
 Add geo granularity levels to all sides
 }

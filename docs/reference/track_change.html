@@ -170,17 +170,22 @@ be used.</p>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>Specify the starting year for range period. Current year is the default.</p></td>
+      <td><p>Specify the starting year for range period. Current year is the
+default.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>Specify the year to end the range period. Current year is used when not specified.</p></td>
+      <td><p>Specify the year to end the range period. Current year is used when
+not specified.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>dataApi environment with main objects ie. dc (data change) and dt (current data)</p>
+    <p>A dataset of class <code>data.table</code> consisting all older codes from
+previous years until the selected year in <code>to</code> argument and what these
+older codes were changed into. If the codes have not changed then the value
+of old code will be <code>NA</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

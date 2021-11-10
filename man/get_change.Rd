@@ -16,15 +16,23 @@ get_change(
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
 
-\item{to}{Specify the year to end the range period. Current year is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when
+not specified.}
 
-\item{code}{TRUE will only track code changes. Else change name only will also be considered as change.}
+\item{code}{TRUE will only track code changes. Else change name only will
+also be considered as change.}
 
-\item{quiet}{TRUE will suppress messages when no changes happened for a specific time range}
+\item{quiet}{TRUE will suppress messages when no changes happened for a
+specific time range}
 
 \item{date}{If TRUE then give complete date else year only}
+}
+\value{
+A dataset of class \code{data.table} consisting old and new code with
+the respective year when the codes have changed
 }
 \description{
 This function will download all registered geo code changes from SSB via API. Basically it's the data you
@@ -32,4 +40,7 @@ can see \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here} if 
 for code change in munucipality (\emph{kommune}). The advantage of using \code{get_change} or
 \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is that you
 can get all code changes for several years at once.
+}
+\examples{
+DT <- get_change("kommune", from = 2018, to = 2020)
 }

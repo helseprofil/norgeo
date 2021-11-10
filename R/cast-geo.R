@@ -1,11 +1,16 @@
-#' Cast geo granularity from API
+#' @title Cast geo granularity from API
 #'
-#' Add geo granularity levels to all sides
+#' @description Add geo granularity levels to all sides
 #'
 #' @param year Which year the codes are valid from. If NULL then current year
 #'   will be selected.
 #'
 #' @import data.table
+#' @return A dataset of class `data.table` representing the spreading of
+#'   different geographical levels from lower to higher levels ie. from
+#'   enumeration area codes to county codes, for the selected year.
+#' @examples
+#  DT <- cast_geo(2020)
 #' @export
 
 cast_geo <- function(year = NULL) {
@@ -101,6 +106,10 @@ cast_geo <- function(year = NULL) {
 #'   year before before previous year etc..etc.. This function is needed
 #'   when running [cast_geo()].
 #' @inheritParams get_correspond
+#' @return A dataset of class `data.table` representing the lower geographical
+#'   level codes and their corresponding higher geographical levels. For example
+#'   for codes on enumeration areas and their corresponding codes for
+#'   municipalities or town.
 #' @export
 find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
@@ -117,6 +126,9 @@ find_correspond <- function(type, correspond, from) {
   message("Data for ", correspond, " to ", type, " is from ", stat$from, " with ", stat$rows, " rows")
   return(dt)
 }
+
+
+## Helper ------------------------------------------------------
 
 ## Grunnkrets that only exist in previous year need to be added if changes
 ## only happpened previous years from find_correspond. eg. 15390107
@@ -141,8 +153,6 @@ merge_geo <- function(dt, cor, geo, year){
   DT[, c("sourceCode", "sourceName", "targetName") := NULL]
 }
 
-
-## Helper ------------------------------------------------------
 ## Some years have missing code eg. 10199999 for grunnkrets, but when not available
 ## then add it manually
 recode_missing_gr <- function(dt){

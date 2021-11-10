@@ -1,16 +1,22 @@
 #' Get geo corresponds
 #'
-#' This function will get the corresponding geo code of specific granularity via API from SSB whenever available.
+#' This function will get the corresponding geo code of specific granularity via
+#' API from SSB whenever available.
 #'
 #' @param type Higher granularity from specified correspond arg.
 #' @param correspond Lower granularity from the specified type arg.
-#' @param from Specify the starting year for range period. Current year is the default.
-#' @param to Specify the year to end the range period. Current year is used when not specified.
+#' @param from Specify the starting year for range period. Current year is the
+#'   default.
+#' @param to Specify the year to end the range period. Current year is used when
+#'   not specified.
 #' @param dt Output as data.table
-#'
+#' @return A dataset of class `data.table` representing the lower geographical
+#'   level codes and their corresponding higher geographical levels. For example
+#'   for codes on enumeration areas and their corresponding codes for
+#'   municipalities or town.
 #' @examples
 #' \dontrun{
-#' df <- get_correspond("fylke", "kommune", 2020)
+#' df <- get_correspond("kommune", "grunnkrets", 2020)
 #' }
 #'
 #' @export

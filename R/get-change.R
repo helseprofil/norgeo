@@ -6,10 +6,15 @@
 #' \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is that you
 #' can get all code changes for several years at once.
 #'
-#' @param code TRUE will only track code changes. Else change name only will also be considered as change.
-#' @param quiet TRUE will suppress messages when no changes happened for a specific time range
+#' @param code TRUE will only track code changes. Else change name only will
+#'   also be considered as change.
+#' @param quiet TRUE will suppress messages when no changes happened for a
+#'   specific time range
 #' @inheritParams get_code
-#'
+#' @return A dataset of class `data.table` consisting old and new code with
+#'   the respective year when the codes have changed
+#' @examples
+#' DT <- get_change("kommune", from = 2018, to = 2020)
 #' @export
 
 get_change <- function(type = c(

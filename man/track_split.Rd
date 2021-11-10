@@ -13,13 +13,18 @@ track_split(
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
 
-\item{to}{Specify the year to end the range period. Current year is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when
+not specified.}
 }
 \value{
-Dataset with column 'split' showing how many the codes have been split to
+Dataset of class \code{data.table} with column 'split' showing how many the codes have been split to
 }
 \description{
 Get geo code that are split after code change
+}
+\examples{
+ dt <- track_split("kommune", 2018, 2020)
 }

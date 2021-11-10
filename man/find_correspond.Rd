@@ -11,7 +11,14 @@ find_correspond(type, correspond, from)
 
 \item{correspond}{Lower granularity from the specified type arg.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
+}
+\value{
+A dataset of class \code{data.table} representing the lower geographical
+level codes and their corresponding higher geographical levels. For example
+for codes on enumeration areas and their corresponding codes for
+municipalities or town.
 }
 \description{
 Unlike \code{\link[=get_correspond]{get_correspond()}} functions, this function will find existing
