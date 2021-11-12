@@ -37,7 +37,7 @@ track_change <- function(type = c(
   }
 
   ## Prepare the starting dataset with current year vs. last year
-  data_current(type, from, to)
+  data_current(type, to)
 
   vecYear <- unique(dataApi$dc$changeOccurred)
   selYear <- sort(vecYear[vecYear != dataApi$yrMax], decreasing = TRUE)
@@ -58,7 +58,7 @@ track_change <- function(type = c(
 ## dat <- data_current()
 ## length(unique(dat$changeOccurred))==2
 ## Else there isn't any changes occurred
-data_current <- function(type, from, to) {
+data_current <- function(type, to) {
   if (is.null(to)) {
     to <- as.integer(format(Sys.Date(), "%Y"))
   }
