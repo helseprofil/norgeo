@@ -2,6 +2,8 @@
 #'
 #' @inheritParams get_code
 #' @return Dataset with column 'merge' showing how many the codes have been merged to
+#' @examples
+#'  dt <- track_change("kommune", 2018, 2020)
 #' @export
 
 track_merge <- function(type = c(

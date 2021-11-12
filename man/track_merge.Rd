@@ -13,13 +13,18 @@ track_merge(
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
 
-\item{to}{Specify the year to end the range period. Current year is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when
+not specified.}
 }
 \value{
 Dataset with column 'merge' showing how many the codes have been merged to
 }
 \description{
 Get geo code that are merged after code change
+}
+\examples{
+ dt <- track_change("kommune", 2018, 2020)
 }

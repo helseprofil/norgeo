@@ -6,7 +6,10 @@
 #' be used.
 #'
 #' @inheritParams get_code
-#' @return dataApi environment with main objects ie. dc (data change) and dt (current data)
+#' @return A dataset of class `data.table` consisting all older codes from
+#'   previous years until the selected year in `to` argument and what these
+#'   older codes were changed into. If the codes have not changed then the value
+#'   of old code will be `NA`.
 #'
 #' @examples
 #' \dontrun{

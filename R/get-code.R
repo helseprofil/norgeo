@@ -5,7 +5,8 @@
 #' @param type Type of regional granularity ie. fylke, kommune etc.
 #' @param date If TRUE then give complete date else year only
 #' @inheritParams get_correspond
-#'
+#' @return A dataset of class `data.table` consisting codes of selected
+#'   geographical level and the duration the codes are valid ie. from and to.
 #' @import data.table
 #'
 #' @export

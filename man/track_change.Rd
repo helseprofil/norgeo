@@ -13,12 +13,17 @@ track_change(
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
 
-\item{to}{Specify the year to end the range period. Current year is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when
+not specified.}
 }
 \value{
-dataApi environment with main objects ie. dc (data change) and dt (current data)
+A dataset of class \code{data.table} consisting all older codes from
+previous years until the selected year in \code{to} argument and what these
+older codes were changed into. If the codes have not changed then the value
+of old code will be \code{NA}.
 }
 \description{
 Track all code changes until current year or the year specified in \code{to} argument.

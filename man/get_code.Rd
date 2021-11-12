@@ -14,11 +14,17 @@ get_code(
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{from}{Specify the starting year for range period. Current year is the default.}
+\item{from}{Specify the starting year for range period. Current year is the
+default.}
 
-\item{to}{Specify the year to end the range period. Current year is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when
+not specified.}
 
 \item{date}{If TRUE then give complete date else year only}
+}
+\value{
+A dataset of class \code{data.table} consisting codes of selected
+geographical level and the duration the codes are valid ie. from and to.
 }
 \description{
 This function will download the codes of selected geographical levels via API.

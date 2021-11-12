@@ -1,7 +1,9 @@
 #' Get geo code that are split after code change
 #'
 #' @inheritParams get_code
-#' @return Dataset with column 'split' showing how many the codes have been split to
+#' @return Dataset of class `data.table` with column 'split' showing how many the codes have been split to
+#' @examples
+#'  dt <- track_split("kommune", 2018, 2020)
 #' @export
 
 track_split <- function(type = c(
