@@ -177,6 +177,7 @@ set_year <- function(x, to = TRUE) {
 grunnkrets_before_2002 <- function(dt, type, from = NULL){
   if (type == "grunnkrets"){
     gks <- norgeo::GrunnkretsBefore2002[changeOccurred %in% from:2001]
+    gks <- grunnkrets_8digits(gks)
     dt <- data.table::rbindlist(list(gks, dt), use.names = TRUE, fill = TRUE)
     dtCols <- c("oldCode", "oldName", "newCode", "newName", "changeOccurred")
     data.table::setcolorder(dt, dtCols)
@@ -184,4 +185,22 @@ grunnkrets_before_2002 <- function(dt, type, from = NULL){
 
   return(dt)
 
+}
+
+## Ensure grunnkrets has 8 digits else add starts 0
+grunnkrets_8digits <- function(dtg){
+
+  for (j in c("oldCode", "newCode")){
+    data.table::set(dtg, j = j, value = as.character(dtg[[j]]))
+  }
+
+  dtg[, `:=`(digit1 = data.table::fifelse(nchar(oldCode) == 8, 0, 1),
+             digit2 = data.table::fifelse(nchar(newCode) == 8, 0, 1)) ]
+
+  dtg[digit1 == 1, oldCode := paste0("0", oldCode)]
+  dtg[digit2 == 1, newCode := paste0("0", newCode)]
+
+  dtg[, c("digit1", "digit2") := NULL]
+
+  return(dtg)
 }
