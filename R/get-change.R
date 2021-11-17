@@ -175,9 +175,8 @@ set_year <- function(x, to = TRUE) {
 }
 
 grunnkrets_before_2002 <- function(dt, type, from = NULL){
-  dtgk <- utils::data("GrunnkretsBefore2002", package = "norgeo")
   if (type == "grunnkrets"){
-    gks <- dtgk[changeOccurred %in% from:2001]
+    gks <- norgeo::GrunnkretsBefore2002[changeOccurred %in% from:2001]
     dt <- data.table::rbindlist(list(gks, dt), use.names = TRUE, fill = TRUE)
     dtCols <- c("oldCode", "oldName", "newCode", "newName", "changeOccurred")
     data.table::setcolorder(dt, dtCols)
