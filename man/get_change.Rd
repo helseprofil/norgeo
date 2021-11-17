@@ -35,11 +35,16 @@ A dataset of class \code{data.table} consisting old and new code with
 the respective year when the codes have changed
 }
 \description{
-This function will download all registered geo code changes from SSB via API. Basically it's the data you
-can see \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here} if you looking
-for code change in munucipality (\emph{kommune}). The advantage of using \code{get_change} or
-\href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is that you
-can get all code changes for several years at once.
+This function will download all geographical code changes from
+SSB via API except enumeration areas (\emph{grunnkrets}) between 1980 to
+2001. The code change can be found in the dataset \code{GrunnkretsBefore2002}.
+
+Basically the downloaded data are those you can see directly
+\href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here}, for
+example if you looking for code change in munucipality (\emph{kommune}).
+The advantage of using \code{get_change} or
+\href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is
+that you can get all code changes for several years at once.
 }
 \examples{
 DT <- get_change("kommune", from = 2018, to = 2020)

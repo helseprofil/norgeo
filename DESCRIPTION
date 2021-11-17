@@ -38,3 +38,5 @@ Suggests:
 URL: https://github.com/helseprofil/norgeo
 BugReports: https://github.com/helseprofil/norgeo/issues
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

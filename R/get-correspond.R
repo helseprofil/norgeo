@@ -37,6 +37,7 @@ get_correspond <- function(type = c(
                            to = NULL,
                            dt = TRUE) {
   type <- match.arg(type)
+
   klass <- switch(type,
     fylke = 104,
     kommune = 131,
@@ -108,3 +109,23 @@ set_corr <- function(from = NULL,
 
   return(koDT)
 }
+
+
+## check_level <- function(type, correspond){
+##   upper <- level_code(type)
+##   lower <- level_code(correspond)
+
+##   trouble <- type < correspond
+##   if (trouble) {
+##     stop(simpleError("From is higher than to. It should be the other way around!"))
+##   }
+## }
+
+
+## level_code <- function(x){
+##   code <- switch(x,
+##                  grunnkrets = 1,
+##                  bydel = 2,
+##                  kommune = 3,
+##                  fylke = 4)
+## }

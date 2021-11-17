@@ -19,7 +19,7 @@ devtools::test()
 
 ## Sys.unsetenv("R_PROFILE_USER")
 devtools::check()
-                                        # Run to build the website
+## Run to build the website
 pkgdown::build_site(new_process = FALSE)
 pkgdown::build_news(preview = TRUE)
 
