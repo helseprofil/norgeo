@@ -10,3 +10,4 @@
 ^memo$
 ^.projectile
 ^\.github$
+^data-raw$
