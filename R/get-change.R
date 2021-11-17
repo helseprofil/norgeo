@@ -1,10 +1,14 @@
 #' Get geo code changes with API
 #'
-#' This function will download all registered geo code changes from SSB via API. Basically it's the data you
-#' can see \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here} if you looking
-#' for code change in munucipality (\emph{kommune}). The advantage of using \code{get_change} or
-#' \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is that you
-#' can get all code changes for several years at once.
+#' @description This function will download all geographical code changes from
+#'   SSB via API except enumeration areas (\emph{grunnkrets}) between 1980 to
+#'   2001. The code change can be found in the dataset `GrunnkretsBefore2002`.
+#' @description Basically the downloaded data are those you can see directly
+#'   \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here}, for
+#'   example if you looking for code change in munucipality (\emph{kommune}).
+#'   The advantage of using \code{get_change} or
+#'   \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is
+#'   that you can get all code changes for several years at once.
 #'
 #' @param code TRUE will only track code changes. Else change name only will
 #'   also be considered as change.
@@ -97,7 +101,8 @@ get_change <- function(type = c(
       }
     )
 
-    chgDT <- as.data.table(chgJS[[1]])
+    chgDT <- chgJS[[1]]
+    data.table::setDT(chgDT)
 
     if (code && nrow(chgDT) != 0) {
       chgDT <- chgDT[oldCode != newCode]
@@ -105,7 +110,7 @@ get_change <- function(type = c(
 
     ## no error produced but table is empty
     if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
-      message("No code changes from ", dateFrom, " to ", dateTo)
+      message("No code changes from ", dateFrom, " to ", dateTo, " or not available via API")
     }
 
     listDT[[i]] <- chgDT
@@ -136,6 +141,12 @@ get_change <- function(type = c(
 
   delCol <- c("oldShortName", "newShortName")
   DT[, (delCol) := NULL][]
+
+  if (from < 2002){
+    DT <- grunnkrets_before_2002(DT, type, from)
+  }
+
+  return(DT)
 }
 
 
@@ -161,4 +172,17 @@ set_year <- function(x, to = TRUE) {
 
   ## invisible(dy)
   return(dy)
+}
+
+grunnkrets_before_2002 <- function(dt, type, from = NULL){
+
+  if (type == "grunnkrets"){
+    gks <- GrunnkretsBefore2002[changeOccurred %in% from:2001]
+    dt <- data.table::rbindlist(list(gks, dt), use.names = TRUE, fill = TRUE)
+    dtCols <- c("oldCode", "oldName", "newCode", "newName", "changeOccurred")
+    data.table::setcolorder(dt, dtCols)
+  }
+
+  return(dt)
+
 }
