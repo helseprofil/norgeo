@@ -29,6 +29,7 @@ track_change <- function(type = c(
                          from = NULL,
                          to = NULL) {
   type <- match.arg(type)
+  type <- grunnkrets_check(type, to)
 
   data_change(type, from, to)
 
@@ -130,4 +131,12 @@ data_change <- function(type, from, to) {
     to = to,
     quiet = TRUE
   )
+}
+
+grunnkrets_check <- function(type, to){
+  if (type == "grunnkrets" && to < 2003){
+    stop(simpleError("For grunnkrets code change up to 2001, use data `GrunnkretsBefore2002`"))
+  }
+
+  invisible(type)
 }
