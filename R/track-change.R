@@ -133,7 +133,11 @@ data_change <- function(type, from, to) {
   )
 }
 
-grunnkrets_check <- function(type, to){
+grunnkrets_check <- function(type, to = NULL){
+  if (is.null(to)) {
+    to <- as.integer(format(Sys.Date(), "%Y"))
+  }
+
   if (type == "grunnkrets" && to < 2003){
     stop(simpleError("For grunnkrets code change up to 2001, use data `GrunnkretsBefore2002`"))
   }
