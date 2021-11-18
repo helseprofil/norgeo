@@ -39,6 +39,7 @@ get_change <- function(type = c(
   }
 
   type <- match.arg(type)
+  type <- grunnkrets_check(type, to)
 
   if (type == "bydel") {
     message("*** Change table for bydel is not available in SSB Klass API ***\n")
