@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' mydata <- track - change("kommune", from = 2017, to = 2020)
+#' mydata <- track_change("kommune", from = 2017, to = 2020)
 #' }
 #'
 #' @import data.table
