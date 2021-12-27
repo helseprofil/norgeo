@@ -61,5 +61,5 @@ Among the output produced by the function `get_change()` is as follows:
 
 ![output-result](man/figures/kommune_merge.png)
 
-The data elucidate the complexity of all the codes change. For Larvik for instance, the munucipality has grown in 2020
-with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 manucipalities with different changes, then tracking these can be a nightmare. The same with enumeration units ie. *grunnkrets* with 14000 units!
+The data elucidate the complexity of all the codes change. For Larvik for instance, the municipality has grown in 2020
+with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 municipality with different changes, then tracking these can be a nightmare. The same with enumeration units ie. *grunnkrets* with 14000 units!

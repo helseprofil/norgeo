@@ -26,6 +26,11 @@ reference:
 - contents:
   - cast_geo
 
+- title: "Utility"
+  desc: Other useful functions
+- contents:
+    - geo_save
+
 navbar:
   type: default
   left:

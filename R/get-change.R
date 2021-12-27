@@ -5,7 +5,7 @@
 #'   2001. The code change can be found in the dataset `GrunnkretsBefore2002`.
 #' @description Basically the downloaded data are those you can see directly
 #'   \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here}, for
-#'   example if you looking for code change in munucipality (\emph{kommune}).
+#'   example if you looking for code change in municipality (\emph{kommune}).
 #'   The advantage of using \code{get_change} or
 #'   \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is
 #'   that you can get all code changes for several years at once.
