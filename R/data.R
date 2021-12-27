@@ -1,4 +1,4 @@
-#' @title Grunnkrets https://www.ssb.no/klass/klassifikasjoner/1/endringerCode Change Before 2002
+#' @title Grunnkrets Change Before 2002
 #' @description Grunnkrets codes change before 2002 are not available via API.
 #' This is a dataset received directly from SSB.
 #' @format A data of `data.table` class consisting 3 variables:

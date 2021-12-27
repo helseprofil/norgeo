@@ -3,7 +3,7 @@
 \docType{data}
 \name{GrunnkretsBefore2002}
 \alias{GrunnkretsBefore2002}
-\title{Grunnkrets https://www.ssb.no/klass/klassifikasjoner/1/endringerCode Change Before 2002}
+\title{Grunnkrets Change Before 2002}
 \format{
 A data of \code{data.table} class consisting 3 variables:
 \describe{

@@ -30,6 +30,7 @@ reference:
   desc: Other useful functions
 - contents:
     - geo_save
+    - GrunnkretsBefore2002
 
 navbar:
   type: default
