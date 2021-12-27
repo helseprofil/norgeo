@@ -20,11 +20,12 @@ default.}
 not specified.}
 }
 \value{
-Dataset with column 'merge' showing how many the codes have been merged to
+Dataset of class \code{data.table} with column \code{merge} showing the number
+of time the codes have been merged into
 }
 \description{
 Get geo code that are merged after code change
 }
 \examples{
- dt <- track_change("kommune", 2018, 2020)
+ dt <- track_merge("kommune", 2018, 2020)
 }

@@ -20,7 +20,8 @@ default.}
 not specified.}
 }
 \value{
-Dataset of class \code{data.table} with column 'split' showing how many the codes have been split to
+Dataset of class \code{data.table} with column \code{split} showing the number
+of time the codes have been split to
 }
 \description{
 Get geo code that are split after code change
