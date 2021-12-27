@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
 
@@ -55,26 +55,8 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Guides
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/use-api.html">Use API data</a>
-    </li>
-    <li>
-      <a href="articles/code-change.html">Add changes</a>
-    </li>
-    <li>
-      <a href="articles/granularity.html">Cast granularity</a>
-    </li>
-    <li>
-      <a href="articles/change-tbl.html">Change table</a>
-    </li>
-  </ul>
+  <a href="articles/use-api.html">Get Started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -128,22 +110,14 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Data can either be downloaded directly from SSB website or via API. When you download the files manually then use the functions with <code>geo_</code> prefix while functions with <code>get_</code> prefix are used to get data via API.</p>
-<p>All functions with <code>geo_</code> prefix are the main function for <code>norgeo</code> downloaded files. Among them, <code><a href="reference/geo_set.html">geo_set()</a></code> is the most important one to set up object accordingly for further use. Other available functions aren’t really necessary to know, but they are available when needed. They are mostly for internal use. To learn how to use these function, please read the tutorial under <a href="https://helseprofil.github.io/norgeo/articles/use-api.html">Guides</a></p>
-<p>To get all code changes directly via API can be done with <code><a href="reference/get_change.html">get_change()</a></code> function, while <code><a href="reference/geo_change.html">geo_change()</a></code> is used when you have downloaded the files manually.</p>
+<p>The data is downloaded via API form SSB <a href="https://data.ssb.no/api/klass/v1/api-guide.html" title="ssb">website</a>. To learn how to use the different functions in <strong>norgeo</strong>, please read the tutorial under <a href="https://helseprofil.github.io/norgeo/articles/use-api.html">Get Started</a></p>
 </div>
 <div id="output" class="section level2">
 <h2 class="hasAnchor">
 <a href="#output" class="anchor"></a>Output</h2>
-<p>Among the output produced by the function <code><a href="reference/geo_merge.html">geo_merge()</a></code> is as follows:</p>
+<p>Among the output produced by the function <code><a href="reference/get_change.html">get_change()</a></code> is as follows:</p>
 <p><img src="reference/figures/kommune_merge.png" alt="output-result"></p>
-<p>The data elucidate the complexity of all the codes change. For Larvik for instance, the munucipality has grown in 2020 with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 munucipalities with different changes, then tracking these can be a nightmare. The same with enumeration units ie. <em>grunnkrets</em> with 14000 units!</p>
-</div>
-<div id="file-structure" class="section level2">
-<h2 class="hasAnchor">
-<a href="#file-structure" class="anchor"></a>File structure</h2>
-<p>I would suggest to structure your files in different folders as shown below:</p>
-<p><img src="reference/figures/geo_dir2.png" alt="File structure"></p>
+<p>The data elucidate the complexity of all the codes change. For Larvik for instance, the munucipality has grown in 2020 with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 manucipalities with different changes, then tracking these can be a nightmare. The same with enumeration units ie. <em>grunnkrets</em> with 14000 units!</p>
 </div>
 </div>
 
