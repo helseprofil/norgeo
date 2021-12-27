@@ -1,3 +1,10 @@
+# norgeo 2.0.0
+- All functions for the downloaded data from SSB are now deactivated. It's no
+  more relevant after implementing API related functions. (#57)
+- Code change for grunnkrets before 2003 is available with
+  `GrunnkretsBefore2002`. The list is not available via API and received
+  directly from SSB.
+
 # norgeo 1.0.0
 - `cast_geo()` now add unknown grunnkrets to respective bydel, kommune and fylke.
 
