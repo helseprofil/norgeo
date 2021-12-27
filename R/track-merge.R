@@ -1,9 +1,10 @@
 #' Get geo code that are merged after code change
 #'
 #' @inheritParams get_code
-#' @return Dataset with column 'merge' showing how many the codes have been merged to
+#' @return Dataset of class `data.table` with column `merge` showing the number
+#'   of time the codes have been merged into
 #' @examples
-#'  dt <- track_change("kommune", 2018, 2020)
+#'  dt <- track_merge("kommune", 2018, 2020)
 #' @export
 
 track_merge <- function(type = c(
