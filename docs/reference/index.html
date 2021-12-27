@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
 
@@ -91,26 +91,8 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Guides
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/use-api.html">Use API data</a>
-    </li>
-    <li>
-      <a href="../articles/code-change.html">Add changes</a>
-    </li>
-    <li>
-      <a href="../articles/granularity.html">Cast granularity</a>
-    </li>
-    <li>
-      <a href="../articles/change-tbl.html">Change table</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/use-api.html">Get Started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -154,7 +136,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-api-data" class="hasAnchor"><a href="#section-api-data" class="anchor"></a>API data</h2>
-          <p class="section-desc"><p>All functions that start with <code>get_</code> are used to download data via API.</p></p>
+          <p class="section-desc"><p>All functions that start with <code>get_</code> and <code>track_</code> are used to download data via API.</p></p>
         </th>
       </tr>
       
@@ -198,104 +180,25 @@
           <p><code><a href="track_merge.html">track_merge()</a></code> </p>
         </td>
         <td><p>Get geo code that are merged after code change</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-geographical-levels" class="hasAnchor"><a href="#section-geographical-levels" class="anchor"></a>Geographical levels</h2>
+          <p class="section-desc"><p>Codes with different geograhical levels for a specific year</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="cast_geo.html">cast_geo()</a></code> </p>
         </td>
         <td><p>Cast geo granularity from API</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-downloaded-files" class="hasAnchor"><a href="#section-downloaded-files" class="anchor"></a>Downloaded files</h2>
-          <p class="section-desc"><p>All functions that start with <code>geo_</code> are used to restructure the downloaded files from SSB. The most important of them is <code>geo_set</code>. This will set configuration to be easily used in the next processes.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="geo_set.html">geo_set()</a></code> </p>
-        </td>
-        <td><p>Set geo codes changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_merge.html">geo_merge()</a></code> </p>
-        </td>
-        <td><p>Merge all geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_cast.html">geo_cast()</a></code> </p>
-        </td>
-        <td><p>Add lower granularity to all files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_save.html">geo_save()</a></code> </p>
-        </td>
-        <td><p>Save geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_change.html">geo_change()</a></code> </p>
-        </td>
-        <td><p>Get change from complete geo list</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-additional-functions" class="hasAnchor"><a href="#section-additional-functions" class="anchor"></a>Additional functions</h2>
-          <p class="section-desc"><p>Extra functions when needed for special cases</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="norgeo-package.html">norgeo-package</a></code> </p>
-        </td>
-        <td><p>norgeo : A package for tracking geo codes changes in Norway</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dataApi.html">dataApi</a></code> </p>
-        </td>
-        <td><p>Where downloaded data will be kept</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_csv.html">read_csv()</a></code> </p>
-        </td>
-        <td><p>Read raw CSV files downloaded from SSB to R object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_change.html">find_change()</a></code> </p>
-        </td>
-        <td><p>Find changes from previous year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="merge_multi.html">merge_multi()</a></code> </p>
-        </td>
-        <td><p>Multiple changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_correspond.html">find_correspond()</a></code> </p>
-        </td>
-        <td><p>Find existing correspond</p></td>
       </tr>
     </tbody>
     </table>
