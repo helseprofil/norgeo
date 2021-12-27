@@ -190,6 +190,7 @@ grunnkrets_before_2002 <- function(dt, type, from = NULL){
 
 ## Ensure grunnkrets has 8 digits else add starts 0
 grunnkrets_8digits <- function(dtg){
+  digit1 <- digit2 <- NULL
 
   for (j in c("oldCode", "newCode")){
     data.table::set(dtg, j = j, value = as.character(dtg[[j]]))
