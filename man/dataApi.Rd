@@ -11,7 +11,7 @@ An object of class \code{environment} of length 0.
 dataApi
 }
 \description{
-Downloaded data will be stored in dataApi to avoid downloding
+Downloaded data will be stored in dataApi to avoid downloading
 multiple time for the same selected data
 }
 \keyword{datasets}

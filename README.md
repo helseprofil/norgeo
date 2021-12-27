@@ -43,8 +43,8 @@ remotes::install_github("helseprofil/norgeo@dev")
 The data is downloaded via API form SSB
 [website](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To
 learn how to use the different functions in **norgeo**, please read the
-tutorial under [Get
-Started](https://helseprofil.github.io/norgeo/articles/use-api.html)
+tutorial under
+[Guides](https://helseprofil.github.io/norgeo/articles/use-api.html)
 
 ## Output
 
@@ -53,8 +53,8 @@ Among the output produced by the function `get_change()` is as follows:
 ![output-result](man/figures/kommune_merge.png)
 
 The data elucidate the complexity of all the codes change. For Larvik
-for instance, the munucipality has grown in 2020 with the inclusion of
+for instance, the municipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
-Holmestrand? When there are more than 350 manucipalities with different
+Holmestrand? When there are more than 350 municipality with different
 changes, then tracking these can be a nightmare. The same with
 enumeration units ie. *grunnkrets* with 14000 units!
