@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Yusman Kamaleri \email{ybka@fhi.no}
+\strong{Maintainer}: Yusman Kamaleri \email{ybkamaleri@gmail.no}
 
 }
 \keyword{internal}
