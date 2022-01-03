@@ -34,6 +34,7 @@ pkgdown::build_favicons(pkg = ".")
 
 
 ## CRAN release
+devtools::build() #create .tar.gz file
 devtools::spell_check()
 devtools::release_checks()
 devtools::release()
