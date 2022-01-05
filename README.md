@@ -23,20 +23,21 @@ be accessed from their
 
 ## Installation
 
-`norgeo` package can be installed directly from **GitHub** page of
-[Helseprofil](https://github.com/helseprofil). You can run the code
-below for installation. It will use `remotes` package to access to the
-**GitHub**. If you haven’t installed it before, the package will be
-installed automatically prior to installing `norgeo`.
+`norgeo` package can be installed directly from CRAN or via **GitHub**
+page of [Helseprofil](https://github.com/helseprofil). You can run the
+code below for installation.
+
+``` r
+install.packages("norgeo")
+```
+
+If you want to install the development version then use `remotes`
+package to access to the **GitHub**. If you haven’t installed it before,
+the package will be installed automatically prior to installing `norgeo`
+if you run the code below.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo")
-```
-
-If you want to use the development version then use:
-
-``` r
 remotes::install_github("helseprofil/norgeo@dev")
 ```
 

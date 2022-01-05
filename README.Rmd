@@ -47,20 +47,20 @@ available from SSB which can be accessed from their
 
 ## Installation
 
-`norgeo` package can be installed directly from **GitHub** page of
+`norgeo` package can be installed directly from CRAN or via **GitHub** page of
 [Helseprofil](https://github.com/helseprofil). You can run the code below for
-installation. It will use `remotes` package to access to the **GitHub**. If you
-haven't installed it before, the package will be installed automatically prior
-to installing `norgeo`.
+installation. 
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo")
+install.packages("norgeo")
 ```
 
-If you want to use the development version then use:
+If you want to install the development version then use `remotes` package to access
+to the **GitHub**. If you haven't installed it before, the package will be
+installed automatically prior to installing `norgeo` if you run the code below.
 
 ```{r dev, eval=FALSE}
+if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/norgeo@dev")
 ```
 
