@@ -1,12 +1,16 @@
-
 # norgeo <img src='man/figures/logo.png' align="right" height="139" />
 
-<!-- badges: start -->
+[![R build
+status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+[![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
+[![CRAN
+checks](https://cranchecks.info/badges/summary/norgeo)](https://cran.r-project.org/web/checks/check_results_norgeo.html)
+[![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![](https://img.shields.io/badge/devel%20version-2.0.0-blue.svg)](https://github.com/helseprofil/norgeo)
 
-[![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
-<!-- badges: end -->
-
-# norgeo
+<!-- <\!-- badges: start -\-> -->
+<!-- [![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions) -->
+<!-- <\!-- badges: end -\-> -->
 
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
@@ -16,8 +20,6 @@ the changes have taken place. One of the limitation of this package is
 that it is heavily depending on the codes available from SSB which can
 be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-To use other data than those from SSB, it requires that the data
-structure mimic those from SSB.
 
 ## Installation
 
@@ -43,8 +45,8 @@ remotes::install_github("helseprofil/norgeo@dev")
 The data is downloaded via API form SSB
 [website](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To
 learn how to use the different functions in **norgeo**, please read the
-tutorial under
-[Guides](https://helseprofil.github.io/norgeo/articles/use-api.html)
+tutorial under [Get
+Started](https://helseprofil.github.io/norgeo/articles/use-api.html)
 
 ## Output
 

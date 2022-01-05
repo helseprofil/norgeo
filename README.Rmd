@@ -1,5 +1,8 @@
 ---
-output: github_document
+output:
+  md_document:
+    variant: gfm
+html_preview: false
 ---
 
 ```{r, include = FALSE}
@@ -11,13 +14,28 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r echo=FALSE, results="hide", message=FALSE}
+library("badger")
+```
+
 # norgeo <img src='man/figures/logo.png' align="right" height="139" />
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
-<!-- badges: end -->
 
-# norgeo
+```{r, echo = FALSE, results='asis'}
+cat(
+	badge_github_actions(),
+	badge_cran_release("norgeo", "green"),
+  badge_cran_checks("norgeo"),
+  badge_lifecycle("maturing", "blue"),
+  badge_devel("helseprofil/norgeo", "blue")
+)
+```
+
+
+<!-- <\!-- badges: start -\-> -->
+<!-- [![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions) -->
+<!-- <\!-- badges: end -\-> -->
+
 
 Regional granularity levels in Norway which are depicted by different codes, have
 undergone several changes over the years. Identifying when codes have changed
@@ -26,7 +44,6 @@ to identify these changes and when the changes have taken place. One of the
 limitation of this package is that it is heavily depending on the codes
 available from SSB which can be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-To use other data than those from SSB, it requires that the data structure mimic those from SSB.
 
 ## Installation
 
