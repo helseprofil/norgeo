@@ -32,6 +32,9 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/norgeo.git", overw
 usethis::use_logo("man/figures/norgeo.png")
 pkgdown::build_favicons(pkg = ".")
 
+## PACKAGE DEP ----------
+usethis::use_package("vcr")
+
 
 ## CRAN release
 devtools::build() #create .tar.gz file
@@ -39,3 +42,11 @@ devtools::spell_check()
 devtools::release_checks()
 devtools::release()
 devtools::check_rhub()
+
+## TESTING
+usethis::use_testthat()
+usethis::use_test("get-code")
+
+
+## Coverage
+covr::report()

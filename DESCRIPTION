@@ -27,9 +27,10 @@ Imports:
     RSQLite,
     writexl,
     httr,
-    jsonlite
+    jsonlite,
+    vcr
 Suggests: 
-    testthat,
+    testthat (>= 3.0.0),
     pkgdown,
     knitr,
     rmarkdown
@@ -38,3 +39,4 @@ BugReports: https://github.com/helseprofil/norgeo/issues
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
+Config/testthat/edition: 3
