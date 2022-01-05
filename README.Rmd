@@ -23,19 +23,14 @@ library("badger")
 
 ```{r, echo = FALSE, results='asis'}
 cat(
-	badge_github_actions(),
+  badge_github_actions(),
   badge_codecov("helseprofil/norgeo"),
-	badge_cran_release("norgeo", "green"),
+  badge_cran_release("norgeo", "green"),
   badge_cran_checks("norgeo"),
   badge_lifecycle("maturing", "blue"),
   badge_devel("helseprofil/norgeo", "blue")
 )
 ```
-
-
-<!-- <\!-- badges: start -\-> -->
-<!-- [![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions) -->
-<!-- <\!-- badges: end -\-> -->
 
 
 Regional granularity levels in Norway which are depicted by different codes, have

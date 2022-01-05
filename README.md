@@ -7,11 +7,7 @@ status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](
 [![CRAN
 checks](https://cranchecks.info/badges/summary/norgeo)](https://cran.r-project.org/web/checks/check_results_norgeo.html)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![](https://img.shields.io/badge/devel%20version-2.0.0-blue.svg)](https://github.com/helseprofil/norgeo)
-
-<!-- <\!-- badges: start -\-> -->
-<!-- [![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions) -->
-<!-- <\!-- badges: end -\-> -->
+[![](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg)](https://github.com/helseprofil/norgeo)
 
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
