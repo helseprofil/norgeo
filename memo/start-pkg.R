@@ -49,4 +49,5 @@ usethis::use_test("get-code")
 
 
 ## Coverage
+usethis::use_github_action("test-coverage")
 covr::report()

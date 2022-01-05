@@ -24,6 +24,7 @@ library("badger")
 ```{r, echo = FALSE, results='asis'}
 cat(
 	badge_github_actions(),
+  badge_codecov("helseprofil/norgeo"),
 	badge_cran_release("norgeo", "green"),
   badge_cran_checks("norgeo"),
   badge_lifecycle("maturing", "blue"),
