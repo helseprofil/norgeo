@@ -55,6 +55,8 @@ track_change <- function(type = c(
   return(dataApi$dt[])
 }
 
+## HELPER --------------------------------------
+
 ## Do testing with:
 ## dat <- data_current()
 ## length(unique(dat$changeOccurred))==2

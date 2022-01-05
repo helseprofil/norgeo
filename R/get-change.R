@@ -179,6 +179,7 @@ grunnkrets_before_2002 <- function(dt, type, from = NULL){
   if (type == "grunnkrets"){
     gks <- norgeo::GrunnkretsBefore2002[changeOccurred %in% from:2001]
     gks <- grunnkrets_8digits(gks)
+    gks <- grunnkrets_dirty(x = dt, y = gks)
     dt <- data.table::rbindlist(list(gks, dt), use.names = TRUE, fill = TRUE)
     dtCols <- c("oldCode", "oldName", "newCode", "newName", "changeOccurred")
     data.table::setcolorder(dt, dtCols)
@@ -205,4 +206,13 @@ grunnkrets_8digits <- function(dtg){
   dtg[, c("digit1", "digit2") := NULL]
 
   return(dtg)
+}
+
+## For unclean grunnkrets codes before 2002
+## Se Issue #61
+grunnkrets_dirty <- function(x, y){
+  # x - dataset before 2002
+  # y - dataset from GrunnkretsBefore2002
+  codeOut <- intersect(unique(y$oldCode), unique(x$oldCode))
+  y[!(oldCode %chin% codeOut)]
 }
