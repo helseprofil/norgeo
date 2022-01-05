@@ -5,7 +5,8 @@ Authors@R:
     person(given = "Yusman",
            family = "Kamaleri",
            role = c("aut", "cre"),
-           email = "ybkamaleri@gmail.com"
+           email = "ybkamaleri@gmail.com",
+           comment = c(ORCID = "0000-0001-5014-3665")
            )
 Description: Regional granularity levels in Norway which are depicted by different codes, 
              have undergone several changes over the years. 
