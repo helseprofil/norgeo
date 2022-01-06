@@ -1,21 +1,9 @@
-## Make sure the root is at package
-pkgs <- c(
-  "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
-  "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
-  )
-## install.packages(pkgs)
-
-## install.packages("renv")
-## renv::init(bare = TRUE)
-## renv::install(pkgs)
-## renv::snapshot()
-
 ## Looping
 devtools::load_all()
+devtools::test()
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 devtools::check()
-devtools::test()
 
 ## Sys.unsetenv("R_PROFILE_USER")
 devtools::check()
@@ -32,9 +20,19 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/norgeo.git", overw
 usethis::use_logo("man/figures/norgeo.png")
 pkgdown::build_favicons(pkg = ".")
 
-## PACKAGE DEP ----------
+## PACKAGE DEV ----------
 usethis::use_package("vcr")
 
+## Make sure the root is at package
+pkgs <- c(
+  "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
+  "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
+)
+## install.packages(pkgs)
+## install.packages("renv")
+## renv::init(bare = TRUE)
+## renv::install(pkgs)
+## renv::snapshot()
 
 ## CRAN release
 devtools::build() #create .tar.gz file
@@ -47,6 +45,8 @@ devtools::check_rhub()
 usethis::use_testthat()
 usethis::use_test("get-code")
 
+vcr::use_vcr()
+vcr::use_cassette("get-code")
 
 ## Coverage
 usethis::use_github_action("test-coverage")
