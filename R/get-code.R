@@ -98,7 +98,8 @@ set_url <- function(base = NULL,
     codeQry <- list(from = from, to = to)
   }
 
-  koGET <- httr::GET(endUrl, query = codeQry)
+  koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
+  httr::warn_for_status(koGET)
   koTxt <- httr::content(koGET, as = "text")
   koJS <- jsonlite::fromJSON(koTxt)
 }
