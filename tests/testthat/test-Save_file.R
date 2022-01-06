@@ -1,4 +1,3 @@
-context("Save object")
 
 test_that("Database name missing", {
 
