@@ -2,6 +2,7 @@
 - Clean up enumeration codes before 2002. Some codes that were already recoded
   could still exist after 2002. Those codes were excluded from the code change
   before 2002. (#62)
+- Retry connection if fail or give feedback if error to connect to the API (#63)
 
 # norgeo 2.0.0
 - All functions for the downloaded data from SSB are now deactivated. It's no
