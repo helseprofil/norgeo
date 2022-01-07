@@ -105,6 +105,10 @@ get_change <- function(type = c(
     chgDT <- chgJS[[1]]
     data.table::setDT(chgDT)
 
+    if (type == "grunnkrets"){
+      chgDT <- grunnkrets_00(chgDT)
+    }
+
     if (code && nrow(chgDT) != 0) {
       chgDT <- chgDT[oldCode != newCode]
     }
@@ -215,4 +219,34 @@ grunnkrets_dirty <- function(x, y){
   # y - dataset from GrunnkretsBefore2002
   codeOut <- intersect(unique(y$oldCode), unique(x$oldCode))
   y[!(oldCode %chin% codeOut)]
+}
+
+## Issue #65
+## Area code ends with 00 sometimes aren't included in code change
+## This make it standard that it will always be area codes
+grunnkrets_00 <- function(x){
+  y <- copy(x)
+
+  x[, "grOld" := gsub("\\d{2}$", "00", oldCode)]
+  x[, "grNew" := gsub("\\d{2}$", "00", newCode)]
+
+  grCodeOld <- unique(gsub("\\d{2}$", "00", unique(x$oldCode)))
+  grCodeNew <- unique(gsub("\\d{2}$", "00", unique(x$newCode)))
+
+  idxOld <- !is.element(grCodeOld, x$oldCode)
+  idxNew <- !is.element(grCodeNew, x$newCode)
+
+  idxOld <- grCodeOld[idxOld]
+  idxNew <- grCodeOld[idxNew]
+
+  x <- x[grOld %chin% idxOld][!duplicated(grOld)]
+  colNames <- names(x)[-c(8,9)]
+  cols <- c("oldCode", "newCode")
+  x[, (cols) := NULL]
+  data.table::setnames(x, c("grOld", "grNew"), cols)
+  data.table::setcolorder(x, colNames)
+  x[, c("oldName", "newName") := "Nothing from API"]
+
+  x <- data.table::rbindlist(list(y, x))
+  x[!duplicated(x)]
 }
