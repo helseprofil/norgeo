@@ -3,6 +3,11 @@
   could still exist after 2002. Those codes were excluded from the code change
   before 2002. (#62)
 - Retry connection if fail or give feedback if error to connect to the API (#63)
+- Area codes for grunnkrets doesn't always available from API. It makes it
+  difficult to know if the codes have been changed multiple times or not.
+  `get_change()` will ensure that area codes for grunnkrets will be created if
+  it doesn't exist from the change table to ensure that area codes for
+  grunnkrets will always exist. Thanks to @jorgenRM to notice this error (#65)
 
 # norgeo 2.0.0
 - All functions for the downloaded data from SSB are now deactivated. It's no
