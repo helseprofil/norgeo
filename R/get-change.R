@@ -87,7 +87,8 @@ get_change <- function(type = c(
 
     ## specify query
     chgQ <- list(from = dateFrom, to = dateTo)
-    chgGET <- httr::GET(chgUrl, query = chgQ)
+    chgGET <- httr::RETRY("GET", url = chgUrl, query = chgQ)
+    httr::warn_for_status(chgGET)
     chgTxt <- httr::content(chgGET, as = "text")
 
     chgJS <- tryCatch(

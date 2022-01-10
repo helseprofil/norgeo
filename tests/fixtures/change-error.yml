@@ -1,0 +1,15 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://data.ssb.no/api/klass/v1/classifications/104/changes?from=2018-01-01&to=2019-01-02
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: ''
+  response:
+    status:
+      status_code: 502
+  recorded_at: 2022-01-10 13:40:19 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
