@@ -76,10 +76,7 @@ get_change <- function(type = c(
   ## Create empty list
   listDT <- vector(mode = "list", length = nrow(tblRef))
 
-  p <- progressr::progressor(steps = nrow(tblRef))
-
   for (i in seq_len(nrow(tblRef))) {
-    p()
 
     indFrom <- tblRef$V1[i]
     indTo <- tblRef$V2[i]
