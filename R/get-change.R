@@ -42,7 +42,7 @@ get_change <- function(type = c(
   type <- grunnkrets_check(type, to)
 
   if (type == "bydel") {
-    message("*** Change table for bydel is not available in SSB Klass API ***\n")
+    stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
   }
 
   klass <- switch(type,
@@ -76,7 +76,11 @@ get_change <- function(type = c(
   ## Create empty list
   listDT <- vector(mode = "list", length = nrow(tblRef))
 
+  p <- progressr::progressor(steps = nrow(tblRef))
+
   for (i in seq_len(nrow(tblRef))) {
+    p()
+
     indFrom <- tblRef$V1[i]
     indTo <- tblRef$V2[i]
     yrFrom <- vecYr[indFrom]
@@ -92,15 +96,15 @@ get_change <- function(type = c(
     chgTxt <- httr::content(chgGET, as = "text")
 
     chgJS <- tryCatch(
-      {
-        jsonlite::fromJSON(chgTxt)
-      },
-      error = function(err) {
-        message(
-          "*** Change table for ", type,
-          " doesn't exist. From ", dateFrom, " to ", dateTo, " ***"
-        )
-      }
+    {
+      jsonlite::fromJSON(chgTxt)
+    },
+    error = function(err) {
+      message(
+        "*** Change table for ", type,
+        " doesn't exist. From ", dateFrom, " to ", dateTo, " *** "
+      )
+    }
     )
 
     chgDT <- chgJS[[1]]
@@ -110,7 +114,7 @@ get_change <- function(type = c(
       chgDT <- grunnkrets_00(chgDT)
     }
 
-    if (code && nrow(chgDT) != 0) {
+    if (nrow(chgDT) > 0 && code) {
       chgDT <- chgDT[oldCode != newCode]
     }
 
@@ -182,6 +186,7 @@ set_year <- function(x, to = TRUE) {
 
 grunnkrets_before_2002 <- function(dt, type, from = NULL){
   if (type == "grunnkrets"){
+    message("Grunnkrets codes change before 2002 are from the dataset `GrunnkretsBefore2002`")
     gks <- norgeo::GrunnkretsBefore2002[changeOccurred %in% from:2001]
     gks <- grunnkrets_8digits(gks)
     gks <- grunnkrets_dirty(x = dt, y = gks)
@@ -194,7 +199,7 @@ grunnkrets_before_2002 <- function(dt, type, from = NULL){
 
 }
 
-## Ensure grunnkrets has 8 digits else add starts 0
+## Ensure grunnkrets has 8 digits else add leading 0
 grunnkrets_8digits <- function(dtg){
   digit1 <- digit2 <- NULL
 
@@ -226,6 +231,11 @@ grunnkrets_dirty <- function(x, y){
 ## Area code ends with 00 sometimes aren't included in code change
 ## This make it standard that it will always be area codes
 grunnkrets_00 <- function(x){
+
+  if (nrow(x) == 0){
+    return(x)
+  }
+
   y <- copy(x)
 
   x[, "grOld" := gsub("\\d{2}$", "00", oldCode)]

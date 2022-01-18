@@ -28,7 +28,8 @@ Imports:
     writexl,
     httr,
     jsonlite,
-    vcr
+    vcr,
+    progressr
 Suggests: 
     testthat (>= 3.0.0),
     pkgdown,

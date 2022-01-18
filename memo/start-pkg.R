@@ -5,6 +5,9 @@ devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 
+## progressr
+progressr::handlers(global = TRUE)
+
 ## Sys.unsetenv("R_PROFILE_USER")
 devtools::check()
 ## Run to build the website
@@ -22,6 +25,7 @@ pkgdown::build_favicons(pkg = ".")
 
 ## PACKAGE DEV ----------
 usethis::use_package("vcr")
+usethis::use_package("progressr")
 
 ## Make sure the root is at package
 pkgs <- c(
