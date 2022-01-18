@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
       </span>
     </div>
 
@@ -62,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/helseprofil/norgeo/">
+  <a href="https://github.com/helseprofil/norgeo/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -77,13 +79,13 @@
 
       
 
-      </header><script src="use-api_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Use API data</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/helseprofil/norgeo/blob/master/vignettes/use-api.Rmd"><code>vignettes/use-api.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/helseprofil/norgeo/blob/HEAD/vignettes/use-api.Rmd" class="external-link"><code>vignettes/use-api.Rmd</code></a></small>
       <div class="hidden name"><code>use-api.Rmd</code></div>
 
     </div>
@@ -91,12 +93,12 @@
     
     
 <p>This is a simple guide to access data data via API.</p>
-<div id="download-data-with-api" class="section level1">
-<h1 class="hasAnchor">
-<a href="#download-data-with-api" class="anchor"></a>Download data with API</h1>
-<p>All functions that has <code>get_</code> prefix access data directly via <a href="https://data.ssb.no/api/klass/v1/api-guide.html">SSB API</a>. This is the simple guide to use <em>norgeo</em> API functions:</p>
+<div class="section level2">
+<h2 id="download-data-with-api">Download data with API<a class="anchor" aria-label="anchor" href="#download-data-with-api"></a>
+</h2>
+<p>All functions that has <code>get_</code> prefix access data directly via <a href="https://data.ssb.no/api/klass/v1/api-guide.html" class="external-link">SSB API</a>. This is the simple guide to use <em>norgeo</em> API functions:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/norgeo">norgeo</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/norgeo" class="external-link">norgeo</a></span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
 <span class="co"># only current geo code</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
@@ -104,9 +106,9 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dtc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_change.html">get_change</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="track-geo-changes" class="section level1">
-<h1 class="hasAnchor">
-<a href="#track-geo-changes" class="anchor"></a>Track geo changes</h1>
+<div class="section level2">
+<h2 id="track-geo-changes">Track geo changes<a class="anchor" aria-label="anchor" href="#track-geo-changes"></a>
+</h2>
 <p>To track all geo changes to the current date specified in the argument <code>to</code> can be done as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dtt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/track_change.html">track_change</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
@@ -125,11 +127,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yusman Kamaleri.</p>
+  <p></p>
+<p>Developed by Yusman Kamaleri.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -137,6 +141,8 @@
 
   
 
+
+  
 
   </body>
 </html>

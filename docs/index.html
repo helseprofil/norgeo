@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
       </span>
     </div>
 
@@ -67,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/helseprofil/norgeo/">
+  <a href="https://github.com/helseprofil/norgeo/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -84,33 +86,34 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="norgeo-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#norgeo-" class="anchor"></a>norgeo <img src="reference/figures/logo.png" align="right" height="139">
+<div class="section level1">
+<div class="page-header"><h1 id="norgeo-">norgeo <img src="reference/figures/logo.png" align="right" width="120" height="139"><a class="anchor" aria-label="anchor" href="#norgeo-"></a>
 </h1></div>
 
-<p>Regional granularity levels in Norway which are depicted by different codes, have undergone several changes over the years. Identifying when codes have changed and how many changes have taken place can be troublesome. This package will help to identify these changes and when the changes have taken place. One of the limitation of this package is that it is heavily depending on the codes available from SSB which can be accessed from their <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020">website</a>.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>norgeo</code> package can be installed directly from CRAN or via <strong>GitHub</strong> page of <a href="https://github.com/helseprofil">Helseprofil</a>. You can run the code below for installation.</p>
+<p>Regional granularity levels in Norway which are depicted by different codes, have undergone several changes over the years. Identifying when codes have changed and how many changes have taken place can be troublesome. This package will help to identify these changes and when the changes have taken place. One of the limitation of this package is that it is heavily depending on the codes available from SSB which can be accessed from their <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020" class="external-link">website</a>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p><code>norgeo</code> package can be installed directly from CRAN or via <strong>GitHub</strong> page of <a href="https://github.com/helseprofil" class="external-link">Helseprofil</a>. You can run the code below for installation.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"norgeo"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"norgeo"</span><span class="op">)</span></code></pre></div>
 <p>If you want to install the development version then use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code> if you run the code below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo@dev"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>The data is downloaded via API form SSB <a href="https://data.ssb.no/api/klass/v1/api-guide.html" title="ssb">website</a>. To learn how to use the different functions in <strong>norgeo</strong>, please read the tutorial under <a href="https://helseprofil.github.io/norgeo/articles/use-api.html">Get Started</a></p>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>The data is downloaded via API form SSB <a href="https://data.ssb.no/api/klass/v1/api-guide.html" title="ssb" class="external-link">website</a>. To learn how to use the different functions in <strong>norgeo</strong>, please read the tutorial under <a href="https://helseprofil.github.io/norgeo/articles/use-api.html" class="external-link">Get Started</a></p>
 </div>
-<div id="output" class="section level2">
-<h2 class="hasAnchor">
-<a href="#output" class="anchor"></a>Output</h2>
+<div class="section level2">
+<h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h2>
 <p>Among the output produced by the function <code><a href="reference/get_change.html">get_change()</a></code> is as follows:</p>
-<p><img src="reference/figures/kommune_merge.png" alt="output-result"></p>
+<div class="figure">
+<img src="reference/figures/kommune_merge.png" alt=""><p class="caption">output-result</p>
+</div>
 <p>The data elucidate the complexity of all the codes change. For Larvik for instance, the municipality has grown in 2020 with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 municipality with different changes, then tracking these can be a nightmare. The same with enumeration units ie. <em>grunnkrets</em> with 14000 units!</p>
 </div>
 </div>
@@ -118,53 +121,61 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=norgeo">https://​cloud.r-project.org/​package=norgeo</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/helseprofil/norgeo/">https://​github.com/​helseprofil/​norgeo/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/helseprofil/norgeo/issues">https://​github.com/​helseprofil/​norgeo/​issues</a>
-</li>
-<li>SSB website at <br><a href="https://www.ssb.no/offentlig-sektor/kommunekatalog">https://​www.ssb.no/​offentlig-sektor/​kommunekatalog</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Yusman Kamaleri <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5014-3665" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://cloud.r-project.org/package=norgeo" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/helseprofil/norgeo/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/helseprofil/norgeo/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://www.ssb.no/offentlig-sektor/kommunekatalog" class="external-link">SSB website</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/helseprofil/norgeo/actions"><img src="https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/helseprofil/norgeo"><img src="https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg"></a></li>
-<li><a href="https://cran.r-project.org/package=norgeo"><img src="https://www.r-pkg.org/badges/version/norgeo?color=green"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_norgeo.html"><img src="https://cranchecks.info/badges/summary/norgeo" alt="CRAN checks"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg"></a></li>
-<li><a href="https://github.com/helseprofil/norgeo"><img src="https://img.shields.io/badge/devel%20version-2.1.0-blue.svg"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing norgeo</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Yusman Kamaleri <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5014-3665" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/helseprofil/norgeo/actions" class="external-link"><img src="https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://app.codecov.io/gh/helseprofil/norgeo" class="external-link"><img src="https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg"></a></li>
+<li><a href="https://cran.r-project.org/package=norgeo" class="external-link"><img src="https://www.r-pkg.org/badges/version/norgeo?color=green"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg"></a></li>
+<li><a href="https://github.com/helseprofil/norgeo" class="external-link"><img src="https://img.shields.io/badge/devel%20version-2.1.0-blue.svg"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Yusman Kamaleri.</p>
+  <p></p>
+<p>Developed by Yusman Kamaleri.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -172,6 +183,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -229,6 +229,8 @@ grunnkrets_dirty <- function(x, y){
 ## This make it standard that it will always be area codes
 grunnkrets_00 <- function(x){
 
+  grOld <- NULL
+
   if (nrow(x) == 0){
     return(x)
   }

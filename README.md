@@ -1,11 +1,9 @@
-# norgeo <img src='man/figures/logo.png' align="right" height="139" />
+# norgeo <img src='man/figures/logo.png' align="right" width="120" height="139" />
 
 [![R build
 status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
-[![](https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg)](https://codecov.io/gh/helseprofil/norgeo)
+[![](https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/norgeo)
 [![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
-[![CRAN
-checks](https://cranchecks.info/badges/summary/norgeo)](https://cran.r-project.org/web/checks/check_results_norgeo.html)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg)](https://github.com/helseprofil/norgeo)
 
@@ -35,7 +33,7 @@ if you run the code below.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo@dev")
+remotes::install_github("helseprofil/norgeo")
 ```
 
 ## Usage
