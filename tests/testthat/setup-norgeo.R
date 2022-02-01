@@ -10,3 +10,6 @@ vcr::check_cassette_names()
 outDT <- readRDS(system.file("test-data", "codes-fromto.rds", package = "norgeo"))
 ## get_change()
 chgDT <- readRDS(system.file("test-data", "change-dt.rds", package = "norgeo"))
+
+## Correspond --------------------
+dtCorr <- readRDS(system.file("test-data", "dtCorres.rds", package = "norgeo"))

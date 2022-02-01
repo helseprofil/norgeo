@@ -48,10 +48,15 @@ devtools::check_rhub()
 ## TESTING
 usethis::use_testthat()
 usethis::use_test("get-code")
+usethis::use_test("get-correspond")
 
 vcr::use_vcr()
-vcr::use_cassette("get-code")
+## vcr::use_cassette("get-code")
+## vcr::use_cassette("get-correspond")
 
 ## Coverage
 usethis::use_github_action("test-coverage")
 covr::report()
+
+## Save files
+saveRDS(bb, file = file.path(system.file(package = "norgeo"), "test-data/dtCorres.rds"))
