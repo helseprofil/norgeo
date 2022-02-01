@@ -54,7 +54,7 @@ get_correspond <- function(type = c(
   )
 
   trueType <- klass %in% c(103, 131)
-  msg <- "Correspond should be lower granularity than type,\n  or requested combination is not available in SSB"
+  msg <- "Correspond arg should be lower granularity than type arg,\n  or requested combination is not available in SSB"
   if (trueType && corr != 1) {
     stop(msg)
   }
@@ -98,7 +98,8 @@ set_corr <- function(from = NULL,
     codeQry <- list(targetClassificationId = id, from = from, to = to)
   }
 
-  koGET <- httr::GET(corrUrl, query = codeQry)
+  koGET <- httr::RETRY("GET", url = corrUrl, query = codeQry)
+  httr::warn_for_status(koGET)
   koTxt <- httr::content(koGET, as = "text")
   koJS <- jsonlite::fromJSON(koTxt)
   koDT <- koJS[["correspondenceItems"]]
@@ -110,22 +111,3 @@ set_corr <- function(from = NULL,
   return(koDT)
 }
 
-
-## check_level <- function(type, correspond){
-##   upper <- level_code(type)
-##   lower <- level_code(correspond)
-
-##   trouble <- type < correspond
-##   if (trouble) {
-##     stop(simpleError("From is higher than to. It should be the other way around!"))
-##   }
-## }
-
-
-## level_code <- function(x){
-##   code <- switch(x,
-##                  grunnkrets = 1,
-##                  bydel = 2,
-##                  kommune = 3,
-##                  fylke = 4)
-## }
