@@ -76,10 +76,8 @@ data_current <- function(type, to) {
 
   ## when no code changes have occurred except names
   dt[is.na(oldCode), oldCode := newCode][
-    is.na(changeOccurred), changeOccurred := validTo
-  ][
-    is.na(newName), newName := name
-  ]
+    is.na(changeOccurred), changeOccurred := validTo][
+      is.na(newName), newName := name]
 
   dt[, c("name", "validTo") := NULL][]
   dataApi$dt <- dt
