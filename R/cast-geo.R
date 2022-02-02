@@ -64,19 +64,12 @@ cast_geo <- function(year = NULL) {
 
   ## Merge geo code
   ## Add higher granularity that aren't available via correspond API
-  dt[
-    level == "bydel", kommune := gsub("\\d{2}$", "", code)
-  ][
-    level == "bydel", fylke := gsub("\\d{4}$", "", code)
-  ][
-    level == "bydel", bydel := code
-  ]
+  dt[level == "bydel", kommune := gsub("\\d{2}$", "", code)][
+    level == "bydel", fylke := gsub("\\d{4}$", "", code)][
+      level == "bydel", bydel := code]
 
-  dt[
-    level == "kommune", fylke := gsub("\\d{2}$", "", code)
-  ][
-    level == "kommune", kommune := code
-  ]
+  dt[level == "kommune", fylke := gsub("\\d{2}$", "", code)][
+    level == "kommune", kommune := code]
 
   ## Only run this after adding lower granularity
   ## else it will overwrite kommune and bydel
