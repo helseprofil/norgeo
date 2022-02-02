@@ -73,7 +73,7 @@ get_code <- function(type = c(
     selectCol <- dateVar[is.element(dateVar, names(koDT))]
 
     for (j in selectCol) {
-      set(koDT, , j = j, value = format(as.Date(koDT[[j]]), "%Y"))
+      data.table::set(koDT, , j = j, value = format(as.Date(koDT[[j]]), "%Y"))
     }
   }
 
