@@ -27,12 +27,11 @@ Imports:
     RSQLite,
     writexl,
     httr,
-    jsonlite,
-    vcr,
-    progressr
-Suggests: 
+    jsonlite
+Suggests:
     testthat (>= 3.0.0),
     pkgdown,
+    vcr,
     knitr,
     rmarkdown
 URL: https://github.com/helseprofil/norgeo
