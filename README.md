@@ -1,11 +1,13 @@
 # norgeo <img src='man/figures/logo.png' align="right" width="120" height="139" />
 
+    #> v Setting active project to 'C:/Users/ybka/Git-fhi/norgeo'
+
 [![R build
-status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-[![](https://codecov.io/gh/helseprofil/norgeo/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/norgeo)
+status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+[![](https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/norgeo)
 [![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![](https://img.shields.io/badge/devel%20version-0.5.8-blue.svg)](https://github.com/helseprofil/norgeo)
+[![](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg)](https://github.com/helseprofil/norgeo)
 
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
