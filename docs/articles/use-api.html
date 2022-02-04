@@ -92,27 +92,34 @@
 
     
     
-<p>This is a simple guide to access data data via API.</p>
+<p>This is a simple guide to access data via API. Regional granularity levels includes:</p>
+<ul>
+<li>Enumeration areas (<em>grunnkrets</em>)</li>
+<li>Cities (<em>bydel</em>)</li>
+<li>Municipalities (<em>kommune</em>)</li>
+<li>Counties (<em>fylke</em>)</li>
+</ul>
 <div class="section level2">
 <h2 id="download-data-with-api">Download data with API<a class="anchor" aria-label="anchor" href="#download-data-with-api"></a>
 </h2>
-<p>All functions that has <code>get_</code> prefix access data directly via <a href="https://data.ssb.no/api/klass/v1/api-guide.html" class="external-link">SSB API</a>. This is the simple guide to use <em>norgeo</em> API functions:</p>
+<p>All functions that have <code>get_</code> prefix access data directly via <a href="https://data.ssb.no/api/klass/v1/api-guide.html" class="external-link">SSB API</a>. This is the simple guide to use <em>norgeo</em> API function to get codes for municipalities with selected time period:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/norgeo" class="external-link">norgeo</a></span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
 <span class="co"># only current geo code</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
-<p>You could also find geo code changes via <code><a href="../reference/get_change.html">get_change()</a></code> function.</p>
+<p>You could download geo code changes via <code><a href="../reference/get_change.html">get_change()</a></code> function. The example below will download municipalities codes that have changed from 2015 to 2021.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dtc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_change.html">get_change</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="track-geo-changes">Track geo changes<a class="anchor" aria-label="anchor" href="#track-geo-changes"></a>
 </h2>
-<p>To track all geo changes to the current date specified in the argument <code>to</code> can be done as follows:</p>
+<p>To track all municipalities codes that have changed since 2015 to their current codes as in 2021 can be done as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dtt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/track_change.html">track_change</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
-<p>You can also track the geo codes that are <em>split</em> or <em>merged</em> to a new geo with function <code><a href="../reference/track_split.html">track_split()</a></code> or <code><a href="../reference/track_merge.html">track_merge()</a></code>.</p>
+<p>The difference between <code><a href="../reference/get_change.html">get_change()</a></code> and <code><a href="../reference/track_change.html">track_change()</a></code> is that, the former will only download codes that have changed while the latter will, in addition, track these changes to the current codes.</p>
+<p>You can also track geo codes that are <em>split</em> or <em>merged</em> to a new geo with function <code><a href="../reference/track_split.html">track_split()</a></code> or <code><a href="../reference/track_merge.html">track_merge()</a></code>.</p>
 </div>
   </div>
 
