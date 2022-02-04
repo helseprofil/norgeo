@@ -1,7 +1,5 @@
 # norgeo <img src='man/figures/logo.png' align="right" width="120" height="139" />
 
-    #> v Setting active project to 'C:/Users/ybka/Git-fhi/norgeo'
-
 [![R build
 status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
 [![](https://codecov.io/gh/helseprofil/norgeo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/norgeo)
