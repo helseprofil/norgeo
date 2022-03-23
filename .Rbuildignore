@@ -11,3 +11,5 @@
 ^.projectile
 ^\.github$
 ^data-raw$
+^.*\.Rproj$
+^\.Rproj\.user$
