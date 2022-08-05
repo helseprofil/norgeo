@@ -3,8 +3,8 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   use-api: use-api.html
-last_built: 2022-08-05T13:22Z
+last_built: 2022-08-05T13:38Z
 urls:
-  reference: https://helseprofil.github.io/orgdata/reference
-  article: https://helseprofil.github.io/orgdata/articles
+  reference: https://helseprofil.github.io/norgeo/reference
+  article: https://helseprofil.github.io/norgeo/articles
 

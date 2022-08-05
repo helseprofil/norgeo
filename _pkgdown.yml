@@ -3,7 +3,7 @@ home:
  - text: SSB website
    href: https://www.ssb.no/offentlig-sektor/kommunekatalog
 
-url: https://helseprofil.github.io/orgdata
+url: https://helseprofil.github.io/norgeo
 
 authors:
   Yusman Kamaleri:
@@ -50,4 +50,3 @@ navbar:
     - text: News
       href: news/index.html
 
-destination: docs
