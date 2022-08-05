@@ -3,9 +3,15 @@ home:
  - text: SSB website
    href: https://www.ssb.no/offentlig-sektor/kommunekatalog
 
+url: https://helseprofil.github.io/orgdata
+
+authors:
+  Yusman Kamaleri:
+    href: https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/
+
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: flatly
 
 reference:
 - title: "API data"
