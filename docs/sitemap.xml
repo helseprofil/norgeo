@@ -4,6 +4,12 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
     <loc>/articles/change-tbl.html</loc>
   </url>
   <url>
@@ -25,13 +31,10 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>/news/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/GrunnkretsBefore2002.html</loc>
   </url>
   <url>
     <loc>/reference/cast_code.html</loc>
@@ -71,9 +74,6 @@
   </url>
   <url>
     <loc>/reference/get_correspond.html</loc>
-  </url>
-  <url>
-    <loc>/reference/GrunnkretsBefore2002.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>

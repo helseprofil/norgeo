@@ -105,7 +105,7 @@ cast_geo <- function(year = NULL) {
 #'   level codes and their corresponding higher geographical levels. For example
 #'   for codes on enumeration areas and their corresponding codes for
 #'   municipalities or town.
-#' @export
+#' @keywords internal
 find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner

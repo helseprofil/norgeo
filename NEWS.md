@@ -1,3 +1,7 @@
+# norgeo 2.1.1
+- Update documentation.
+- Add startup message with version number.
+
 # norgeo 2.1.0
 - Clean up enumeration codes before 2002. Some codes that were already recoded
   could still exist after 2002. Those codes were excluded from the code change
