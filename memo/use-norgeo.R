@@ -28,6 +28,7 @@ dtc <- track_change("kommune", 2015, 2021)
 
 
 ## install
+## -----------------------------------------------
 remotes::install_github("helseprofil/norgeo@HEAD")
 library(norgeo)
 
