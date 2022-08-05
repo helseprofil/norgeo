@@ -21,7 +21,7 @@ geo_save <- function(tblname = NULL,
   innTyp <- tolower(file.type)
 
   if (innTyp  %in% c("access", "sqlite") & is.null(db.name)){
-    stop("Database name is missing!", .call = TRUE)
+    stop("Database name is missing!")
   }
 
 
@@ -56,15 +56,14 @@ get_dbms <- function(db.name = NULL,
 
   dbFile <- paste(db.path, db.name, sep = "/")
 
-  if (dbms == "access"){
-    dbCon <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq="
-    cs <- paste0(dbCon, dbFile)
-    con <- DBI::dbConnect(odbc::odbc(), .connection_string = cs)
-  }
-
-  if (dbms == "sqlite"){
-    con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbFile)
-  }
+  con <- switch(dbms,
+                access = {
+                  dbCon <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq="
+                  cs <- paste0(dbCon, dbFile)
+                  DBI::dbConnect(odbc::odbc(), .connection_string = cs)
+                },
+                sqlite = {DBI::dbConnect(RSQLite::SQLite(), dbname = dbFile)}
+                )
 
   DBI::dbWriteTable(con, tblname, obj, batch_rows = 1, overwrite = TRUE)
   DBI::dbDisconnect(con)
