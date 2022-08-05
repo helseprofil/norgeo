@@ -5,7 +5,7 @@
 status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codecov)](https://app.codecov.io/gh/helseprofil/norgeo?branch=main)
 [![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
-[![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![](https://img.shields.io/badge/devel%20version-2.1.1-blue.svg)](https://github.com/helseprofil/norgeo)
 
 Regional granularity levels in Norway which are depicted by different
