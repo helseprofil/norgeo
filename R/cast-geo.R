@@ -118,7 +118,7 @@ find_correspond <- function(type, correspond, from) {
     stat$from <- from
     from <- from - 1
   }
-  message("Data for ", correspond, " to ", type, " for ", stat$from, " have ", stat$rows, " rows")
+  message("Data for ", correspond, " to ", type, " in ", stat$from, " have ", stat$rows, " rows")
   return(dt)
 }
 
