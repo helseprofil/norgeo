@@ -13,4 +13,4 @@ raw
 \description{
 Created object when running \code{norgeo::read_csv()}
 }
-\keyword{datasets}
+\keyword{internal}

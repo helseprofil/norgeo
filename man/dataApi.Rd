@@ -14,4 +14,4 @@ dataApi
 Downloaded data will be stored in dataApi to avoid downloading
 multiple time for the same selected data
 }
-\keyword{datasets}
+\keyword{internal}

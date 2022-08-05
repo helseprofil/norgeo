@@ -1,6 +1,6 @@
 Package: norgeo
 Title: Track Geo Code Changes in all Regional Granularity in Norway
-Version: 2.1.0
+Version: 2.1.1
 Authors@R: 
     person(given = "Yusman",
            family = "Kamaleri",
@@ -18,7 +18,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Imports: 
     data.table (>= 1.14.0),
     odbc,

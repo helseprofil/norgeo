@@ -28,3 +28,4 @@ that specific year and need to get from previous year or even
 year before before previous year etc..etc.. This function is needed
 when running \code{\link[=cast_geo]{cast_geo()}}.
 }
+\keyword{internal}
