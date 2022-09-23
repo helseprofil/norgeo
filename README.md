@@ -1,12 +1,17 @@
 # norgeo <img src='man/figures/logo.png' align="right" width="120" height="139" />
 
+<!-- badges: start -->
 
 [![R build
 status](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
-[![Codecov test coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codecov)](https://app.codecov.io/gh/helseprofil/norgeo?branch=main)
+[![Codecov test
+coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codecov)](https://app.codecov.io/gh/helseprofil/norgeo?branch=main)
 [![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Download](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)
 [![](https://img.shields.io/badge/devel%20version-2.1.1-blue.svg)](https://github.com/helseprofil/norgeo)
+
+<!-- badges: start -->
 
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
@@ -55,4 +60,4 @@ for instance, the municipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
 Holmestrand? When there are more than 350 municipalities with different
 code changes, then tracking these can be a nightmare. The same with
-enumeration units ie. *grunnkrets* with 14000 units\!
+enumeration units ie. *grunnkrets* with 14000 units!
