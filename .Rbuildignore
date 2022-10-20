@@ -13,3 +13,6 @@
 ^data-raw$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^Makefile$
+^[\.]tar\.gz$
+^[\.]Rcheck$
