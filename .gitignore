@@ -41,3 +41,7 @@ vignettes/*.pdf
 *.R#
 /README.html
 /memo/*.R
+
+# Files
+[.]tar.gz
+[.]Rcheck
