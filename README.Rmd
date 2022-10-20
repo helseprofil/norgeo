@@ -43,6 +43,7 @@ cat(
 )
 ```
 
+## Intro
 
 Regional granularity levels in Norway which are depicted by different codes,
 have undergone several changes over the years. Identifying when codes have
