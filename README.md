@@ -13,6 +13,8 @@ coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codeco
 
 <!-- badges: start -->
 
+## Intro
+
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
 codes have changed and how many changes have taken place over several
