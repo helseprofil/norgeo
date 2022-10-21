@@ -88,8 +88,6 @@ things that can be better... Anyway, `norgeo 1.3.3` before
 `norgeo 0.9.0` works but too ambitious to call it 1.3.3, but hopefully
 the second future version of `norgeo 1.3.3` will be much better :-)
 
-# norgeo (development version)
-
 ## `dev` branch
 
 All ongoing new ideas will be implemented here. So contributions
