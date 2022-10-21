@@ -24,18 +24,11 @@
 
 # norgeo 1.0.0
 - `cast_geo()` now add unknown grunnkrets to respective bydel, kommune and fylke.
-
-# norgeo 0.9.5
 - Some geo code don't have missing codes. Have to add it manually
   when not available from SSB.
 - Fix issues #42.
-
-# norgeo 0.9.4
 - Fix issues #41.
 - Function `cast_code` is now internal only.
-
-# norgeo 0.9.3
-
 - All geo codes downloaded via API can be cast for geo granularity with `cast_geo`
 
   | codes   | year | level   | grks    | fylke | kommune | bydel  |
@@ -51,7 +44,6 @@
   available in the dataset downloaded from API. This is needed for merging
   dataset that has this code to be able to calculate total for the whole dataset.
 
-
 # norgeo 0.9.2
 
 All API functions now use arguments `from` and `to` instead of `year` as in `geo_` functions.
@@ -64,7 +56,6 @@ New features are introduced to help working with the downloaded data from API. N
 - `track_merge` to find geo codes that are merged to a new geo
 
 # norgeo 0.9.1
-
 
 Introduce functions to download data via API with `get_` prefix:
 
