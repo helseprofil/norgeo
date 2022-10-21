@@ -11,7 +11,7 @@ progressr::handlers(global = TRUE)
 ## Sys.unsetenv("R_PROFILE_USER")
 devtools::check()
 ## Run to build the website
-pkgdown::build_site(new_process = FALSE)
+pkgdown::build_site()
 pkgdown::build_news(preview = TRUE)
 
 # Use CI

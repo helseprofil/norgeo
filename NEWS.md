@@ -2,6 +2,7 @@
 - Update documentation.
 - Add startup message with version number.
 - Refactor some codes for cleanliness.
+- Change title to "Tracking Geocode Change of Regional Granularities in Norway".
 
 # norgeo 2.1.0
 - Clean up enumeration codes before 2002. Some codes that were already recoded
