@@ -1,5 +1,5 @@
 Package: norgeo
-Title: Track Geo Code Changes in all Regional Granularity in Norway
+Title: Tracking Geocode Change of Regional Granularities in Norway
 Version: 2.1.1
 Authors@R: 
     person(given = "Yusman",
