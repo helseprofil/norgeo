@@ -97,10 +97,13 @@ set_url <- function(base = NULL,
     endUrl <- paste(baseUrl, source, sep = "/")
     codeQry <- list(from = from, to = to)
   }
+  ##:ess-bp-start::browser@nil:##
+  browser(expr=is.null(.ESSBP.[["@2@"]]));##:ess-bp-end:##
 
-  koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
-  httr::warn_for_status(koGET)
-  koTxt <- httr::content(koGET, as = "text")
+  ## koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
+  ## httr::warn_for_status(koGET)
+  ## koTxt <- httr::content(koGET, as = "text")
+  koReg <- httr2::request(endUrl)
   koJS <- jsonlite::fromJSON(koTxt)
 }
 
