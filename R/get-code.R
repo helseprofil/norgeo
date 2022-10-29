@@ -104,12 +104,13 @@ set_url <- function(base = NULL,
   ## httr::warn_for_status(koGET)
   ## koTxt <- httr::content(koGET, as = "text")
 
-  koReg <- httr2::request(endUrl)
-
-  httr2::req_url_query(codeQry) |>
+  koReg <- httr2::request(endUrl) |>
+    httr2::req_url_query(!!!codeQry) |>
     httr2::req_retry(max_tries = 5) |>
-    httr2::req_perform() |>
-    httr2::resp_raw()
+    httr2::req_perform()
+
+  koTxt <- koReg |> httr2::resp_body_string()
+
   koJS <- jsonlite::fromJSON(koTxt)
 }
 
