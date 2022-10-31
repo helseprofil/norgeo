@@ -98,8 +98,6 @@ set_url <- function(base = NULL,
     endUrl <- paste(baseUrl, sourceUrl, sep = "/")
     codeQry <- list(from = from, to = to)
   }
-  ##:ess-bp-start::browser@nil:##
-  browser(expr=is.null(.ESSBP.[["@2@"]]));##:ess-bp-end:##
 
   ## koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
   ## httr::warn_for_status(koGET)
@@ -110,9 +108,14 @@ set_url <- function(base = NULL,
     httr2::req_retry(max_tries = 5) |>
     httr2::req_perform()
 
-  koTxt <- koReg |> httr2::resp_body_json()
+  koDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
+  koDT <- data.table::as.data.table(koDT)
 
-  koJS <- jsonlite::fromJSON(koTxt)
+  koNames <- names(koDT)
+  koNewNames <- gsub("^codes.", "", koNames)
+  data.table::setnames(koDT, koNames, koNewNames)
+
+  return(koDT)
 }
 
 ## Ensure date is the required format
