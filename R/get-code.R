@@ -90,11 +90,12 @@ set_url <- function(base = NULL,
   baseUrl <- paste0(base, klass)
 
   if (is.null(to)) {
-    sourceUrl <- paste0(source, "At")
+    sourceUrl <- paste0(source, "At.json")
     endUrl <- paste(baseUrl, sourceUrl, sep = "/")
     codeQry <- list(date = from)
   } else {
-    endUrl <- paste(baseUrl, source, sep = "/")
+    sourceUrl <- paste0(source, ".json")
+    endUrl <- paste(baseUrl, sourceUrl, sep = "/")
     codeQry <- list(from = from, to = to)
   }
   ##:ess-bp-start::browser@nil:##
@@ -109,7 +110,7 @@ set_url <- function(base = NULL,
     httr2::req_retry(max_tries = 5) |>
     httr2::req_perform()
 
-  koTxt <- koReg |> httr2::resp_body_string()
+  koTxt <- koReg |> httr2::resp_body_json()
 
   koJS <- jsonlite::fromJSON(koTxt)
 }
