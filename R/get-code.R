@@ -44,16 +44,13 @@ get_code <- function(type = c(
   if (!is.null(to)) to <- paste0(to, "-01-02")
   base <- "http://data.ssb.no/api/klass/v1/classifications/"
 
-  dt <- set_url(
+  koDT <- set_url(
     base = base,
     from = from,
     to = to,
     klass = klass,
     source = "codes"
   )
-
-  koDT <- dt[["codes"]]
-  data.table::setDT(koDT)
 
   keepName <- c("code", "name")
 
