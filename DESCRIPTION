@@ -31,7 +31,7 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,
-    vcr,
+    vcr (>= 0.6.0),
     knitr,
     rmarkdown
 URL: https://github.com/helseprofil/norgeo
