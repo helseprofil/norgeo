@@ -23,24 +23,6 @@ test_that("get change - all", {
   expect_equal(dt, chgDT)
 })
 
-test_that("get change - error", {
-  vcr::skip_if_vcr_off()
-  vcr::use_cassette("change-error", {
-    expect_error( get_change(type = "fylke", from = 2018, to = 2020) )
-  })
-})
-
-
-test_that("get change - retry", {
-  vcr::skip_if_vcr_off()
-  vcr::use_cassette("change-retry", {
-    expect_message(dt <- get_change(type = "fylke", from = 2018, to = 2020), "try")
-  })
-
-  expect_equal(dt, chgDT)
-})
-
-
 test_that("Valid date year", {
   expect_equal(set_year(2021, TRUE), "2021-01-02")
   expect_equal(set_year(2021, FALSE), "2021-01-01")
