@@ -1,3 +1,6 @@
+# norgeo 2.1.2
+- Update test after changes in SSB API (#74)
+
 # norgeo 2.1.1
 - Update documentation.
 - Add startup message with version number.
