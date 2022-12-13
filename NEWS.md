@@ -1,3 +1,6 @@
+# norgeo 2.1.3
+- Update test file after changes in SSB API (#76)
+
 # norgeo 2.1.2
 - Update test after changes in SSB API (#74)
 
