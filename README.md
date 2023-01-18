@@ -40,7 +40,7 @@ install development version of `norgeo`.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo")
+remotes::install_github("helseprofil/norgeo", ref = "dev")
 ```
 
 ## Usage
