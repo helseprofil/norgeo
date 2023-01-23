@@ -7,7 +7,7 @@ norsk <- grepl("Norwegian", Sys.getlocale("LC_TIME"), ignore.case = TRUE)
   if (Sys.info()["sysname"] == "Windows") {
     if (rvers() && norsk) {
       Sys.setlocale("LC_CTYPE", "nb_NO.UTF-8")
-      message("`LC_TYPE` is set to nb_NO.UTF-8")
+      message("`LC_CTYPE` is set to nb_NO.UTF-8")
       message('To change it run Sys.setlocale("LC_CTYPE", ctype) where `ctype` is your prefered type')
     }
   }
