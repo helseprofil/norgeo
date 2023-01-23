@@ -1,7 +1,7 @@
 Package: norgeo
 Title: Tracking Geo Code Change of Regional Granularity in Norway
-Version: 2.2.0
-Authors@R: 
+Version: 2.1.4
+Authors@R:
     person(given = "Yusman",
            family = "Kamaleri",
            role = c("aut", "cre"),
@@ -18,7 +18,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Imports: 
     data.table (>= 1.14.0),
     odbc,
@@ -31,7 +31,7 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,
-    vcr,
+    vcr (>= 0.6.0),
     knitr,
     rmarkdown
 URL: https://github.com/helseprofil/norgeo
