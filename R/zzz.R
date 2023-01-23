@@ -21,5 +21,5 @@ norsk <- grepl("Norwegian", Sys.getlocale("LC_TIME"), ignore.case = TRUE)
 
 rvers <- function(){
   rlokal <- paste(version[c("major", "minor")], collapse = ".")
-  numeric_version(rlokal) > "4.1.0"
+  numeric_version(rlokal) > numeric_version("4.1.0")
 }
