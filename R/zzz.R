@@ -1,14 +1,14 @@
 
-norsk <- grepl("Norwegian", Sys.getlocale("LC_TIME"), ignore.case = TRUE)
+#norsk <- grepl("Norwegian", Sys.getlocale("LC_TIME"), ignore.case = TRUE)
 
 .onLoad <- function(libname, pkgname){
 
   ## Encoding after R ver 4.2 and above to UTF-8
   if (Sys.info()["sysname"] == "Windows") {
-    if (rvers() && norsk) {
+    if (rvers()) {
       Sys.setlocale("LC_CTYPE", "nb_NO.UTF-8")
-      message("`LC_CTYPE` is set to nb_NO.UTF-8")
-      message('To change it run Sys.setlocale("LC_CTYPE", ctype) where `ctype` is your prefered type')
+      message('"LC_CTYPE" is set to nb_NO.UTF-8')
+      message('To change it run Sys.setlocale("LC_CTYPE", ctype) where `ctype` is your preferred type')
     }
   }
 }
