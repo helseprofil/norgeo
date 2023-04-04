@@ -96,10 +96,6 @@ set_url <- function(base = NULL,
     codeQry <- list(from = from, to = to)
   }
 
-  ## koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
-  ## httr::warn_for_status(koGET)
-  ## koTxt <- httr::content(koGET, as = "text")
-
   koReg <- httr2::request(endUrl) |>
     httr2::req_url_query(!!!codeQry) |>
     httr2::req_retry(max_tries = 5) |>
