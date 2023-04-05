@@ -31,34 +31,32 @@ get_change <- function(type = c(
                        to = NULL,
                        code = TRUE,
                        quiet = FALSE,
-                       date = FALSE) {
+                       date = FALSE,
+                       names = TRUE) {
 
   inType <- length(type) > 1
-  if (inType){
+
+  if (inType)
     stop(simpleError("Only one type og geographical levels is allowed"))
-  }
 
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
-  if (type == "bydel") {
+  if (type == "bydel")
     stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
-  }
 
   klass <- switch(type,
-    fylke = 104,
-    kommune = 131,
-    bydel = 103,
-    grunnkrets = 1
-  )
+                  fylke = 104,
+                  kommune = 131,
+                  bydel = 103,
+                  grunnkrets = 1
+                  )
 
-  if (is.null(from)) {
+  if (is.null(from))
     from <- as.integer(format(Sys.Date(), "%Y"))
-  }
 
-  if (is.null(to)) {
+  if (is.null(to))
     to <- as.integer(format(Sys.Date(), "%Y"))
-  }
 
   check_range(from = from, to = to)
 
@@ -107,13 +105,13 @@ get_change <- function(type = c(
     chgDT <- chgJS[[1]]
     data.table::setDT(chgDT)
 
-    if (type == "grunnkrets"){
+    if (type == "grunnkrets")
       chgDT <- grunnkrets_00(chgDT)
-    }
 
-    if (nrow(chgDT) > 0 && code) {
+
+    if (nrow(chgDT) > 0 && code)
       chgDT <- chgDT[oldCode != newCode]
-    }
+
 
     ## no error produced but table is empty
     if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
@@ -142,16 +140,18 @@ get_change <- function(type = c(
     data.table::setnames(DT, new = colNs)
   }
 
-  if (date == 0 && nrow(DT) != 0) {
+  if (date == 0 && nrow(DT) != 0)
     DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
-  }
+
 
   delCol <- c("oldShortName", "newShortName")
   DT[, (delCol) := NULL][]
 
-  if (from < 2002){
+  if (from < 2002)
     DT <- grunnkrets_before_2002(DT, type, from)
-  }
+
+  if (!names)
+    DT[, (granularityNames) := NULL]
 
   return(DT)
 }

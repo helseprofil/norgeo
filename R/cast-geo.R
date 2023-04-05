@@ -4,6 +4,7 @@
 #'
 #' @param year Which year the codes are valid from. If NULL then current year
 #'   will be selected.
+#' @inheritParams get_code
 #'
 #' @import data.table
 #' @return A dataset of class `data.table` representing the spreading of
@@ -15,7 +16,7 @@
 #' }
 #' @export
 
-cast_geo <- function(year = NULL) {
+cast_geo <- function(year = NULL, names = TRUE) {
   cat("Start casting geo codes from API ..")
   level <- sourceCode <- kommune <- fylke <- grunnkrets <- bydel <- NULL
 
@@ -91,6 +92,10 @@ cast_geo <- function(year = NULL) {
   data.table::setcolorder(dt,
                           c("code", "name", "validTo", "level",
                             "grunnkrets", "kommune", "fylke", "bydel"))
+  if (!names)
+    dt[, "name" := NULL]
+
+  return(dt)
 }
 
 #' @title Find existing correspond

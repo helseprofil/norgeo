@@ -27,7 +27,8 @@ track_change <- function(type = c(
                            "grunnkrets"
                          ),
                          from = NULL,
-                         to = NULL) {
+                         to = NULL,
+                         names = TRUE) {
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
@@ -52,7 +53,13 @@ track_change <- function(type = c(
   dataApi$dt[oldCode == newCode, oldCode := NA]
 
   data.table::setnames(dataApi$dt, "newCode", "currentCode")
-  return(dataApi$dt[])
+
+  DT <- data.table::copy(dataApi$dt[])
+
+  if (!names)
+    DT[, (granularityNames) := NULL]
+
+  return(DT)
 }
 
 ## HELPER --------------------------------------
