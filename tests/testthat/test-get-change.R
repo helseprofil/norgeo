@@ -17,7 +17,7 @@ test_that("Grunnkrets without area code 00", {
 
 test_that("get change - all", {
   vcr::use_cassette("change", {
-    dt <- get_change(type = "fylke", from = 2018, to = 2020)
+    dt <- get_change(type = "fylke", from = 2018, to = 2020, names = F)
   })
 
   expect_equal(dt, chgDT)
