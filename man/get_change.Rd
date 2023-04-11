@@ -10,7 +10,8 @@ get_change(
   to = NULL,
   code = TRUE,
   quiet = FALSE,
-  date = FALSE
+  date = FALSE,
+  names = TRUE
 )
 }
 \arguments{
@@ -28,7 +29,9 @@ also be considered as change.}
 \item{quiet}{TRUE will suppress messages when no changes happened for a
 specific time range}
 
-\item{date}{If TRUE then give complete date else year only}
+\item{date}{Give complete date if TRUE else year only. Default it FALSE}
+
+\item{names}{Include names. Default is TRUE}
 }
 \value{
 A dataset of class \code{data.table} consisting old and new code with

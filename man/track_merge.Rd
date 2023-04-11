@@ -7,7 +7,8 @@
 track_merge(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
-  to = NULL
+  to = NULL,
+  names = TRUE
 )
 }
 \arguments{
@@ -18,6 +19,8 @@ default.}
 
 \item{to}{Specify the year to end the range period. Current year is used when
 not specified.}
+
+\item{names}{Include names. Default is TRUE}
 }
 \value{
 Dataset of class \code{data.table} with column \code{merge} showing the number

@@ -1,3 +1,7 @@
+# norgeo 2.1.5
+- Update test file (#79)
+- Use argument `names = FALSE` to exclude granularity names in the output. 
+
 # norgeo 2.1.4
 - Update test file after changes in SSB API (#77)
 
