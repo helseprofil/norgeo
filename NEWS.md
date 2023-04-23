@@ -1,3 +1,6 @@
+# norgeo 2.1.6
+- Update test file
+
 # norgeo 2.1.5
 - Update test file (#79)
 - Use argument `names = FALSE` to exclude granularity names in the output. 

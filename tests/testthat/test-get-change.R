@@ -1,7 +1,8 @@
 test_that("Grunnkrets from before 2002", {
 
   dtOut <- readRDS(system.file("test-data", "grChg_1999_2003.rds", package = "norgeo"))
-  expect_equal(get_change("g", 1999, 2003), dtOut)
+  dtOut[, c("oldName", "newName") := NULL]
+  expect_equal(get_change("g", 1999, 2003, names = F), dtOut)
 })
 
 test_that("Grunnkrets without area code 00", {
