@@ -8,7 +8,8 @@ get_code(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
-  date = FALSE
+  date = FALSE,
+  names = TRUE
 )
 }
 \arguments{
@@ -20,7 +21,9 @@ default.}
 \item{to}{Specify the year to end the range period. Current year is used when
 not specified.}
 
-\item{date}{If TRUE then give complete date else year only}
+\item{date}{Give complete date if TRUE else year only. Default it FALSE}
+
+\item{names}{Include names. Default is TRUE}
 }
 \value{
 A dataset of class \code{data.table} consisting codes of selected

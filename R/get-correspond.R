@@ -10,6 +10,7 @@
 #' @param to Specify the year to end the range period. Current year is used when
 #'   not specified.
 #' @param dt Output as data.table
+#' @inheritParams get_code
 #' @return A dataset of class `data.table` representing the lower geographical
 #'   level codes and their corresponding higher geographical levels. For example
 #'   for codes on enumeration areas and their corresponding codes for
@@ -35,7 +36,8 @@ get_correspond <- function(type = c(
                            ),
                            from = NULL,
                            to = NULL,
-                           dt = TRUE) {
+                           dt = TRUE,
+                           names = TRUE) {
   type <- match.arg(type)
 
   klass <- switch(type,
@@ -82,6 +84,11 @@ get_correspond <- function(type = c(
     url = klsUrl,
     dt = dt
   )
+
+  if (!names)
+    dt[, c("sourceName", "targetName") := NULL]
+
+  return(dt)
 }
 
 

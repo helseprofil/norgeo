@@ -9,8 +9,8 @@ coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codeco
 [![](https://www.r-pkg.org/badges/version/norgeo?color=green)](https://cran.r-project.org/package=norgeo)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Download](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)
-[![](https://img.shields.io/badge/devel%20version-2.1.1-blue.svg)](https://github.com/helseprofil/norgeo)
-
+[![GitHub R package version
+(branch)](https://img.shields.io/github/r-package/v/helseprofil/norgeo/dev)](https://github.com/helseprofil/norgeo)
 <!-- badges: start -->
 
 ## Intro
@@ -40,7 +40,7 @@ install development version of `norgeo`.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo")
+remotes::install_github("helseprofil/norgeo", ref = "dev")
 ```
 
 ## Usage

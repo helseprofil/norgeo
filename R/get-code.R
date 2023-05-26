@@ -3,7 +3,8 @@
 #' This function will download the codes of selected geographical levels via API.
 #'
 #' @param type Type of regional granularity ie. fylke, kommune etc.
-#' @param date If TRUE then give complete date else year only
+#' @param date Give complete date if TRUE else year only. Default it FALSE
+#' @param names Include names. Default is TRUE
 #' @inheritParams get_correspond
 #' @return A dataset of class `data.table` consisting codes of selected
 #'   geographical level and the duration the codes are valid ie. from and to.
@@ -22,7 +23,8 @@ get_code <- function(type = c(
                      ),
                      from = NULL,
                      to = NULL,
-                     date = FALSE) {
+                     date = FALSE,
+                     names = TRUE) {
   ## globalVariables
   dateTo <- NULL
 
@@ -76,6 +78,9 @@ get_code <- function(type = c(
       data.table::set(koDT, , j = j, value = format(as.Date(koDT[[j]]), "%Y"))
     }
   }
+
+  if (!names)
+    koDT[, "name" := NULL]
 
   return(koDT)
 }

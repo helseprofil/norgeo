@@ -4,11 +4,13 @@
 \alias{cast_geo}
 \title{Cast geo granularity from API}
 \usage{
-cast_geo(year = NULL)
+cast_geo(year = NULL, names = TRUE)
 }
 \arguments{
 \item{year}{Which year the codes are valid from. If NULL then current year
 will be selected.}
+
+\item{names}{Include names. Default is TRUE}
 }
 \value{
 A dataset of class \code{data.table} representing the spreading of

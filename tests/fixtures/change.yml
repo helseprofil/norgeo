@@ -17,38 +17,38 @@ http_interactions:
     headers:
       accept-ranges: bytes
       access-control-allow-origin: '*'
-      age: '1157'
+      age: '2250'
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       connection: keep-alive
       content-length: '18'
       content-security-policy: upgrade-insecure-requests
       content-type: application/json;charset=UTF-8
-      date: Sun, 06 Nov 2022 21:19:16 GMT
+      date: Fri, 07 Apr 2023 12:32:47 GMT
       expect-ct: enforce, max-age=3600
       expires: '0'
       pragma: no-cache
       referrer-policy: no-referrer-when-downgrade
       set-cookie:
       - X-Identity=; Path=/; HttpOnly
-      - ssbno=ffffffffc2a8b2e245525d5f4f58455e445a4a423660;expires=Sun, 06-Nov-2022
-        22:38:34 GMT;path=/;httponly
+      - ssbno=ffffffffc2a8b2e245525d5f4f58455e445a4a423660;expires=Fri, 07-Apr-2023
+        14:10:17 GMT;path=/;httponly
       strict-transport-security: max-age=86400
       vary: Accept, X-Forwarded-Proto
       via: 1.1 varnish (Varnish/6.0)
       x-application-context: application:mariadb,api,remote-solr,skip-indexing:8080
       x-cache: HIT
-      x-cache-hits: '5'
+      x-cache-hits: '2'
       x-content-type-options: nosniff
       x-frame-options: SAMEORIGIN
       x-ua-compatible: IE=Edge
-      x-varnish: 455724339 449308149
+      x-varnish: 626214450 660129609
       x-xss-protection: 1; mode=block
     body:
       encoding: ''
       file: no
       string: '{"codeChanges":[]}'
-  recorded_at: 2022-11-06 21:38:34 GMT
-  recorded_with: vcr/1.1.0, webmockr/0.8.2
+  recorded_at: 2023-04-07 13:10:17 GMT
+  recorded_with: vcr/1.2.0, webmockr/0.8.2
 - request:
     method: get
     uri: http://data.ssb.no/api/klass/v1/classifications/104/changes?from=2019-01-01&to=2020-01-02
@@ -67,42 +67,42 @@ http_interactions:
     headers:
       accept-ranges: bytes
       access-control-allow-origin: '*'
-      age: '1157'
+      age: '2250'
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       connection: keep-alive
       content-length: '1985'
       content-security-policy: upgrade-insecure-requests
       content-type: application/json;charset=UTF-8
-      date: Sun, 06 Nov 2022 21:19:16 GMT
+      date: Fri, 07 Apr 2023 12:32:47 GMT
       expect-ct: enforce, max-age=3600
       expires: '0'
       pragma: no-cache
       referrer-policy: no-referrer-when-downgrade
       set-cookie:
       - X-Identity=; Path=/; HttpOnly
-      - ssbno=ffffffffc2a8b2e245525d5f4f58455e445a4a423660;expires=Sun, 06-Nov-2022
-        22:38:34 GMT;path=/;httponly
+      - ssbno=ffffffffc2a8b2e245525d5f4f58455e445a4a423660;expires=Fri, 07-Apr-2023
+        14:10:17 GMT;path=/;httponly
       strict-transport-security: max-age=86400
       vary: Accept, X-Forwarded-Proto
       via: 1.1 varnish (Varnish/6.0)
       x-application-context: application:mariadb,api,remote-solr,skip-indexing:8080
       x-cache: HIT
-      x-cache-hits: '5'
+      x-cache-hits: '2'
       x-content-type-options: nosniff
       x-frame-options: SAMEORIGIN
       x-ua-compatible: IE=Edge
-      x-varnish: 455724340 449308151
+      x-varnish: 626214451 660613053
       x-xss-protection: 1; mode=block
     body:
       encoding: ''
       file: no
-      string: '{"codeChanges":[{"oldCode":"01","oldName":"Østfold","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"02","oldName":"Akershus","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"06","oldName":"Buskerud","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"04","oldName":"Hedmark","oldShortName":"","newCode":"34","newName":"Innlandet","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"05","oldName":"Oppland","oldShortName":"","newCode":"34","newName":"Innlandet","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"07","oldName":"Vestfold","oldShortName":"","newCode":"38","newName":"Vestfold
+      string: '{"codeChanges":[{"oldCode":"01","oldName":"<U+00D8>stfold","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"02","oldName":"Akershus","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"06","oldName":"Buskerud","oldShortName":"","newCode":"30","newName":"Viken","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"04","oldName":"Hedmark","oldShortName":"","newCode":"34","newName":"Innlandet","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"05","oldName":"Oppland","oldShortName":"","newCode":"34","newName":"Innlandet","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"07","oldName":"Vestfold","oldShortName":"","newCode":"38","newName":"Vestfold
         og Telemark","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"08","oldName":"Telemark","oldShortName":"","newCode":"38","newName":"Vestfold
         og Telemark","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"09","oldName":"Aust-Agder","oldShortName":"","newCode":"42","newName":"Agder","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"10","oldName":"Vest-Agder","oldShortName":"","newCode":"42","newName":"Agder","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"12","oldName":"Hordaland","oldShortName":"","newCode":"46","newName":"Vestland","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"14","oldName":"Sogn
         og Fjordane","oldShortName":"","newCode":"46","newName":"Vestland","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"19","oldName":"Troms
         - Romsa","oldShortName":"","newCode":"54","newName":"Troms og Finnmark - Romsa
-        ja Finnmárku - Tromssa ja Finmarkku","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"20","oldName":"Finnmark
-        - Finnmárku","oldShortName":"","newCode":"54","newName":"Troms og Finnmark
-        - Romsa ja Finnmárku - Tromssa ja Finmarkku","newShortName":"","changeOccurred":"2020-01-01"}]}'
-  recorded_at: 2022-11-06 21:38:34 GMT
-  recorded_with: vcr/1.1.0, webmockr/0.8.2
+        ja Finnm<U+00E1>rku - Tromssa ja Finmarkku","newShortName":"","changeOccurred":"2020-01-01"},{"oldCode":"20","oldName":"Finnmark
+        - Finnm<U+00E1>rku","oldShortName":"","newCode":"54","newName":"Troms og Finnmark
+        - Romsa ja Finnm<U+00E1>rku - Tromssa ja Finmarkku","newShortName":"","changeOccurred":"2020-01-01"}]}'
+  recorded_at: 2023-04-07 13:10:17 GMT
+  recorded_with: vcr/1.2.0, webmockr/0.8.2
