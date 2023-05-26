@@ -25,7 +25,7 @@ This is a simple guide to access data via API. Regional granularity levels inclu
 
 All functions that have `get_` prefix access data directly via [SSB
 API](https://data.ssb.no/api/klass/v1/api-guide.html). This is the simple guide
-to use *norgeo* API function to get codes for municipalities with selected time
+to use *norgeo* API functions to get codes for municipalities with selected time
 period:
 
 ```{r api1, eval=FALSE}
@@ -52,8 +52,8 @@ dtt <- track_change("kommune", from = 2015, to = 2021)
 ```
 
 The difference between `get_change()` and `track_change()` is that, the former will
-only download codes that have changed while the latter will, in addition, track
+only download codes that have changed while the later will, in addition, track
 these changes to the current codes.
 
-You can also track geo codes that are *split* or *merged* to a new geo with
+You can also track geo codes that are *split* or *merged* to a new geo codes with
 function `track_split()` or `track_merge()`.
