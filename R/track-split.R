@@ -14,10 +14,16 @@ track_split <- function(type = c(
                           "grunnkrets"
                         ),
                         from = NULL,
-                        to = NULL) {
+                        to = NULL,
+                        names = TRUE) {
   type <- match.arg(type)
   dt <- track_change(type, from, to)
   data.table::setkey(dt, oldCode, changeOccurred)
   dt[!is.na(oldCode), split := .N, by = data.table::rleid(changeOccurred, oldCode)]
   out <- dt[split > 1]
+
+  if (!names)
+    out[, (granularityNames) := NULL]
+
+  return(out)
 }

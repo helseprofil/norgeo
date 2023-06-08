@@ -9,7 +9,8 @@ get_correspond(
   correspond = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
-  dt = TRUE
+  dt = TRUE,
+  names = TRUE
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ default.}
 not specified.}
 
 \item{dt}{Output as data.table}
+
+\item{names}{Include names. Default is TRUE}
 }
 \value{
 A dataset of class \code{data.table} representing the lower geographical
