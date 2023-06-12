@@ -32,9 +32,9 @@ CRAN:
 install.packages("norgeo")
 ```
 
-If you want to install the development version then use `remotes`
-package to access to the **GitHub**. Running the codes below will
-install development version of `norgeo`.
+If you want to install the development version then use `pak` package to
+access to the **GitHub**. Running the codes below will install
+development version of `norgeo`.
 
 ``` r
 if(!require(pak)) install.packages("pak")

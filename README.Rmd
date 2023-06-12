@@ -60,7 +60,7 @@ changes have taken place. The codes are based on those available from
 install.packages("norgeo")
 ```
 
-If you want to install the development version then use `remotes` package to
+If you want to install the development version then use `pak` package to
 access to the **GitHub**. Running the codes below will install development
 version of `norgeo`.
 
