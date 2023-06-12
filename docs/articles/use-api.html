@@ -93,13 +93,13 @@
 <p>This is a simple guide to access data via API. Regional granularity
 levels includes:</p>
 <ul>
-<li>Enumeration areas (<em>grunnkrets</em>)</li>
-<li>Cities (<em>bydel</em>)</li>
-<li>Municipalities (<em>kommune</em>)</li>
-<li>Counties (<em>fylke</em>)</li>
+<li>Enumeration areas (<em>grunnkretser</em>)</li>
+<li>Cities (<em>bydeler</em>)</li>
+<li>Municipalities (<em>kommuner</em>)</li>
+<li>Counties (<em>fylker</em>)</li>
 </ul>
 <div class="section level2">
-<h2 id="download-data-with-api">Download data with API<a class="anchor" aria-label="anchor" href="#download-data-with-api"></a>
+<h2 id="download-geo-codes">Download geo codes<a class="anchor" aria-label="anchor" href="#download-geo-codes"></a>
 </h2>
 <p>All functions that have <code>get_</code> prefix access data directly
 via <a href="https://data.ssb.no/api/klass/v1/api-guide.html" class="external-link">SSB
@@ -110,6 +110,10 @@ to get codes for municipalities with selected time period:</p>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
 <span><span class="co"># only current geo code</span></span>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_code.html">get_code</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-geo-changes">Get geo changes<a class="anchor" aria-label="anchor" href="#get-geo-changes"></a>
+</h2>
 <p>You could download geo code changes via <code><a href="../reference/get_change.html">get_change()</a></code>
 function. The example below will download municipalities codes that have
 changed from 2015 to 2021.</p>
@@ -120,7 +124,8 @@ changed from 2015 to 2021.</p>
 <h2 id="track-geo-changes">Track geo changes<a class="anchor" aria-label="anchor" href="#track-geo-changes"></a>
 </h2>
 <p>To track all municipalities codes that have changed since 2015 to
-their current codes as in 2021 can be done as follows:</p>
+their <strong>current</strong> codes as in 2021 can be done as
+follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dtt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/track_change.html">track_change</a></span><span class="op">(</span><span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2015</span>, to <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span></code></pre></div>
 <p>The difference between <code><a href="../reference/get_change.html">get_change()</a></code> and
