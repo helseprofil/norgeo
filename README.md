@@ -19,8 +19,8 @@ Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
 codes have changed and how many changes have taken place over several
 years can be troublesome. This package will help to identify these
-changes and when the changes have taken place. The codes are based on
-those available from [SSB](https://www.ssb.no).
+changes and track when the changes have taken place. The codes are based
+on those available from [SSB](https://www.ssb.no).
 
 ## Installation
 
@@ -37,15 +37,15 @@ package to access to the **GitHub**. Running the codes below will
 install development version of `norgeo`.
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo", ref = "dev")
+if(!require(pak)) install.packages("pak")
+pak::pkg_install("helseprofil/norgeo@dev")
 ```
 
 ## Usage
 
 The data is downloaded via API form SSB
-[website](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To
-learn how to use the different functions in **norgeo**, please read the
+[Klass](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To learn
+how to use the different functions in **norgeo**, please read the
 tutorial under [Get
 Started](https://helseprofil.github.io/norgeo/articles/use-api.html)
 
@@ -64,4 +64,4 @@ for instance, the municipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
 Holmestrand? When there are more than 350 municipalities with different
 code changes, then tracking these can be a nightmare. The same with
-enumeration units ie. *grunnkrets* with 14000 units!
+enumeration units ie. *grunnkretser* with 14000 units!
