@@ -1,3 +1,6 @@
+# norgeo 2.2.0 (dev)
+- Use `httr2` package.
+
 # norgeo 2.1.6
 - Update test file
 
