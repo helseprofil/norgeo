@@ -38,7 +38,7 @@ development version of `norgeo`.
 
 ``` r
 if(!require(pak)) install.packages("pak")
-pak::pkg_install("helseprofil/norgeo@dev")
+pak::pkg_install("helseprofil/norgeo")
 ```
 
 ## Usage
