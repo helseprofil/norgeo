@@ -25,8 +25,7 @@
 get_correspond <- function(type = c(
                              "fylke",
                              "kommune",
-                             "bydel",
-                             "grunnkrets"
+                             "bydel"
                            ),
                            correspond = c(
                              "fylke",
