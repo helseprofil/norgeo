@@ -94,27 +94,6 @@ get_change <- function(type = c(
     chgDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
     chgDT <- data.table::as.data.table(chgDT)
 
-
-    ## chgQ <- list(from = dateFrom, to = dateTo)
-    ## chgGET <- httr::RETRY("GET", url = chgUrl, query = chgQ)
-    ## httr::warn_for_status(chgGET)
-    ## chgTxt <- httr::content(chgGET, as = "text")
-
-    ## chgJS <- tryCatch(
-    ## {
-    ##   jsonlite::fromJSON(chgTxt)
-    ## },
-    ## error = function(err) {
-    ##   message(
-    ##     "*** Change table for ", type,
-    ##     " doesn't exist. From ", dateFrom, " to ", dateTo, " *** "
-    ##   )
-    ## }
-    ## )
-
-    ## chgDT <- chgJS[[1]]
-    ## data.table::setDT(chgDT)
-
     if (nrow(chgDT) != 0){
       colx <- names(chgDT)
       cols <- gsub("^codeChanges\\.", "", colx)
@@ -128,11 +107,11 @@ get_change <- function(type = c(
     if (nrow(chgDT) > 0 && code)
       chgDT <- chgDT[oldCode != newCode]
 
-
     ## no error produced but table is empty
-    if (quiet == 0 && nrow(chgDT) == 0) {
+    if (quiet == 0 && nrow(chgDT) == 0)
       message("No code changes from ", dateFrom, " to ", dateTo, " or not available via API")
-    }
+
+    if (nrow(chgDT) == 0) chgDT <- NULL
 
     listDT[[i]] <- chgDT
   }
