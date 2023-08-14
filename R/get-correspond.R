@@ -54,9 +54,9 @@ get_correspond <- function(type = c(
     grunnkrets = 1
   )
 
-  trueType <- klass %in% c(103, 131)
-  msg <- "Correspond arg should be lower granularity than type arg,\n  or requested combination is not available in SSB"
-  if (trueType && corr != 1) {
+  ## trueType <- klass %in% c(103, 131)
+  msg <- "`Correspond` arg should be lower granularity than `type` arg,\n  or requested combination is not available in SSB"
+  if (klass %in% c(103, 131) && corr != 1) {
     stop(msg)
   }
 
@@ -76,13 +76,25 @@ get_correspond <- function(type = c(
 
   if (!is.null(to)) to <- paste0(to, "-01-02")
 
-  dt <- set_corr(
-    from = from,
-    to = to,
-    id = corr,
-    url = klsUrl,
-    dt = dt
-  )
+  dt <- tryCatch({
+    set_corr(
+      from = from,
+      to = to,
+      id = corr,
+      url = klsUrl,
+      dt = dt
+    )},
+    error = function(err) err
+    )
+
+  if (inherits(dt, "error") && type != "bydel"){
+    dt <- make_corr(
+      type = type,
+      correspond = correspond,
+      from = from,
+      to = to
+    )
+  }
 
   if (!names)
     dt[, c("sourceName", "targetName") := NULL]
@@ -97,18 +109,24 @@ set_corr <- function(from = NULL,
                      url = NULL,
                      dt = TRUE) {
   if (is.null(to)) {
-    corrUrl <- paste0(url, "/correspondsAt")
+    corrUrl <- paste0(url, "/correspondsAt.json")
     codeQry <- list(targetClassificationId = id, date = from)
   } else {
-    corrUrl <- paste0(url, "/corresponds")
+    corrUrl <- paste0(url, "/corresponds.json")
     codeQry <- list(targetClassificationId = id, from = from, to = to)
   }
 
-  koGET <- httr::RETRY("GET", url = corrUrl, query = codeQry)
-  httr::warn_for_status(koGET)
-  koTxt <- httr::content(koGET, as = "text")
-  koJS <- jsonlite::fromJSON(koTxt)
-  koDT <- koJS[["correspondenceItems"]]
+  koReg <- httr2::request(corrUrl) |>
+    httr2::req_url_query(!!!codeQry) |>
+    httr2::req_retry(max_tries = 5) |>
+    httr2::req_perform()
+
+  koDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
+  koDT <- data.table::as.data.table(koDT)
+
+  colx <- names(koDT)
+  cols <- gsub("^correspondenceItems\\.", "", colx)
+  data.table::setnames(koDT, colx, cols)
 
   if (dt) {
     data.table::setDT(koDT)
@@ -117,3 +135,40 @@ set_corr <- function(from = NULL,
   return(koDT)
 }
 
+
+# make correspond table manually for kommune and fylke when
+# correspond table doens't exist
+make_corr <- function(type, correspond, from, to){
+  message("Correspond table not found! Use manually created table...\n")
+  if (!is.null(to))
+    to <- data.table::year(data.table::as.IDate(to, "%Y-%m-%d"))
+
+  x <- get_code(type = correspond,
+                from = data.table::year(data.table::as.IDate(from, "%Y-%m-%d")),
+                to = to
+                )
+
+  z <- get_code(type = type,
+                from = data.table::year(data.table::as.IDate(from, "%Y-%m-%d")),
+                to = to)
+
+  cols <- c("sourceCode",
+            "sourceName",
+            "targetCode",
+            "targetName",
+            "validFrom",
+            "validTo")
+
+  cx <- switch(type,
+               kommune = 4,
+               fylke = 2)
+
+  x[, sourceCode := substr(code,1,cx)]
+  x[z, on = c(sourceCode = "code"), sourceName := i.name]
+
+  colx <- c("code", "name")
+  coln <- c("targetCode", "targetName")
+  data.table::setnames(x, colx, coln, skip_absent = TRUE)
+  colz <- intersect(cols, names(x))
+  data.table::setcolorder(x, colz)
+}
