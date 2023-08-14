@@ -109,18 +109,24 @@ set_corr <- function(from = NULL,
                      url = NULL,
                      dt = TRUE) {
   if (is.null(to)) {
-    corrUrl <- paste0(url, "/correspondsAt")
+    corrUrl <- paste0(url, "/correspondsAt.json")
     codeQry <- list(targetClassificationId = id, date = from)
   } else {
-    corrUrl <- paste0(url, "/corresponds")
+    corrUrl <- paste0(url, "/corresponds.json")
     codeQry <- list(targetClassificationId = id, from = from, to = to)
   }
 
-  koGET <- httr::RETRY("GET", url = corrUrl, query = codeQry)
-  httr::warn_for_status(koGET)
-  koTxt <- httr::content(koGET, as = "text")
-  koJS <- jsonlite::fromJSON(koTxt)
-  koDT <- koJS[["correspondenceItems"]]
+  koReg <- httr2::request(corrUrl) |>
+    httr2::req_url_query(!!!codeQry) |>
+    httr2::req_retry(max_tries = 5) |>
+    httr2::req_perform()
+
+  koDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
+  koDT <- data.table::as.data.table(koDT)
+
+  colx <- names(koDT)
+  cols <- gsub("^correspondenceItems\\.", "", colx)
+  data.table::setnames(koDT, colx, cols)
 
   if (dt) {
     data.table::setDT(koDT)
