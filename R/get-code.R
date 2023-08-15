@@ -67,7 +67,7 @@ get_code <- function(type = c(
     data.table::setorderv(koDT, c("validTo", "code"))
   }
 
-  if (isFALSE(date)) {
+  if (base::isFALSE(date)) {
     dateVar <- c("validFrom", "validTo")
     selectCol <- dateVar[is.element(dateVar, names(koDT))]
 

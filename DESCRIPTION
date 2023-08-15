@@ -1,6 +1,6 @@
 Package: norgeo
 Title: Tracking Geo Code Change of Regional Granularity in Norway
-Version: 2.3.0
+Version: 2.3.1
 Authors@R: 
     person(given = "Yusman",
            family = "Kamaleri",
@@ -26,8 +26,7 @@ Imports:
     magrittr,
     RSQLite,
     writexl,
-    httr2,
-    jsonlite
+    httr2
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,

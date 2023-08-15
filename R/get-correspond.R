@@ -141,6 +141,8 @@ set_corr <- function(from = NULL,
 # make correspond table manually for kommune and fylke when
 # correspond table doens't exist
 make_corr <- function(type, correspond, from, to){
+  sourceCode <- sourceName <- i.name <- NULL
+
   message("Correspond table not found! Manually created table will be used...\n")
   if (!is.null(to))
     to <- data.table::year(data.table::as.IDate(to, "%Y-%m-%d"))

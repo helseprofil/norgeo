@@ -169,7 +169,7 @@ recode_missing_gr <- function(dt){
 is_missing <- function(dt, col){
   for (i in seq_len(nrow(dt))){
     dd <- dt[i]
-    if (isFALSE(is.na(dd[[col]]))){
+    if (base::isFALSE(is.na(dd[[col]]))){
       col9 <- missing_number(col = col)
       val <- paste0(dd[[col]], col9)
       dt[i, code := val]
@@ -190,7 +190,7 @@ missing_number <- function(col = NULL){
 ## then need to add it manually because some raw datasets have this code
 ## and it's needed to be able to merged for summing up for country total
 find_missing_gr <- function(dt = NULL, code = NULL, year = NULL){
-  if (isFALSE(is.element(code, dt$code))) {
+  if (base::isFALSE(is.element(code, dt$code))) {
     ## validYr <- dt[level == "grunnkrets", c(validTo)][1]
     gk <- list(
       code = code,
@@ -242,7 +242,7 @@ recode_missing_kom <- function(dd = NULL,
   # code - missing code in grunnkrets
   # dd - subset for seleted kommune code
   # komm - kommune code
-  if (isFALSE(is.element(code, dd$code))){
+  if (base::isFALSE(is.element(code, dd$code))){
     gk <- list(
       code = code,
       name = "Uoppgitt",
