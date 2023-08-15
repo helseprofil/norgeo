@@ -55,13 +55,12 @@ get_correspond <- function(type = c(
   )
 
   ## trueType <- klass %in% c(103, 131)
-  msg <- "`Correspond` arg should be lower granularity than `type` arg,\n  or requested combination is not available in SSB"
   if (klass %in% c(103, 131) && corr != 1) {
-    stop(msg)
+    stop("`Correspond` arg should be lower granularity than `type` arg,\n  or requested combination is not available in SSB")
   }
 
   if (klass == 104 && corr != 131) {
-    stop(msg)
+    stop("Use `kommune` to get correspond table for `fylke`!")
   }
 
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
@@ -74,9 +73,10 @@ get_correspond <- function(type = c(
     from <- paste0(from, "-01-01")
   }
 
+  ## must start from 02 of the month as in API requirement
   if (!is.null(to)) to <- paste0(to, "-01-02")
 
-  dt <- tryCatch({
+  x <- tryCatch({
     set_corr(
       from = from,
       to = to,
@@ -87,19 +87,21 @@ get_correspond <- function(type = c(
     error = function(err) err
     )
 
-  if (inherits(dt, "error") && type != "bydel"){
-    dt <- make_corr(
+  if (inherits(x, "error") && type != "bydel"){
+    z <- make_corr(
       type = type,
       correspond = correspond,
       from = from,
       to = to
     )
+  } else {
+    z <- x
   }
 
   if (!names)
-    dt[, c("sourceName", "targetName") := NULL]
+    z[, c("sourceName", "targetName") := NULL]
 
-  return(dt)
+  return(z[])
 }
 
 
@@ -139,14 +141,13 @@ set_corr <- function(from = NULL,
 # make correspond table manually for kommune and fylke when
 # correspond table doens't exist
 make_corr <- function(type, correspond, from, to){
-  message("Correspond table not found! Use manually created table...\n")
+  message("Correspond table not found! Manually created table will be used...\n")
   if (!is.null(to))
     to <- data.table::year(data.table::as.IDate(to, "%Y-%m-%d"))
 
   x <- get_code(type = correspond,
                 from = data.table::year(data.table::as.IDate(from, "%Y-%m-%d")),
-                to = to
-                )
+                to = to)
 
   z <- get_code(type = type,
                 from = data.table::year(data.table::as.IDate(from, "%Y-%m-%d")),
