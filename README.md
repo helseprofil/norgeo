@@ -10,7 +10,7 @@ coverage](https://img.shields.io/codecov/c/github/helseprofil/norgeo?logo=codeco
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Download](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)](https://cranlogs.r-pkg.org/badges/grand-total/norgeo)
 [![GitHub R package version
-(branch)](https://img.shields.io/github/r-package/v/helseprofil/norgeo/dev)](https://github.com/helseprofil/norgeo)
+(branch)](https://img.shields.io/github/r-package/v/helseprofil/norgeo/master)](https://github.com/helseprofil/norgeo)
 <!-- badges: start -->
 
 ## Intro
@@ -19,47 +19,49 @@ Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
 codes have changed and how many changes have taken place over several
 years can be troublesome. This package will help to identify these
-changes and when the changes have taken place. One of the limitation of
-this package is that it is heavily depending on the codes available from
-SSB which can be accessed from their
-[website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
+changes and track when the changes have taken place. The codes are based
+on those available from [SSB](https://www.ssb.no).
 
 ## Installation
 
 `norgeo` package can be installed directly from CRAN or via **GitHub**
-page of [Helseprofil](https://github.com/helseprofil). You can run the
-code below for installation.
+page of [Helseprofil](https://github.com/helseprofil). To install from
+CRAN:
 
 ``` r
 install.packages("norgeo")
 ```
 
-If you want to install the development version then use `remotes`
-package to access to the **GitHub**. Running the codes below will
-install development version of `norgeo`.
+If you want to install the development version then use `pak` package to
+access to the **GitHub**. Running the codes below will install
+development version of `norgeo`.
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("helseprofil/norgeo", ref = "dev")
+if(!require(pak)) install.packages("pak")
+pak::pkg_install("helseprofil/norgeo")
 ```
 
 ## Usage
 
 The data is downloaded via API form SSB
-[website](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To
-learn how to use the different functions in **norgeo**, please read the
+[Klass](https://data.ssb.no/api/klass/v1/api-guide.html "ssb"). To learn
+how to use the different functions in **norgeo**, please read the
 tutorial under [Get
 Started](https://helseprofil.github.io/norgeo/articles/use-api.html)
 
 ## Output
 
-Among the output produced by the function `get_change()` is as follows:
+Among the output produced by the function `track_change()` is as
+follows:
 
-![output-result](man/figures/kommune_merge.png)
+<figure>
+<img src="man/figures/kommune_merge.png" alt="output-result" />
+<figcaption aria-hidden="true">output-result</figcaption>
+</figure>
 
 The data elucidate the complexity of all the codes change. For Larvik
 for instance, the municipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
 Holmestrand? When there are more than 350 municipalities with different
 code changes, then tracking these can be a nightmare. The same with
-enumeration units ie. *grunnkrets* with 14000 units!
+enumeration units ie. *grunnkretser* with 14000 units!

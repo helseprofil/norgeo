@@ -1,3 +1,9 @@
+# norgeo 2.3.1 (dev)
+- Replace `httr` package with `httr2` package.
+- Use manually created correspond table when not found in API except for bydel
+  (#81)
+- Minor edit for naming of objects and messages.
+
 # norgeo 2.1.6
 - Update test file
 

@@ -46,16 +46,13 @@ get_code <- function(type = c(
   if (!is.null(to)) to <- paste0(to, "-01-02")
   base <- "http://data.ssb.no/api/klass/v1/classifications/"
 
-  dt <- set_url(
+  koDT <- set_url(
     base = base,
     from = from,
     to = to,
     klass = klass,
     source = "codes"
   )
-
-  koDT <- dt[["codes"]]
-  data.table::setDT(koDT)
 
   keepName <- c("code", "name")
 
@@ -70,7 +67,7 @@ get_code <- function(type = c(
     data.table::setorderv(koDT, c("validTo", "code"))
   }
 
-  if (isFALSE(date)) {
+  if (base::isFALSE(date)) {
     dateVar <- c("validFrom", "validTo")
     selectCol <- dateVar[is.element(dateVar, names(koDT))]
 
@@ -95,18 +92,28 @@ set_url <- function(base = NULL,
   baseUrl <- paste0(base, klass)
 
   if (is.null(to)) {
-    sourceUrl <- paste0(source, "At")
+    sourceUrl <- paste0(source, "At.json")
     endUrl <- paste(baseUrl, sourceUrl, sep = "/")
     codeQry <- list(date = from)
   } else {
-    endUrl <- paste(baseUrl, source, sep = "/")
+    sourceUrl <- paste0(source, ".json")
+    endUrl <- paste(baseUrl, sourceUrl, sep = "/")
     codeQry <- list(from = from, to = to)
   }
 
-  koGET <- httr::RETRY("GET", url = endUrl, query = codeQry)
-  httr::warn_for_status(koGET)
-  koTxt <- httr::content(koGET, as = "text")
-  koJS <- jsonlite::fromJSON(koTxt)
+  koReg <- httr2::request(endUrl) |>
+    httr2::req_url_query(!!!codeQry) |>
+    httr2::req_retry(max_tries = 5) |>
+    httr2::req_perform()
+
+  koDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
+  koDT <- data.table::as.data.table(koDT)
+
+  koNames <- names(koDT)
+  koNewNames <- gsub("^codes.", "", koNames)
+  data.table::setnames(koDT, koNames, koNewNames)
+
+  return(koDT)
 }
 
 ## Ensure date is the required format

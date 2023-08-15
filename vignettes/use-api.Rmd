@@ -16,16 +16,16 @@ knitr::opts_chunk$set(
 
 This is a simple guide to access data via API. Regional granularity levels includes:
 
-- Enumeration areas (*grunnkrets*)
-- Cities (*bydel*)
-- Municipalities (*kommune*)
-- Counties (*fylke*)
+- Enumeration areas (*grunnkretser*)
+- Cities (*bydeler*)
+- Municipalities (*kommuner*)
+- Counties (*fylker*)
 
-# Download data with API
+# Download geo codes 
 
 All functions that have `get_` prefix access data directly via [SSB
 API](https://data.ssb.no/api/klass/v1/api-guide.html). This is the simple guide
-to use *norgeo* API function to get codes for municipalities with selected time
+to use *norgeo* API functions to get codes for municipalities with selected time
 period:
 
 ```{r api1, eval=FALSE}
@@ -34,6 +34,8 @@ dt <- get_code("kommune", from = 2015, to = 2021)
 # only current geo code
 dt <- get_code("kommune", from = 2021)
 ```
+
+# Get geo changes
 
 You could download geo code changes via `get_change()` function. The example below
 will download municipalities codes that have changed from 2015 to 2021.
@@ -44,7 +46,7 @@ dtc <- get_change("kommune", from = 2015, to = 2021)
 
 # Track geo changes
 
-To track all municipalities codes that have changed since 2015 to their current
+To track all municipalities codes that have changed since 2015 to their **current**
 codes as in 2021 can be done as follows:
 
 ```{r api3, eval=FALSE}
@@ -52,8 +54,8 @@ dtt <- track_change("kommune", from = 2015, to = 2021)
 ```
 
 The difference between `get_change()` and `track_change()` is that, the former will
-only download codes that have changed while the latter will, in addition, track
+only download codes that have changed while the later will, in addition, track
 these changes to the current codes.
 
-You can also track geo codes that are *split* or *merged* to a new geo with
+You can also track geo codes that are *split* or *merged* to a new geo codes with
 function `track_split()` or `track_merge()`.

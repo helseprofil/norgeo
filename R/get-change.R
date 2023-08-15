@@ -62,7 +62,7 @@ get_change <- function(type = c(
 
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
-  chgUrl <- paste0(klsUrl, "/changes")
+  chgUrl <- paste0(klsUrl, "/changes.json")
 
   vecYr <- from:to
   nYr <- length(vecYr)
@@ -85,44 +85,39 @@ get_change <- function(type = c(
     dateTo <- set_year(yrTo, TRUE)
 
     ## specify query
-    chgQ <- list(from = dateFrom, to = dateTo)
-    chgGET <- httr::RETRY("GET", url = chgUrl, query = chgQ)
-    httr::warn_for_status(chgGET)
-    chgTxt <- httr::content(chgGET, as = "text")
+    chgQry <- list(from = dateFrom, to = dateTo)
+    koReg <- httr2::request(chgUrl) |>
+      httr2::req_url_query(!!!chgQry) |>
+      httr2::req_retry(max_tries = 5) |>
+      httr2::req_perform()
 
-    chgJS <- tryCatch(
-    {
-      jsonlite::fromJSON(chgTxt)
-    },
-    error = function(err) {
-      message(
-        "*** Change table for ", type,
-        " doesn't exist. From ", dateFrom, " to ", dateTo, " *** "
-      )
+    chgDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
+    chgDT <- data.table::as.data.table(chgDT)
+
+    if (nrow(chgDT) != 0){
+      colx <- names(chgDT)
+      cols <- gsub("^codeChanges\\.", "", colx)
+      data.table::setnames(chgDT, colx, cols)
     }
-    )
 
-    chgDT <- chgJS[[1]]
-    data.table::setDT(chgDT)
-
-    if (type == "grunnkrets")
+    if (nrow(chgDT)!=0 && type == "grunnkrets"){
       chgDT <- grunnkrets_00(chgDT)
-
+    }
 
     if (nrow(chgDT) > 0 && code)
       chgDT <- chgDT[oldCode != newCode]
 
-
     ## no error produced but table is empty
-    if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
+    if (quiet == 0 && nrow(chgDT) == 0)
       message("No code changes from ", dateFrom, " to ", dateTo, " or not available via API")
-    }
+
+    if (nrow(chgDT) == 0) chgDT <- NULL
 
     listDT[[i]] <- chgDT
   }
 
   cat("\n")
-  DT <- data.table::rbindlist(listDT)
+  DT <- data.table::rbindlist(listDT, fill = TRUE, use.names = TRUE)
 
   ## need to create empty data.table when it's empty data from API
   if (nrow(DT) == 0) {
