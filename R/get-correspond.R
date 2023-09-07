@@ -118,6 +118,8 @@ set_corr <- function(from = NULL,
     codeQry <- list(targetClassificationId = id, from = from, to = to)
   }
 
+  codeQry <- date_future(from = from, to = to, codeQry = codeQry)
+
   koReg <- httr2::request(corrUrl) |>
     httr2::req_url_query(!!!codeQry) |>
     httr2::req_retry(max_tries = 5) |>

@@ -48,3 +48,18 @@ check_range <- function(from, to) {
     stop("From is higher than to. It should be the other way around!")
   }
 }
+
+## Get data in the future if available
+date_future <- function(from, to, codeQry){
+
+  if (is.null(to))
+    to <- data.table::year(from)
+
+  dd <- data.table::year(date_now())
+  to <- data.table::year(from)
+
+  if (as.integer(to) > dd)
+    codeQry <- c(codeQry, includeFuture = list(TRUE))
+
+  return(codeQry)
+}
