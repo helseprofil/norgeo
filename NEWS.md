@@ -1,4 +1,4 @@
-# norgeo 2.4.0 (dev)
+# norgeo 2.4.2 (dev)
 - Get future data from API (#83)
 - Fix error on the date in `date_future()`
 

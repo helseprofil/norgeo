@@ -52,11 +52,13 @@ check_range <- function(from, to) {
 ## Get data in the future if available
 date_future <- function(from, to, codeQry){
 
-  if (is.null(to))
+  if (is.null(to)){
     to <- data.table::year(from)
+  } else {
+    to <- data.table::year(to)
+  }
 
   dd <- data.table::year(date_now())
-  to <- data.table::year(to)
 
   if (as.integer(to) > dd)
     codeQry <- c(codeQry, includeFuture = list(TRUE))
