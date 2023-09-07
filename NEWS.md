@@ -1,3 +1,6 @@
+# norgeo 2.4.0 (dev)
+- Get future data from API (#83)
+
 # norgeo 2.3.1
 - Replace `httr` package with `httr2` package.
 - Use manually created correspond table when not found in API except for bydel
