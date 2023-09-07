@@ -86,6 +86,8 @@ get_change <- function(type = c(
 
     ## specify query
     chgQry <- list(from = dateFrom, to = dateTo)
+    chgQry <- date_future(from = dateFrom, to = dateTo, codeQry = chgQry)
+
     koReg <- httr2::request(chgUrl) |>
       httr2::req_url_query(!!!chgQry) |>
       httr2::req_retry(max_tries = 5) |>
