@@ -1,5 +1,6 @@
 # norgeo 2.4.0 (dev)
 - Get future data from API (#83)
+- Fix error on the date in `date_future()`
 
 # norgeo 2.3.1
 - Replace `httr` package with `httr2` package.
