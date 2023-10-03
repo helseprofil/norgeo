@@ -1,5 +1,5 @@
 # norgeo 2.4.2 (dev)
-- Get future data from API (#83)
+- Get future data from API. Thank to @raniets for the request and proposed solution (#83)
 - Fix error on the date in `date_future()`
 
 # norgeo 2.3.1
@@ -33,7 +33,7 @@
 # norgeo 2.1.0
 - Clean up enumeration codes before 2002. Some codes that were already recoded
   could still exist after 2002. Those codes were excluded from the code change
-  before 2002. (#62)
+  before 2002. Thanks to @jorgenRM to notice this (#62)
 - Retry connection if fail or give feedback if error to connect to the API (#63)
 - Area codes for grunnkrets doesn't always available from API. It makes it
   difficult to know if the codes have been changed multiple times or not.

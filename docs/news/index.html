@@ -55,7 +55,7 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.2" id="norgeo-242-dev">norgeo 2.4.2 (dev)<a class="anchor" aria-label="anchor" href="#norgeo-242-dev"></a></h2>
-<ul><li>Get future data from API (<a href="https://github.com/helseprofil/norgeo/issues/83" class="external-link">#83</a>)</li>
+<ul><li>Get future data from API. Thank to <a href="https://github.com/raniets" class="external-link">@raniets</a> for the request and proposed solution (<a href="https://github.com/helseprofil/norgeo/issues/83" class="external-link">#83</a>)</li>
 <li>Fix error on the date in <code>date_future()</code>
 </li>
 </ul></div>
@@ -95,7 +95,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.0" id="norgeo-210">norgeo 2.1.0<a class="anchor" aria-label="anchor" href="#norgeo-210"></a></h2><p class="text-muted">CRAN release: 2022-02-01</p>
-<ul><li>Clean up enumeration codes before 2002. Some codes that were already recoded could still exist after 2002. Those codes were excluded from the code change before 2002. (<a href="https://github.com/helseprofil/norgeo/issues/62" class="external-link">#62</a>)</li>
+<ul><li>Clean up enumeration codes before 2002. Some codes that were already recoded could still exist after 2002. Those codes were excluded from the code change before 2002. Thanks to <a href="https://github.com/jorgenRM" class="external-link">@jorgenRM</a> to notice this (<a href="https://github.com/helseprofil/norgeo/issues/62" class="external-link">#62</a>)</li>
 <li>Retry connection if fail or give feedback if error to connect to the API (<a href="https://github.com/helseprofil/norgeo/issues/63" class="external-link">#63</a>)</li>
 <li>Area codes for grunnkrets doesn’t always available from API. It makes it difficult to know if the codes have been changed multiple times or not. <code><a href="../reference/get_change.html">get_change()</a></code> will ensure that area codes for grunnkrets will be created if it doesn’t exist from the change table to ensure that area codes for grunnkrets will always exist. Thanks to <a href="https://github.com/jorgenRM" class="external-link">@jorgenRM</a> to notice this error (<a href="https://github.com/helseprofil/norgeo/issues/65" class="external-link">#65</a>)</li>
 </ul></div>
