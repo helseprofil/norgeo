@@ -175,7 +175,7 @@ alter_manual <- function(DT, year){
 
 check_url <- function(http){
   con <- url(http)
-  check <- suppressMessages(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
+  check <- suppressWarnings(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
   suppressWarnings(try(close.connection(con),silent=TRUE))
   ifelse(is.null(check),TRUE,FALSE)
 }
