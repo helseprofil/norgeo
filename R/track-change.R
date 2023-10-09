@@ -196,15 +196,12 @@ is_delete_index <- function(dt, delidx){
   return(dtSub)
 }
 
+## For paste of long vectors ie. many columnames,
+## to be nicely displayed in a message
 is_long_vector <- function(vec){
   if (length(vec) > 1){
-    vec <- paste_cols(vec)
+    vec <- paste0('"', paste(vec, collapse = '", "'), '"')
   }
   return(vec)
 }
 
-## For paste of long vectors ie. many columnames,
-## to be nicely displayed in a message
-paste_cols <- function(cols){
-  paste0('"', paste(cols, collapse = '", "'), '"')
-}
