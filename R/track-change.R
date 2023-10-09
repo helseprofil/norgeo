@@ -55,6 +55,7 @@ track_change <- function(type = c(
   data.table::setnames(dataApi$dt, "newCode", "currentCode")
 
   DT <- data.table::copy(dataApi$dt[])
+  DT <- alter_manual(DT, to)
 
   if (!names)
     DT[, (granularityNames) := NULL]
@@ -150,4 +151,60 @@ grunnkrets_check <- function(type, to = NULL){
   }
 
   invisible(type)
+}
+
+## Maually alter dataset especially when there are splitting codes ie. issue 84
+## Codes should be in config repo
+## Delete using is_delete_index() by finding row index in the dataset
+alter_manual <- function(DT, year){
+
+  baseURL <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/"
+  fileName <- paste0("geo-", year, ".R")
+  http <-paste0(baseURL, fileName)
+
+  if (check_url(http)){
+    source(http, local = TRUE)
+    DT <- is_delete_index(DT, IDX)
+    IDV <- is_long_vector(IDX)
+    message("Deleted row(s):", IDV)
+    message("Source from ", http)
+  }
+
+  return(DT)
+}
+
+check_url <- function(http){
+  con <- url(http)
+  check <- suppressMessages(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
+  suppressWarnings(try(close.connection(con),silent=TRUE))
+  ifelse(is.null(check),TRUE,FALSE)
+}
+
+## Ref https://github.com/Rdatatable/data.table/issues/635#issuecomment-261473829
+is_delete_index <- function(dt, delidx){
+  # delidx - Row index to be deleted
+  keepIdx <- setdiff(dt[, .I], delidx)
+  cols = names(dt)
+  dtSub <- data.table::data.table(dt[[1]][keepIdx]) #subsetted table
+  data.table::setnames(dtSub, cols[1])
+
+  for (col in cols[2:length(cols)]){
+    dtSub[, (col) := dt[[col]][keepIdx]]
+    dt[, (col) := NULL]
+  }
+
+  return(dtSub)
+}
+
+is_long_vector <- function(vec){
+  if (length(vec) > 1){
+    vec <- paste_cols(vec)
+  }
+  return(vec)
+}
+
+## For paste of long vectors ie. many columnames,
+## to be nicely displayed in a message
+paste_cols <- function(cols){
+  paste0('"', paste(cols, collapse = '", "'), '"')
 }
