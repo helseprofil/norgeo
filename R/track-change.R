@@ -7,7 +7,7 @@
 #'
 #' @inheritParams get_code
 #' @param fix Default is TRUE. Use external codes to fix geo changes manually.
-#'   The codes is source from \href{https://github.com/helseprofil/config/blob/main/geo/geo-fix.R}{geo-fix.R} file.
+#'   The codes is sourced from \href{https://github.com/helseprofil/config/blob/main/geo/geo-fix.R}{geo-fix.R} file.
 #' @return A dataset of class `data.table` consisting all older codes from
 #'   previous years until the selected year in `to` argument and what these
 #'   older codes were changed into. If the codes have not changed then the value
