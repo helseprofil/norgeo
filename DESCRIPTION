@@ -26,7 +26,8 @@ Imports:
     magrittr,
     RSQLite,
     writexl,
-    httr2
+    httr2,
+    lifecycle
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,
