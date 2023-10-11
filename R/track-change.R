@@ -6,6 +6,8 @@
 #' be used.
 #'
 #' @inheritParams get_code
+#' @param fix Default is TRUE. Use external codes to fix geo changes manually.
+#'   The codes is source from \href{https://github.com/helseprofil/config/blob/main/geo/geo-fix.R}{geo-fix.R} file.
 #' @return A dataset of class `data.table` consisting all older codes from
 #'   previous years until the selected year in `to` argument and what these
 #'   older codes were changed into. If the codes have not changed then the value
@@ -28,7 +30,8 @@ track_change <- function(type = c(
                          ),
                          from = NULL,
                          to = NULL,
-                         names = TRUE) {
+                         names = TRUE,
+                         fix = TRUE) {
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
@@ -51,14 +54,16 @@ track_change <- function(type = c(
   data.table::setkey(dataApi$dt, newCode, changeOccurred)
   ## When nothing changes
   dataApi$dt[oldCode == newCode, oldCode := NA]
-
   data.table::setnames(dataApi$dt, "newCode", "currentCode")
-
   DT <- data.table::copy(dataApi$dt[])
-  DT <- alter_manual(DT, to)
 
   if (!names)
     DT[, (granularityNames) := NULL]
+
+  if (!fix)
+    return(DT)
+
+  DT <- alter_manual(DT)
 
   return(DT)
 }
@@ -154,20 +159,14 @@ grunnkrets_check <- function(type, to = NULL){
 }
 
 ## Maually alter dataset especially when there are splitting codes ie. issue 84
-## Codes should be in config repo
-## Delete using is_delete_index() by finding row index in the dataset
-alter_manual <- function(DT, year){
+## Codes should be in config repo file
+alter_manual <- function(DT){
 
-  baseURL <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/"
-  fileName <- paste0("geo-", year, ".R")
-  http <-paste0(baseURL, fileName)
+  http <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/geo-fix.R"
 
   if (check_url(http)){
+    message("Run source file ", http)
     source(http, local = TRUE)
-    DT <- is_delete_index(DT, IDX)
-    IDV <- is_long_vector(IDX)
-    message("Deleted row(s):", IDV)
-    message("Source from ", http)
   }
 
   return(DT)
@@ -179,29 +178,3 @@ check_url <- function(http){
   suppressWarnings(try(close.connection(con),silent=TRUE))
   ifelse(is.null(check),TRUE,FALSE)
 }
-
-## Ref https://github.com/Rdatatable/data.table/issues/635#issuecomment-261473829
-is_delete_index <- function(dt, delidx){
-  # delidx - Row index to be deleted
-  keepIdx <- setdiff(dt[, .I], delidx)
-  cols = names(dt)
-  dtSub <- data.table::data.table(dt[[1]][keepIdx]) #subsetted table
-  data.table::setnames(dtSub, cols[1])
-
-  for (col in cols[2:length(cols)]){
-    dtSub[, (col) := dt[[col]][keepIdx]]
-    dt[, (col) := NULL]
-  }
-
-  return(dtSub)
-}
-
-## For paste of long vectors ie. many columnames,
-## to be nicely displayed in a message
-is_long_vector <- function(vec){
-  if (length(vec) > 1){
-    vec <- paste0('"', paste(vec, collapse = '", "'), '"')
-  }
-  return(vec)
-}
-
