@@ -34,6 +34,16 @@ track_change <- function(type = c(
                          to = NULL,
                          names = TRUE,
                          fix = TRUE) {
+
+  if (fix){
+    lifecycle::deprecate_soft(
+      when = "2.4.2",
+      what = "track_change(dump)",
+      with = "track_change(fix = 'deactivate with FALSE')",
+      details = "Your old codes might break when using manually fix. Please read function document."
+    )
+  }
+
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
