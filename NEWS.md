@@ -1,5 +1,16 @@
-# norgeo 2.2.0 (dev)
-- Use `httr2` package.
+# norgeo 2.4.2 (dev)
+- Get future data from API. Thank to @raniets for the request and proposed solution (#83)
+- Fix error on the date in `date_future()`
+- Fix geo codes manually when necessary (#84). This is done by sourcing [config
+  files](https://github.com/helseprofil/config/tree/main/geo) according to their
+  granularity level. Use argument `fix = FALSE` to deactivate executing
+  these file.
+
+# norgeo 2.3.1
+- Replace `httr` package with `httr2` package.
+- Use manually created correspond table when not found in API except for bydel
+  (#81)
+- Minor edit for naming of objects and messages.
 
 # norgeo 2.1.6
 - Update test file
@@ -26,7 +37,7 @@
 # norgeo 2.1.0
 - Clean up enumeration codes before 2002. Some codes that were already recoded
   could still exist after 2002. Those codes were excluded from the code change
-  before 2002. (#62)
+  before 2002. Thanks to @jorgenRM to notice this (#62)
 - Retry connection if fail or give feedback if error to connect to the API (#63)
 - Area codes for grunnkrets doesn't always available from API. It makes it
   difficult to know if the codes have been changed multiple times or not.

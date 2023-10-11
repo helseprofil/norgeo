@@ -17,7 +17,7 @@ from = NULL,
 to = NULL,
 names = TRUE) {
   type <- match.arg(type)
-  dt <- track_change(type, from, to)
+  dt <- track_change(type, from, to, fix = FALSE)
   data.table::setkey(dt, currentCode, changeOccurred)
   dt[!is.na(currentCode), merge := .N, by = data.table::rleid(changeOccurred, currentCode)]
   out <- dt[merge > 1]
