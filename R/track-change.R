@@ -40,7 +40,7 @@ track_change <- function(type = c(
       when = "2.4.2",
       what = "track_change(dump)",
       with = "track_change(fix = 'deactivate with FALSE')",
-      details = "Your old codes might break when using manually fix. Please read function document."
+      details = "Old codes prior to ver 2.4.2 might break when using manually fix. Please read function document."
     )
   }
 
