@@ -1,9 +1,10 @@
 # norgeo 2.4.2 (dev)
 - Get future data from API. Thank to @raniets for the request and proposed solution (#83)
 - Fix error on the date in `date_future()`
-- Fix geo codes manually when necessary (#84). This is done by sourcing
-  [geo-fix.R](https://github.com/helseprofil/config/tree/main/geo/geo-fix.R)
-  file. Use argument `fix = FALSE` to deactivate executing `geo-fix.R` file. 
+- Fix geo codes manually when necessary (#84). This is done by sourcing [config
+  files](https://github.com/helseprofil/config/tree/main/geo) according to their
+  granularity level. Use argument `fix = FALSE` to deactivate executing
+  these file.
 
 # norgeo 2.3.1
 - Replace `httr` package with `httr2` package.

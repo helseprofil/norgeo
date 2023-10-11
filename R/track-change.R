@@ -7,7 +7,9 @@
 #'
 #' @inheritParams get_code
 #' @param fix Default is TRUE. Use external codes to fix geo changes manually.
-#'   The codes is sourced from \href{https://github.com/helseprofil/config/blob/main/geo/geo-fix.R}{geo-fix.R} file.
+#'   The codes is sourced from
+#'   \href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+#'   depending on the granularity levels.
 #' @return A dataset of class `data.table` consisting all older codes from
 #'   previous years until the selected year in `to` argument and what these
 #'   older codes were changed into. If the codes have not changed then the value
@@ -63,7 +65,7 @@ track_change <- function(type = c(
   if (!fix)
     return(DT)
 
-  DT <- alter_manual(DT)
+  DT <- alter_manual(DT, type)
 
   return(DT)
 }
@@ -160,9 +162,18 @@ grunnkrets_check <- function(type, to = NULL){
 
 ## Maually alter dataset especially when there are splitting codes ie. issue 84
 ## Codes should be in config repo file
-alter_manual <- function(DT){
+alter_manual <- function(DT, type){
 
-  http <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/geo-fix.R"
+  baseURL <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/"
+
+  fileName <- switch(type,
+                     fylke = "geo-fylke.R",
+                     kommune = "geo-kommune.R",
+                     bydel = "geo-bydel.R",
+                     grunnkrets = "geo-grunnnkrets.R"
+                     )
+
+  http <- paste0(baseURL, fileName)
 
   if (check_url(http)){
     message("Run source file ", http)
