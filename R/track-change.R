@@ -180,7 +180,7 @@ alter_manual <- function(DT, type){
                      fylke = "geo-fylke.R",
                      kommune = "geo-kommune.R",
                      bydel = "geo-bydel.R",
-                     grunnkrets = "geo-grunnnkrets.R"
+                     grunnkrets = "geo-grunnkrets.R"
                      )
 
   http <- paste0(baseURL, fileName)
