@@ -3,8 +3,7 @@
 - Fix error on the date in `date_future()`
 - Fix geo codes manually when necessary (#84). This is done by sourcing [config
   files](https://github.com/helseprofil/config/tree/main/geo) according to their
-  granularity level. Use argument `fix = FALSE` to deactivate executing
-  these file.
+  granularity level. Use argument `fix = TRUE` to execute sourcing these file.
 
 # norgeo 2.3.1
 - Replace `httr` package with `httr2` package.
