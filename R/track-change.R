@@ -39,7 +39,7 @@ track_change <- function(type = c(
     lifecycle::deprecate_soft(
       when = "2.4.2",
       what = "track_change(dump)",
-      with = "track_change(fix = 'deactivate with FALSE')",
+      with = "track_change(fix = 'activate with TRUE')",
       details = "Old codes prior to ver 2.4.2 might break when using manually fix. Please read function document."
     )
   }
@@ -72,8 +72,12 @@ track_change <- function(type = c(
   if (!names)
     DT[, (granularityNames) := NULL]
 
-  if (fix)
+  if (fix){
     DT <- alter_manual(DT, type)
+  } else {
+    message("Please check splitting geo codes with `track_split()` for possible error")
+    message("Use `fix = TRUE` to implement the way we do it in our work. Please read the documentation")
+  }
 
   return(DT)
 }
