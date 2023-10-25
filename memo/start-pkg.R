@@ -1,16 +1,10 @@
-## Looping
+## Maintaining
 devtools::load_all()
 devtools::test()
 devtools::document()
-roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 
-## progressr
-progressr::handlers(global = TRUE)
-
-## Sys.unsetenv("R_PROFILE_USER")
-devtools::check()
-## Run to build the website
+## Building website
 pkgdown::build_site()
 pkgdown::build_news(preview = TRUE)
 
@@ -19,44 +13,3 @@ usethis::use_git_remote("origin", url = "https://github.com/helseprofil/norgeo.g
 usethis::use_github_action_check_standard()
 usethis::use_git_remote("origin", url = "git@work:helseprofil/norgeo.git", overwrite = TRUE)
 
-
-usethis::use_logo("man/figures/norgeo.png")
-pkgdown::build_favicons(pkg = ".")
-
-## PACKAGE DEV ----------
-usethis::use_package("vcr")
-usethis::use_package("progressr")
-
-## Make sure the root is at package
-pkgs <- c(
-  "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
-  "data.table", "readxl", "openxlsx", "DBI", "odbc", "writexl", "RSQLite"
-)
-## install.packages(pkgs)
-## install.packages("renv")
-## renv::init(bare = TRUE)
-## renv::install(pkgs)
-## renv::snapshot()
-
-## CRAN release
-devtools::build() #create .tar.gz file
-devtools::spell_check()
-devtools::release_checks()
-devtools::release()
-devtools::check_rhub()
-
-## TESTING
-usethis::use_testthat()
-usethis::use_test("get-code")
-usethis::use_test("get-correspond")
-
-vcr::use_vcr()
-## vcr::use_cassette("get-code")
-## vcr::use_cassette("get-correspond")
-
-## Coverage
-usethis::use_github_action("test-coverage")
-covr::report()
-
-## Save files
-saveRDS(bb, file = file.path(system.file(package = "norgeo"), "test-data/dtCorres.rds"))
