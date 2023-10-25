@@ -6,8 +6,8 @@
 #' be used.
 #'
 #' @inheritParams get_code
-#' @param fix Default is TRUE. Use external codes to fix geo changes manually.
-#'   The codes is sourced from
+#' @param fix Default is FALSE. When TRUE then use external codes to fix geo
+#'   changes manually. The codes is sourced from
 #'   \href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
 #'   depending on the granularity levels.
 #' @return A dataset of class `data.table` consisting all older codes from
@@ -33,7 +33,7 @@ track_change <- function(type = c(
                          from = NULL,
                          to = NULL,
                          names = TRUE,
-                         fix = TRUE) {
+                         fix = FALSE) {
 
   if (fix){
     lifecycle::deprecate_soft(
@@ -72,10 +72,8 @@ track_change <- function(type = c(
   if (!names)
     DT[, (granularityNames) := NULL]
 
-  if (!fix)
-    return(DT)
-
-  DT <- alter_manual(DT, type)
+  if (fix)
+    DT <- alter_manual(DT, type)
 
   return(DT)
 }
