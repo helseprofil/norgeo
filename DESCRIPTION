@@ -38,7 +38,7 @@ Suggests:
     vcr (>= 0.6.0),
     knitr,
     rmarkdown
-URL: https://github.com/helseprofil/norgeo
+URL: https://helseprofil.github.io/norgeo/, https://github.com/helseprofil/norgeo
 BugReports: https://github.com/helseprofil/norgeo/issues
 VignetteBuilder: knitr
 Depends: 
