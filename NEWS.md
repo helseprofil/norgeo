@@ -4,6 +4,7 @@
 - Fix geo codes manually when necessary (#84). This is done by sourcing [config
   files](https://github.com/helseprofil/config/tree/main/geo) according to their
   granularity level. Use argument `fix = TRUE` to execute sourcing these file.
+- Deactivate testing for data based on `GrunnkretsBefore2002` since it isn't clean dataset.
 
 # norgeo 2.3.1
 - Replace `httr` package with `httr2` package.

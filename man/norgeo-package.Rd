@@ -11,6 +11,7 @@ This package tracks all geo codes changes in Norway that are available from SSB.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://helseprofil.github.io/norgeo/}
   \item \url{https://github.com/helseprofil/norgeo}
   \item Report bugs at \url{https://github.com/helseprofil/norgeo/issues}
 }
