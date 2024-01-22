@@ -8,7 +8,8 @@ track_change(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
-  names = TRUE
+  names = TRUE,
+  fix = FALSE
 )
 }
 \arguments{
@@ -21,6 +22,11 @@ default.}
 not specified.}
 
 \item{names}{Include names. Default is TRUE}
+
+\item{fix}{Default is FALSE. When TRUE then use external codes to fix geo
+changes manually. The codes is sourced from
+\href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+depending on the granularity levels.}
 }
 \value{
 A dataset of class \code{data.table} consisting all older codes from

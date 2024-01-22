@@ -16,7 +16,7 @@ be used."><meta property="og:image" content="https://helseprofil.github.io/norge
     
     <a class="navbar-brand me-2" href="../index.html">norgeo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,8 @@ be used.</p>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span><span class="op">)</span>,</span>
 <span>  from <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  to <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  names <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  names <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  fix <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -95,6 +96,13 @@ not specified.</p></dd>
 
 <dt>names</dt>
 <dd><p>Include names. Default is TRUE</p></dd>
+
+
+<dt>fix</dt>
+<dd><p>Default is FALSE. When TRUE then use external codes to fix geo
+changes manually. The codes is sourced from
+<a href="https://github.com/helseprofil/config/blob/main/geo/" class="external-link">config</a> files
+depending on the granularity levels.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -120,7 +128,7 @@ of old code will be <code>NA</code>.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
+  <p></p><p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>, Vegard Lysne.</p>
 </div>
 
 <div class="pkgdown-footer-right">

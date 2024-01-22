@@ -6,6 +6,10 @@
 #' be used.
 #'
 #' @inheritParams get_code
+#' @param fix Default is FALSE. When TRUE then use external codes to fix geo
+#'   changes manually. The codes is sourced from
+#'   \href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+#'   depending on the granularity levels.
 #' @return A dataset of class `data.table` consisting all older codes from
 #'   previous years until the selected year in `to` argument and what these
 #'   older codes were changed into. If the codes have not changed then the value
@@ -28,7 +32,18 @@ track_change <- function(type = c(
                          ),
                          from = NULL,
                          to = NULL,
-                         names = TRUE) {
+                         names = TRUE,
+                         fix = FALSE) {
+
+  if (fix){
+    lifecycle::deprecate_soft(
+      when = "2.4.2",
+      what = "track_change(dump)",
+      with = "track_change(fix = 'activate with TRUE')",
+      details = "Old codes prior to ver 2.4.2 might break when using manually fix. Please read function document."
+    )
+  }
+
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
@@ -51,13 +66,18 @@ track_change <- function(type = c(
   data.table::setkey(dataApi$dt, newCode, changeOccurred)
   ## When nothing changes
   dataApi$dt[oldCode == newCode, oldCode := NA]
-
   data.table::setnames(dataApi$dt, "newCode", "currentCode")
-
   DT <- data.table::copy(dataApi$dt[])
 
   if (!names)
     DT[, (granularityNames) := NULL]
+
+  if (fix){
+    DT <- alter_manual(DT, type)
+  } else {
+    message("Please check splitting geo codes with `track_split()` for possible error")
+    message("Use `fix = TRUE` to implement the way we do it in our work. Please read the documentation")
+  }
 
   return(DT)
 }
@@ -150,4 +170,34 @@ grunnkrets_check <- function(type, to = NULL){
   }
 
   invisible(type)
+}
+
+## Maually alter dataset especially when there are splitting codes ie. issue 84
+## Codes should be in config repo file
+alter_manual <- function(DT, type){
+
+  baseURL <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/"
+
+  fileName <- switch(type,
+                     fylke = "geo-fylke.R",
+                     kommune = "geo-kommune.R",
+                     bydel = "geo-bydel.R",
+                     grunnkrets = "geo-grunnkrets.R"
+                     )
+
+  http <- paste0(baseURL, fileName)
+
+  if (check_url(http)){
+    message("Run source file ", http)
+    source(http, local = TRUE)
+  }
+
+  return(DT)
+}
+
+check_url <- function(http){
+  con <- url(http)
+  check <- suppressWarnings(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
+  suppressWarnings(try(close.connection(con),silent=TRUE))
+  ifelse(is.null(check),TRUE,FALSE)
 }

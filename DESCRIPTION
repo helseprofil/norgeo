@@ -1,13 +1,17 @@
 Package: norgeo
 Title: Tracking Geo Code Change of Regional Granularity in Norway
-Version: 2.3.1
+Version: 2.4.2
 Authors@R: 
-    person(given = "Yusman",
+   c(person(given = "Yusman",
            family = "Kamaleri",
            role = c("aut", "cre"),
            email = "ybkamaleri@gmail.com",
            comment = c(ORCID = "0000-0001-5014-3665")
-           )
+           ),
+     person(given = "Vegard",
+           family = "Lysne",
+           role = "aut",
+           email = "vegard.lysne@fhi.no"))
 Description: Regional granularity levels in Norway which are depicted by different codes, 
              have undergone several changes over the years. 
              Identifying when codes have changed and how many changes have taken place
@@ -26,14 +30,15 @@ Imports:
     magrittr,
     RSQLite,
     writexl,
-    httr2
+    httr2,
+    lifecycle
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,
     vcr (>= 0.6.0),
     knitr,
     rmarkdown
-URL: https://github.com/helseprofil/norgeo
+URL: https://helseprofil.github.io/norgeo/, https://github.com/helseprofil/norgeo
 BugReports: https://github.com/helseprofil/norgeo/issues
 VignetteBuilder: knitr
 Depends: 

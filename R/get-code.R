@@ -101,6 +101,8 @@ set_url <- function(base = NULL,
     codeQry <- list(from = from, to = to)
   }
 
+  codeQry <- date_future(from = from, to = to, codeQry = codeQry)
+
   koReg <- httr2::request(endUrl) |>
     httr2::req_url_query(!!!codeQry) |>
     httr2::req_retry(max_tries = 5) |>
@@ -120,6 +122,19 @@ set_url <- function(base = NULL,
 date_now <- function() {
   format(Sys.Date(), "%Y-%m-%d")
 }
+
+## date_warn <- function(to, future){
+
+##   if (!future)
+##     return(to)
+
+##   dd <- data.table::year(date_now())
+##   if (as.integer(to) > dd)
+##     stop("Are you sure the year in `to` is corrent? Use arg `future = TRUE`")
+
+##   invisible()
+## }
+
 
 ## Depricated function
 get_list <- function() {

@@ -2,8 +2,8 @@ test_that("Track change", {
   dtOut <- readRDS(system.file("test-data", "trackChangeFylke_2017_2018.rds", package = "norgeo"))
   dtKomm <- readRDS(system.file("test-data", "trackChangeKomm_2010_2015.rds", package = "norgeo"))
 
-  expect_equal(track_change("fylke", 2017, 2018, names = F), dtOut)
-  expect_equal(track_change("kommune", 2010, 2015, names = F), dtKomm)
+  expect_equal(track_change("fylke", 2017, 2018, names = F, fix = FALSE), dtOut)
+  expect_equal(track_change("kommune", 2010, 2015, names = F, fix = FALSE), dtKomm)
 })
 
 test_that("Track split", {

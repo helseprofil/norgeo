@@ -17,7 +17,7 @@ track_split <- function(type = c(
                         to = NULL,
                         names = TRUE) {
   type <- match.arg(type)
-  dt <- track_change(type, from, to)
+  dt <- track_change(type, from, to, fix = FALSE)
   data.table::setkey(dt, oldCode, changeOccurred)
   dt[!is.na(oldCode), split := .N, by = data.table::rleid(changeOccurred, oldCode)]
   out <- dt[split > 1]
