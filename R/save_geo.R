@@ -9,6 +9,7 @@
 #' @param file.type Choose file type as Access, SQLite, Excel or Text
 #' @param db.name When choosing a DBMS then specify the database name
 #'
+#' @return No return value, called for side effects
 #' @export
 
 geo_save <- function(tblname = NULL,
