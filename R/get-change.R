@@ -118,7 +118,6 @@ get_change <- function(type = c(
     listDT[[i]] <- chgDT
   }
 
-  cat("\n")
   DT <- data.table::rbindlist(listDT, fill = TRUE, use.names = TRUE)
 
   ## need to create empty data.table when it's empty data from API

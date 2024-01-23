@@ -23,6 +23,9 @@ geo_save(
 
 \item{db.name}{When choosing a DBMS then specify the database name}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Geo codes can be saved either in a database management system (DBMS) or
 as an Excel or text file.

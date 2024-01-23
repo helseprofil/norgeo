@@ -25,7 +25,7 @@ not specified.}
 
 \item{fix}{Default is FALSE. When TRUE then use external codes to fix geo
 changes manually. The codes is sourced from
-\href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+\href{https://github.com/helseprofil/config/tree/main/geo}{config} files
 depending on the granularity levels.}
 }
 \value{

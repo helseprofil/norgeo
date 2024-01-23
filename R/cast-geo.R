@@ -17,7 +17,7 @@
 #' @export
 
 cast_geo <- function(year = NULL, names = TRUE) {
-  cat("Start casting geo codes from API ..")
+  message("Start casting geo codes from API ...")
   level <- sourceCode <- kommune <- fylke <- grunnkrets <- bydel <- NULL
 
   if (is.null(year)) {
@@ -31,7 +31,6 @@ cast_geo <- function(year = NULL, names = TRUE) {
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
     DT[[geos[i]]][, level := geos[i]]
-    cat("..")
   }
 
   dt <- data.table::rbindlist(DT)
@@ -47,8 +46,6 @@ cast_geo <- function(year = NULL, names = TRUE) {
     gr_kom = c("kommune", "grunnkrets"),
     kom_fylke = c("fylke", "kommune")
   )
-
-  cat("..\n")
 
   for (i in seq_along(COR)) {
     COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = year)
