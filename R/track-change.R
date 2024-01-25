@@ -16,9 +16,7 @@
 #'   of old code will be `NA`.
 #'
 #' @examples
-#' \dontrun{
-#' mydata <- track_change("kommune", from = 2017, to = 2020)
-#' }
+#' mydata <- track_change("kommune", from = 2017, to = 2018)
 #'
 #' @import data.table
 #'

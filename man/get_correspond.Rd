@@ -39,8 +39,6 @@ This function will get the corresponding geo code of specific granularity via
 API from SSB whenever available.
 }
 \examples{
-\dontrun{
-df <- get_correspond("kommune", "grunnkrets", 2020)
-}
+df <- get_correspond("kommune", "grunnkrets", 2019)
 
 }

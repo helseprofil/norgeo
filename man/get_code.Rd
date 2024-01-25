@@ -33,7 +33,5 @@ geographical level and the duration the codes are valid ie. from and to.
 This function will download the codes of selected geographical levels via API.
 }
 \examples{
-\dontrun{
-mydata <- get_code("kommune", from = 2017, to = 2020)
-}
+mydata <- get_code("kommune", from = 2017, to = 2019)
 }

@@ -41,8 +41,6 @@ it becomes the code in \code{newCode}. When no code change has taken place, \cod
 be used.
 }
 \examples{
-\dontrun{
-mydata <- track_change("kommune", from = 2017, to = 2020)
-}
+mydata <- track_change("kommune", from = 2017, to = 2018)
 
 }

@@ -21,7 +21,5 @@ enumeration area codes to county codes, for the selected year.
 Add geo granularity levels to all sides
 }
 \examples{
-\dontrun{
- DT <- cast_geo(2020)
-}
+ DT <- cast_geo(2019)
 }
