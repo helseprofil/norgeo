@@ -17,7 +17,8 @@ Please add \value to .Rd files regarding exported methods and explain the functi
 
 Please fix and resubmit.
 
-## Version 2.4.2
+# Version 2.4.2
+## value and cat
 Please always explain all acronyms in the description text. -> 'SSB'
 
 Please add \value to .Rd files regarding exported methods and explain
@@ -37,5 +38,17 @@ Instead of print()/cat() rather use message()/warning() or
 if(verbose)cat(..) (or maybe stop()) if you really have to write text to
 the console. (except for print, summary, interactive functions) ->
 R/cast-geo.R
+
+Please fix and resubmit.
+
+## dontrun
+
+\dontrun{} should only be used if the example really cannot be executed
+(e.g. because of missing additional software, missing API keys, ...) by
+the user. That's why wrapping examples in \dontrun{} adds the comment
+("# Not run:") as a warning for the user.
+Does not seem necessary.
+Please unwrap the examples if they are executable in < 5 sec, or replace
+\dontrun{} with \donttest{} or explain why \dontrun{} is indeed necessary.
 
 Please fix and resubmit.

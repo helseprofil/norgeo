@@ -11,9 +11,7 @@
 #'   different geographical levels from lower to higher levels ie. from
 #'   enumeration area codes to county codes, for the selected year.
 #' @examples
-#' \dontrun{
-#'  DT <- cast_geo(2020)
-#' }
+#'  DT <- cast_geo(2019)
 #' @export
 
 cast_geo <- function(year = NULL, names = TRUE) {

@@ -10,9 +10,7 @@
 #'   geographical level and the duration the codes are valid ie. from and to.
 #' @import data.table
 #' @examples
-#' \dontrun{
-#' mydata <- get_code("kommune", from = 2017, to = 2020)
-#' }
+#' mydata <- get_code("kommune", from = 2017, to = 2019)
 #' @export
 
 get_code <- function(type = c(

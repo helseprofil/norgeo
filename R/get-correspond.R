@@ -16,9 +16,7 @@
 #'   for codes on enumeration areas and their corresponding codes for
 #'   municipalities or town.
 #' @examples
-#' \dontrun{
-#' df <- get_correspond("kommune", "grunnkrets", 2020)
-#' }
+#' df <- get_correspond("kommune", "grunnkrets", 2019)
 #'
 #' @export
 
