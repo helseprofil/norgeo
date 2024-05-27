@@ -9,6 +9,7 @@
 
 track_split <- function(type = c(
                           "fylke",
+                          "okonomisk",
                           "kommune",
                           "bydel",
                           "grunnkrets"

@@ -1,4 +1,7 @@
-# norgeo 2.4.2 (dev)
+# norgeo 2.4.3
+- Include data on economical regions (#87). This is implemented in `get_code()`, `get_correspond()`, `get_change()`, `track_change()`, `track_merge()`, `track_split()`, `cast_geo()`, 
+
+# norgeo 2.4.2
 - Get future data from API. Thank to @raniets for the request and proposed solution (#83)
 - Fix error on the date in `date_future()`
 - Fix geo codes manually when necessary (#84). This is done by sourcing [config

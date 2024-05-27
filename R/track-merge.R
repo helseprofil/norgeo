@@ -9,6 +9,7 @@
 
 track_merge <- function(type = c(
   "fylke",
+  "okonomisk", 
   "kommune",
   "bydel",
   "grunnkrets"

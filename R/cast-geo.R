@@ -16,15 +16,15 @@
 
 cast_geo <- function(year = NULL, names = TRUE) {
   message("Start casting geo codes from API ...")
-  level <- sourceCode <- kommune <- fylke <- grunnkrets <- bydel <- NULL
+  level <- sourceCode <- kommune <- fylke <- okonomisk <- grunnkrets <- bydel <- NULL
 
   if (is.null(year)) {
     year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
-  geos <- c("fylke", "kommune", "bydel", "grunnkrets")
+  geos <- c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets")
 
-  DT <- vector(mode = "list", length = 4)
+  DT <- vector(mode = "list", length = 5)
   ## Get geo codes
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
@@ -42,6 +42,7 @@ cast_geo <- function(year = NULL, names = TRUE) {
   COR <- list(
     gr_bydel = c("bydel", "grunnkrets"),
     gr_kom = c("kommune", "grunnkrets"),
+    kom_oko = c("okonomisk", "kommune"),
     kom_fylke = c("fylke", "kommune")
   )
 
@@ -66,12 +67,17 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   dt[level == "kommune", fylke := gsub("\\d{2}$", "", code)][
     level == "kommune", kommune := code]
-
+  
+  # Add economical region
+  dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
+  dt[level == "okonomisk", `:=` (okonomisk = code,
+                                 fylke = gsub("(\\d{2}).*", "\\1", code))]
+  
   ## Only run this after adding lower granularity
   ## else it will overwrite kommune and bydel
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
-
+  
   kombydel99 <- dt[bydel %like% "99$", list(kommune, bydel)]
   kom_with_bydel99 <- kombydel99$kommune
   bydel99 <- kombydel99$bydel
@@ -86,7 +92,7 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   data.table::setcolorder(dt,
                           c("code", "name", "validTo", "level",
-                            "grunnkrets", "kommune", "fylke", "bydel"))
+                            "grunnkrets", "kommune", "fylke", "bydel", "okonomisk"))
   if (!names)
     dt[, "name" := NULL]
 
@@ -134,8 +140,8 @@ merge_geo <- function(dt, cor, geo, year){
   # year - Year as in validTo column
   level <- targetName <- sourceCode <- NULL
 
-  if (geo == "fylke"){
-    # Fylke uses kommune as id for merging
+  if (geo %in% c("fylke", "okonomisk")){
+    # Fylke and economical regions uses kommune as id for merging
     DT <- data.table::merge.data.table(dt, cor, by.x = "kommune", by.y = "code", all = TRUE)
   } else {
     # kommune and bydel use grunnkrets as id for merging
