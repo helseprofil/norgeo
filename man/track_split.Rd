@@ -5,7 +5,7 @@
 \title{Get geo code that are split after code change}
 \usage{
 track_split(
-  type = c("fylke", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
   names = TRUE

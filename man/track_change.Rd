@@ -5,7 +5,7 @@
 \title{Track all changes for codes from API}
 \usage{
 track_change(
-  type = c("fylke", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
   names = TRUE,
