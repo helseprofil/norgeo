@@ -24,6 +24,7 @@
 
 track_change <- function(type = c(
                            "fylke",
+                           "okonomisk",
                            "kommune",
                            "bydel",
                            "grunnkrets"

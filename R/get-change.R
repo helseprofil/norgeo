@@ -23,6 +23,7 @@
 
 get_change <- function(type = c(
                          "fylke",
+                         "okonomisk",
                          "kommune",
                          "bydel",
                          "grunnkrets"
@@ -37,7 +38,7 @@ get_change <- function(type = c(
   inType <- length(type) > 1
 
   if (inType)
-    stop(simpleError("Only one type og geographical levels is allowed"))
+    stop(simpleError("Only one type of geographical levels is allowed"))
 
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
@@ -47,6 +48,7 @@ get_change <- function(type = c(
 
   klass <- switch(type,
                   fylke = 104,
+                  okonomisk = 108, 
                   kommune = 131,
                   bydel = 103,
                   grunnkrets = 1

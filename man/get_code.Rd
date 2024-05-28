@@ -5,7 +5,7 @@
 \title{Get the codes of geographical levels}
 \usage{
 get_code(
-  type = c("fylke", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
   date = FALSE,
