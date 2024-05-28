@@ -68,11 +68,6 @@ cast_geo <- function(year = NULL, names = TRUE) {
   dt[level == "kommune", fylke := gsub("\\d{2}$", "", code)][
     level == "kommune", kommune := code]
   
-  # Add economical region
-  dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
-  dt[level == "okonomisk", `:=` (okonomisk = code,
-                                 fylke = gsub("(\\d{2}).*", "\\1", code))]
-  
   ## Only run this after adding lower granularity
   ## else it will overwrite kommune and bydel
   dt[level == "grunnkrets", grunnkrets := code]
@@ -84,11 +79,16 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   dt <- recode_missing_gr(dt)
   dt <- find_missing_kom_bydel(dt, bydel99 = kom_with_bydel99, year = year)
-
+  
   ## Use only after coding for missing kommune and fylke because
   ## it looks for is.na(bydel) in existing rows while find_missing_kom_bydel add new rows
   dt <- find_missing_bydel(dt, bydel99)
   dt <- find_missing_gr(dt, "99999999", year = year)
+  
+  # Add economical region
+  dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
+  dt[level == "okonomisk", `:=` (okonomisk = code,
+                                 fylke = gsub("(\\d{2}).*", "\\1", code))]
 
   data.table::setcolorder(dt,
                           c("code", "name", "validTo", "level",
