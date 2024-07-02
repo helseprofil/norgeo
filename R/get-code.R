@@ -18,6 +18,7 @@ get_code <- function(type = c(
                        "okonomisk",
                        "kommune",
                        "bydel",
+                       "levekaar",
                        "grunnkrets"
                      ),
                      from = NULL,
@@ -32,6 +33,7 @@ get_code <- function(type = c(
   klass <- switch(type,
     fylke = 104,
     okonomisk = 108,
+    levekaar = 745,
     kommune = 131,
     bydel = 103,
     grunnkrets = 1

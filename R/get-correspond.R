@@ -24,7 +24,8 @@ get_correspond <- function(type = c(
                              "fylke",
                              "okonomisk",
                              "kommune",
-                             "bydel"
+                             "bydel",
+                             "levekaar"
                            ),
                            correspond = c(
                              "fylke",
@@ -43,6 +44,7 @@ get_correspond <- function(type = c(
     okonomisk = 108,
     kommune = 131,
     bydel = 103,
+    levekaar = 745,
     grunnkrets = 1
   )
 
@@ -55,12 +57,12 @@ get_correspond <- function(type = c(
   )
 
   ## trueType <- klass %in% c(103, 131)
-  if (klass %in% c(103, 131) && corr != 1) {
+  if (klass %in% c(103, 131, 745) && corr != 1) {
     stop("`Correspond` arg should be lower granularity than `type` arg,\n  or requested combination is not available in SSB")
   }
 
-  if (klass == 104 && corr != 131) {
-    stop("Use `kommune` to get correspond table for `fylke`!")
+  if (klass %in% c(104, 108) && corr != 131) {
+    stop("Use `kommune` to get correspond table for `fylke` or `okonomisk`!")
   }
 
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
