@@ -89,13 +89,16 @@ get_correspond <- function(type = c(
     error = function(err) err
     )
 
-  if (inherits(x, "error") && type != "bydel"){
+  if (inherits(x, "error") && type %in% c(c("kommune", "fylke"))){
     z <- make_corr(
       type = type,
       correspond = correspond,
       from = from,
       to = to
     )
+  } else if(inherits(x, "error") && type %in% c("levekaar", "okonomisk", "bydel")){
+    z <- data.table()
+    z[, (c("sourceCode","sourceName","targetCode","targetName","validFrom","validTo")) := character()]
   } else {
     z <- x
   }

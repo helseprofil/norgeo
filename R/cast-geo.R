@@ -132,8 +132,8 @@ find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
   stat <- list(rows = 0, from = from)
-  nei <- 0
-  while (nei < 1) {
+  nei <- -1
+  while (nei < 0) {
     dt <- norgeo::get_correspond(type, correspond, from)
     nei <- nrow(dt)
     stat$rows <- nei
