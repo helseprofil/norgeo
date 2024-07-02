@@ -26,6 +26,7 @@ get_change <- function(type = c(
                          "okonomisk",
                          "kommune",
                          "bydel",
+                         "levekaar",
                          "grunnkrets"
                        ),
                        from = NULL,
@@ -51,6 +52,7 @@ get_change <- function(type = c(
                   okonomisk = 108, 
                   kommune = 131,
                   bydel = 103,
+                  levekaar = 745,
                   grunnkrets = 1
                   )
 

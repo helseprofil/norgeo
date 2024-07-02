@@ -5,7 +5,7 @@
 \title{Get geo corresponds}
 \usage{
 get_correspond(
-  type = c("fylke", "okonomisk", "kommune", "bydel"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "levekaar"),
   correspond = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,

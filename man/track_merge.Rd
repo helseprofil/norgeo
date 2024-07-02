@@ -5,7 +5,7 @@
 \title{Get geo code that are merged after code change}
 \usage{
 track_merge(
-  type = c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "levekaar", "grunnkrets"),
   from = NULL,
   to = NULL,
   names = TRUE

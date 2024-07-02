@@ -16,15 +16,15 @@
 
 cast_geo <- function(year = NULL, names = TRUE) {
   message("Start casting geo codes from API ...")
-  level <- sourceCode <- kommune <- fylke <- okonomisk <- grunnkrets <- bydel <- NULL
+  level <- sourceCode <- kommune <- fylke <- okonomisk <- grunnkrets <- bydel <- levekaar <- NULL
 
   if (is.null(year)) {
     year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
-  geos <- c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets")
+  geos <- c("fylke", "okonomisk", "kommune", "bydel", "levekaar", "grunnkrets")
 
-  DT <- vector(mode = "list", length = 5)
+  DT <- vector(mode = "list", length = 6)
   ## Get geo codes
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
@@ -41,6 +41,7 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   COR <- list(
     gr_bydel = c("bydel", "grunnkrets"),
+    gr_levekaar = c("levekaar", "grunnkrets"),
     gr_kom = c("kommune", "grunnkrets"),
     kom_oko = c("okonomisk", "kommune"),
     kom_fylke = c("fylke", "kommune")
@@ -87,14 +88,29 @@ cast_geo <- function(year = NULL, names = TRUE) {
   
   # Add economical region
   dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
-  dt[level == "okonomisk", `:=` (okonomisk = code,
-                                 fylke = gsub("(\\d{2}).*", "\\1", code))]
-
+  dt[level == "okonomisk", let(okonomisk = code,
+                               fylke = gsub("(\\d{2}).*", "\\1", code))]
+  
+  # Add levekaar
+  # As some levekaar codes = grunnkrets codes, higher granularities must be set to NA
+  # Bydel codes must be merged manually from level == "grunnkrets" where both levekaar and bydel is present
+  dt <- merge_geo(dt, COR$gr_levekaar, "levekaar", year)
+  dt[level == "levekaar", let(kommune = NA, bydel = NA, fylke = NA, levekaar = NA)]
+  dt[level == "levekaar", let(levekaar = code,
+                              fylke = sub("^(\\d{2}).*", "\\1", code),
+                              kommune = sub("^(\\d{4}).*", "\\1", code))]
+  mergebydel = unique(dt[level == "grunnkrets" & !is.na(bydel) & !is.na(levekaar), .(levekaar, mergebydel = bydel)][, level := "levekaar"])
+  dt <- merge.data.table(dt, mergebydel, by = c("level", "levekaar"), all.x = T)
+  dt[level == "levekaar", let(bydel = mergebydel)]
+  dt[, let(mergebydel = NULL)]
+  
   data.table::setcolorder(dt,
                           c("code", "name", "validTo", "level",
-                            "grunnkrets", "kommune", "fylke", "bydel", "okonomisk"))
+                            "grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk"))
   if (!names)
     dt[, "name" := NULL]
+  
+  setkey(dt, code)
 
   return(dt)
 }
@@ -116,8 +132,8 @@ find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
   stat <- list(rows = 0, from = from)
-  nei <- 0
-  while (nei < 1) {
+  nei <- -1
+  while (nei < 0) {
     dt <- norgeo::get_correspond(type, correspond, from)
     nei <- nrow(dt)
     stat$rows <- nei
