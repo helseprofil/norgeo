@@ -5,7 +5,7 @@
 \title{Get geo code changes with API}
 \usage{
 get_change(
-  type = c("fylke", "okonomisk", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "okonomisk", "kommune", "bydel", "levekaar", "grunnkrets"),
   from = NULL,
   to = NULL,
   code = TRUE,

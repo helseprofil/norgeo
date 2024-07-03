@@ -12,6 +12,7 @@ track_merge <- function(type = c(
   "okonomisk", 
   "kommune",
   "bydel",
+  "levekaar",
   "grunnkrets"
 ),
 from = NULL,

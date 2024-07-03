@@ -18,6 +18,7 @@ get_code <- function(type = c(
                        "okonomisk",
                        "kommune",
                        "bydel",
+                       "levekaar",
                        "grunnkrets"
                      ),
                      from = NULL,
@@ -32,6 +33,7 @@ get_code <- function(type = c(
   klass <- switch(type,
     fylke = 104,
     okonomisk = 108,
+    levekaar = 745,
     kommune = 131,
     bydel = 103,
     grunnkrets = 1
@@ -55,18 +57,24 @@ get_code <- function(type = c(
   )
 
   keepName <- c("code", "name")
-
-  if (is.null(to)) {
-    koDT[, setdiff(names(koDT), keepName) := NULL]
-    koDT[, validTo := from][]
+  
+  if(nrow(koDT) > 0){
+    if (is.null(to)) {
+      koDT[, setdiff(names(koDT), keepName) := NULL]
+      koDT[, validTo := from][]
+    } else {
+      indN <- grep("InRequestedRange", names(koDT))
+      valN <- names(koDT)[indN]
+      koDT[, setdiff(names(koDT), c(keepName, valN)) := NULL][]
+      data.table::setnames(koDT, old = valN, new = c("validFrom", "validTo"))
+      data.table::setorderv(koDT, c("validTo", "code"))
+    }
   } else {
-    indN <- grep("InRequestedRange", names(koDT))
-    valN <- names(koDT)[indN]
-    koDT[, setdiff(names(koDT), c(keepName, valN)) := NULL][]
-    data.table::setnames(koDT, old = valN, new = c("validFrom", "validTo"))
-    data.table::setorderv(koDT, c("validTo", "code"))
+    message("No valid codes for geo level ", type, " for year ", format(as.Date(from), "%Y"), ", skipped")
+    koDT <- data.table()
+    koDT[, (c(keepName, "validTo")) := character()]
   }
-
+    
   if (base::isFALSE(date)) {
     dateVar <- c("validFrom", "validTo")
     selectCol <- dateVar[is.element(dateVar, names(koDT))]
@@ -75,7 +83,7 @@ get_code <- function(type = c(
       data.table::set(koDT, , j = j, value = format(as.Date(koDT[[j]]), "%Y"))
     }
   }
-
+  
   if (!names)
     koDT[, "name" := NULL]
 

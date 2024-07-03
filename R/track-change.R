@@ -27,6 +27,7 @@ track_change <- function(type = c(
                            "okonomisk",
                            "kommune",
                            "bydel",
+                           "levekaar",
                            "grunnkrets"
                          ),
                          from = NULL,
