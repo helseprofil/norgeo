@@ -1,5 +1,8 @@
+# norgeo 2.4.4
+- Include data on living condition zones (#90). This is implemented in `get_code()`, `get_correspond()`, `get_change()`, `track_change()`, `track_merge()`, `track_split()`, `cast_geo()`
+
 # norgeo 2.4.3
-- Include data on economical regions (#87). This is implemented in `get_code()`, `get_correspond()`, `get_change()`, `track_change()`, `track_merge()`, `track_split()`, `cast_geo()`, 
+- Include data on economical regions (#88). This is implemented in `get_code()`, `get_correspond()`, `get_change()`, `track_change()`, `track_merge()`, `track_split()`, `cast_geo()`, 
 
 # norgeo 2.4.2
 - Get future data from API. Thank to @raniets for the request and proposed solution (#83)
