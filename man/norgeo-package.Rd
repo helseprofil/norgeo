@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Vegard Lysne \email{vegard.lysne@fhi.no}
+\strong{Maintainer}: Vegard Lysne \email{vegard.lysne@helsedir.no}
 
 Authors:
 \itemize{
