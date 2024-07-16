@@ -2,16 +2,16 @@ Package: norgeo
 Title: Tracking Geo Code Change of Regional Granularity in Norway
 Version: 2.4.4
 Authors@R: 
-   c(person(given = "Yusman",
-           family = "Kamaleri",
+   c(person(given = "Vegard",
+           family = "Lysne",
            role = c("aut", "cre"),
+           email = "vegard.lysne@fhi.no"),
+    person(given = "Yusman",
+           family = "Kamaleri",
+           role = "aut",
            email = "ybkamaleri@gmail.com",
            comment = c(ORCID = "0000-0001-5014-3665")
-           ),
-     person(given = "Vegard",
-           family = "Lysne",
-           role = "aut",
-           email = "vegard.lysne@fhi.no"))
+           ))
 Description: Regional granularity levels in Norway which are depicted by different codes, 
              have undergone several changes over the years. 
              Identifying when codes have changed and how many changes have taken place
@@ -22,7 +22,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     data.table (>= 1.15.0),
     odbc,

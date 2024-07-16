@@ -18,11 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Yusman Kamaleri \email{ybkamaleri@gmail.com} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
+\strong{Maintainer}: Vegard Lysne \email{vegard.lysne@fhi.no}
 
 Authors:
 \itemize{
-  \item Vegard Lysne \email{vegard.lysne@fhi.no}
+  \item Yusman Kamaleri \email{ybkamaleri@gmail.com} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
 }
 
 }
