@@ -1,105 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/404.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/articles/change-tbl.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/articles/code-change.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/articles/granularity.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/articles/use-api.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/index.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/cast_code.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/cast_geo.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/dataApi.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/find_change.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/find_correspond.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/geo_cast.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/geo_change.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/geo_merge.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/geo_save.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/geo_set.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/get_change.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/get_code.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/get_correspond.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/GrunnkretsBefore2002.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/merge_multi.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/norgeo-package.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/raw.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/read_csv.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/track_change.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/track_merge.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/norgeo/reference/track_split.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://helseprofil.github.io/norgeo/404.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/articles/change-tbl.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/articles/code-change.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/articles/granularity.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/articles/index.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/articles/use-api.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/authors.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/index.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/LICENSE-text.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/LICENSE.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/news/index.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/cast_code.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/cast_geo.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/dataApi.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/find_change.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/find_correspond.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/geo_cast.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/geo_change.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/geo_merge.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/geo_save.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/geo_set.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/get_change.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/get_code.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/get_correspond.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/GrunnkretsBefore2002.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/index.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/merge_multi.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/norgeo-package.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/pipe.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/raw.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/read_csv.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/track_change.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/track_merge.html</loc></url>
+<url><loc>https://helseprofil.github.io/norgeo/reference/track_split.html</loc></url>
 </urlset>
+
