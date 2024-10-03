@@ -29,8 +29,7 @@ Imports:
     DBI,
     RSQLite,
     writexl,
-    httr2,
-    lifecycle
+    httr2
 Suggests:
     testthat (>= 3.0.0),
     pkgdown,

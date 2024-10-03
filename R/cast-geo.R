@@ -13,7 +13,6 @@
 #' @examples
 #'  DT <- cast_geo(2019)
 #' @export
-
 cast_geo <- function(year = NULL, names = TRUE) {
   message("Start casting geo codes from API ...")
   level <- sourceCode <- kommune <- fylke <- okonomisk <- grunnkrets <- bydel <- levekaar <- NULL
