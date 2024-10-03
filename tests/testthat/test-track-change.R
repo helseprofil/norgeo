@@ -8,7 +8,7 @@ test_that("Track change", {
 
 test_that("Track split", {
   dtOut <- readRDS(system.file("test-data", "split_2018_2020.rds", package = "norgeo"))
-  expect_equal(track_split("k", 2018, 2020, names = FALSE), dtOut)
+  expect_equal(track_split("k", 2018, 2020, names = F), dtOut)
 })
 
 test_that("Track merge", {
