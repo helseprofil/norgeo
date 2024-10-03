@@ -35,15 +35,6 @@ track_change <- function(type = c(
                          names = TRUE,
                          fix = FALSE) {
 
-  if (fix){
-    lifecycle::deprecate_soft(
-      when = "2.4.2",
-      what = "track_change(dump)",
-      with = "track_change(fix = 'activate with TRUE')",
-      details = "Old codes prior to ver 2.4.2 might break when using manually fix. Please read function document."
-    )
-  }
-
   type <- match.arg(type)
   type <- grunnkrets_check(type, to)
 
@@ -176,7 +167,7 @@ grunnkrets_check <- function(type, to = NULL){
 ## Codes should be in config repo file
 alter_manual <- function(DT, type){
 
-  baseURL <- "https://raw.githubusercontent.com/helseprofil/config/main/geo/"
+  baseURL <- "https://raw.githubusercontent.com/helseprofil/backend/main/norgeo/"
 
   fileName <- switch(type,
                      fylke = "geo-fylke.R",

@@ -1,3 +1,7 @@
+# norgeo 2.4.5
+- change location of manual geo-split files (#91).
+- Remove deprecated-message when using track_change()
+
 # norgeo 2.4.4
 - Include data on living condition zones (#90). This is implemented in `get_code()`, `get_correspond()`, `get_change()`, `track_change()`, `track_merge()`, `track_split()`, `cast_geo()`
 
