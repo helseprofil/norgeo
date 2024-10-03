@@ -19,13 +19,13 @@ track_split <- function(type = c(
                         to = NULL,
                         names = TRUE) {
   type <- match.arg(type)
-  dt <- track_change(type, from, to, fix = FALSE)
+  dt <- track_change(type, from, to, fix = FALSE)[!is.na(oldCode)]
   data.table::setkey(dt, oldCode, changeOccurred)
-  dt[!is.na(oldCode), split := .N, by = data.table::rleid(changeOccurred, oldCode)]
-  out <- dt[split > 1]
+  dt[, bycol := data.table::rleid(dt$changeOccurred, dt$oldCode)]
+  dt[, split := .N, by = bycol]
+  out <- dt[split > 1][, bycol := NULL]
 
-  if (!names)
-    out[, (granularityNames) := NULL]
+  if (!names) out[, (granularityNames) := NULL][]
 
   return(out)
 }

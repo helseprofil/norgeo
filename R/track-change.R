@@ -21,7 +21,6 @@
 #' @import data.table
 #'
 #' @export
-
 track_change <- function(type = c(
                            "fylke",
                            "okonomisk",
