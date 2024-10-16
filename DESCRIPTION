@@ -1,6 +1,6 @@
 Package: norgeo
 Title: Tracking Geo Code Change of Regional Granularity in Norway
-Version: 2.4.5
+Version: 2.4.6
 Authors@R: 
    c(person(given = "Vegard",
            family = "Lysne",

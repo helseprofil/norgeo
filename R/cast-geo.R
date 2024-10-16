@@ -98,10 +98,6 @@ cast_geo <- function(year = NULL, names = TRUE) {
   dt[level == "levekaar", let(levekaar = code,
                               fylke = sub("^(\\d{2}).*", "\\1", code),
                               kommune = sub("^(\\d{4}).*", "\\1", code))]
-  mergebydel = unique(dt[level == "grunnkrets" & !is.na(bydel) & !is.na(levekaar), .(levekaar, mergebydel = bydel)][, level := "levekaar"])
-  dt <- merge.data.table(dt, mergebydel, by = c("level", "levekaar"), all.x = T)
-  dt[level == "levekaar", let(bydel = mergebydel)]
-  dt[, let(mergebydel = NULL)]
   
   data.table::setcolorder(dt,
                           c("code", "name", "validTo", "level",
