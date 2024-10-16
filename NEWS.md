@@ -1,3 +1,6 @@
+# norgeo 2.4.6
+- Bugfix: `cast_geo` no longer maps levekaar to bydel, as levekaar spanning across bydel caused duplicates in the list. 
+
 # norgeo 2.4.5
 - change location of manual geo-split files (#91).
 - Remove deprecated-message when using track_change()
