@@ -32,12 +32,7 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   dt <- data.table::rbindlist(DT)
 
-
-  ## SSB has correspond data only for
-  ## - bydel-grunnkrets
-  ## - kommune-grunnkrets
-  ## - fylke-kommue
-
+  ## SSB has correspond data only for some combinations
   COR <- list(
     gr_bydel = c("bydel", "grunnkrets"),
     gr_levekaar = c("levekaar", "grunnkrets"),
@@ -47,12 +42,21 @@ cast_geo <- function(year = NULL, names = TRUE) {
   )
 
   for (i in seq_along(COR)) {
-    COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = year)
-
+    corr_year <- year
+    corr_nrow <- 0
+    attempts <- 1
+    while(corr_nrow == 0 & attempts < 3){
+      new <- find_correspond(COR[[i]][1], COR[[i]][2], from = corr_year)
+      corr_nrow <- nrow(new)
+      corr_year <- corr_year-1
+      attempts <- attempts + 1
+    }
+    COR[[i]] <- new
+    # COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = corr_year)
     keepCols <- c("sourceCode", "sourceName", "targetCode", "targetName")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
     COR[[i]][, (delCol) := NULL]
-    data.table::setnames(COR[[i]], "targetCode", "code")
+    data.table::setnames(COR[[i]], "targetCode", "code", skip_absent = T)
   }
 
   dt <- merge_geo(dt, COR$gr_bydel, "bydel", year)
@@ -86,25 +90,27 @@ cast_geo <- function(year = NULL, names = TRUE) {
   dt <- find_missing_gr(dt, "99999999", year = year)
   
   # Add economical region
-  dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
-  dt[level == "okonomisk", let(okonomisk = code,
-                               fylke = gsub("(\\d{2}).*", "\\1", code))]
-  
+  if(nrow(COR$kom_oko) > 0){
+    dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
+    dt[level == "okonomisk", let(okonomisk = code, fylke = gsub("(\\d{2}).*", "\\1", code))]
+  }
+
   # Add levekaar
   # As some levekaar codes = grunnkrets codes, higher granularities must be set to NA
   # Bydel codes must be merged manually from level == "grunnkrets" where both levekaar and bydel is present
-  dt <- merge_geo(dt, COR$gr_levekaar, "levekaar", year)
-  dt[level == "levekaar", let(kommune = NA, bydel = NA, fylke = NA, levekaar = NA)]
-  dt[level == "levekaar", let(levekaar = code,
-                              fylke = sub("^(\\d{2}).*", "\\1", code),
-                              kommune = sub("^(\\d{4}).*", "\\1", code))]
+  if(nrow(COR$gr_levekaar) > 0){
+    dt <- merge_geo(dt, COR$gr_levekaar, "levekaar", year)
+    dt[level == "levekaar", let(kommune = NA, bydel = NA, fylke = NA, levekaar = NA)]
+    dt[level == "levekaar", let(levekaar = code, fylke = sub("^(\\d{2}).*", "\\1", code), kommune = sub("^(\\d{4}).*", "\\1", code))]
+  }
   
-  data.table::setcolorder(dt,
-                          c("code", "name", "validTo", "level",
-                            "grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk"))
-  if (!names)
-    dt[, "name" := NULL]
-  
+  outnames <- c("code", "name", "validTo", "level", "grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk")
+  missing_outnames <- outnames[outnames %notin% names(dt)]
+  if(length(missing_outnames) > 0) dt[, (missing_outnames) := NA_character_]
+
+  data.table::setcolorder(dt, outnames)
+  if(!names) dt[, "name" := NULL]
+
   setkey(dt, code)
 
   return(dt)
