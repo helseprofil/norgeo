@@ -110,8 +110,14 @@ get_change <- function(type = c(
       chgDT <- grunnkrets_00(chgDT)
     }
 
+
+    ## Codes that were split while keeping the old codes
+    keepDT <- keep_both(chgDT)
+
     if (nrow(chgDT) > 0 && code)
       chgDT <- chgDT[oldCode != newCode]
+
+    chgDT <- data.table::rbindlist(list(chgDT, keepDT))
 
     ## no error produced but table is empty
     if (quiet == 0 && nrow(chgDT) == 0)
@@ -259,4 +265,16 @@ grunnkrets_00 <- function(x){
 
   x <- data.table::rbindlist(list(y, x))
   x[!duplicated(x)]
+}
+
+## Issue #85
+## When codes split while keeping the old codes
+keep_both <- function(dt){
+  d <- dt[oldCode == newCode]
+
+  d <- d[newName != "Nothing from API"]
+  vv <- c("oldCode", "oldName", "oldShortName")
+  vars <- vv[names(d) %chin% vars]
+
+  d[, (vars) := NA_character_]
 }
