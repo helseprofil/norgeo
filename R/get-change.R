@@ -110,14 +110,14 @@ get_change <- function(type = c(
       chgDT <- grunnkrets_00(chgDT)
     }
 
-
-    ## Codes that were split while keeping the old codes
-    keepDT <- keep_both(chgDT)
-
-    if (nrow(chgDT) > 0 && code)
+    if (nrow(chgDT) > 0 && code){
+      ## Codes that were split while keeping the old codes
+      keepDT <- keep_both(chgDT)
       chgDT <- chgDT[oldCode != newCode]
+    }
 
-    chgDT <- data.table::rbindlist(list(chgDT, keepDT))
+    if (nrow(keepDT) > 0)
+      chgDT <- data.table::rbindlist(list(chgDT, keepDT))
 
     ## no error produced but table is empty
     if (quiet == 0 && nrow(chgDT) == 0)
