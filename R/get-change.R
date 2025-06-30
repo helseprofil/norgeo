@@ -273,7 +273,7 @@ keep_both <- function(dt){
 
   d <- d[newName != "Nothing from API"]
   vv <- c("oldCode", "oldName", "oldShortName")
-  vars <- vv[names(d) %chin% vars]
+  vars <- vv[names(d) %chin% vv]
 
   d[, (vars) := NA_character_]
 }
