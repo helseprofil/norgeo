@@ -1,3 +1,7 @@
+# norgeo 2.4.7
+- Bugfix: Handle splitting of grunnkrets when the old code was reused. 
+- In the manual fix, oldCodes existing as currentCodes are removed to prevent recoding of valid codes
+
 # norgeo 2.4.6
 - Bugfix: `cast_geo` no longer maps levekaar to bydel, as levekaar spanning across bydel caused duplicates in the list. 
 
