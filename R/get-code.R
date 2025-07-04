@@ -113,9 +113,12 @@ set_url <- function(base = NULL,
 
   koReg <- httr2::request(endUrl) |>
     httr2::req_url_query(!!!codeQry) |>
-    httr2::req_retry(max_tries = 5) |>
-    httr2::req_perform()
-
+    httr2::req_retry(max_tries = 5) 
+  
+  ison <- check_online(koReg)
+  if(!ison) return(data.table::data.table())
+  
+  koReg <- httr2::req_perform(koReg)
   koDT <- koReg |> httr2::resp_body_json(simplifyDataFrame = TRUE)
   koDT <- data.table::as.data.table(koDT)
 
@@ -124,6 +127,13 @@ set_url <- function(base = NULL,
   data.table::setnames(koDT, koNames, koNewNames)
 
   return(koDT)
+}
+
+check_online <- function(koReg){
+  con <- url(koReg$url)
+  check <- suppressWarnings(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
+  suppressWarnings(try(close.connection(con), silent = TRUE))
+  ifelse(is.null(check), TRUE, FALSE)
 }
 
 ## Ensure date is the required format
