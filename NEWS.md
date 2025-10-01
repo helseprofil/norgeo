@@ -1,7 +1,11 @@
+# norgeo 2.4.8
+- `cast_geo` gains the extra_geo argument. If NULL, only default geo levels (fylke, kommune, bydel, grunnkrets) are included. For now, accepted values are `levekaar` and `okonomisk`
+- Bugfix: get_code does not fail if table is not published in SSB KLASS (e.g. levekaar 2024)
+
 # norgeo 2.4.7
 - Bugfix: Handle splitting of grunnkrets when the old code was reused. 
 - In the manual fix, oldCodes existing as currentCodes are removed to prevent recoding of valid codes
-- Bugfix: get_code does not fail if table is not published in SSB KLASS (e.g. levekaar 2024)
+
 
 # norgeo 2.4.6
 - Bugfix: `cast_geo` no longer maps levekaar to bydel, as levekaar spanning across bydel caused duplicates in the list. 

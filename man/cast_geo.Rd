@@ -4,13 +4,16 @@
 \alias{cast_geo}
 \title{Cast geo granularity from API}
 \usage{
-cast_geo(year = NULL, names = TRUE)
+cast_geo(year = NULL, names = TRUE, extra_geo = NULL)
 }
 \arguments{
 \item{year}{Which year the codes are valid from. If NULL then current year
 will be selected.}
 
 \item{names}{Include names. Default is TRUE}
+
+\item{extra_geo}{Option to add a vector of extra geolevels. Defaults to NULL,
+which will result in selecting grunnkrets, kommune, fylke, and bydel.}
 }
 \value{
 A dataset of class \code{data.table} representing the spreading of
