@@ -141,15 +141,21 @@ find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
   stat <- list(rows = 0, from = from)
-  nei <- -1
-  while (nei < 0) {
+  orgfrom <- from
+  nei <- 0
+  while (nei < 1 & from >= orgfrom - 5) {
     dt <- norgeo::get_correspond(type, correspond, from)
     nei <- nrow(dt)
     stat$rows <- nei
     stat$from <- from
     from <- from - 1
+    message("Data for ", correspond, " to ", type, " in ", stat$from, " have ", stat$rows, " rows")
   }
-  message("Data for ", correspond, " to ", type, " in ", stat$from, " have ", stat$rows, " rows")
+  
+  if (nei < 1) {
+    message("Fant ikke data for ", correspond, " til ", type, " i perioden ", orgfrom - 5, " til ", orgfrom)
+  }
+  
   return(dt)
 }
 
