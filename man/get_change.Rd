@@ -39,8 +39,7 @@ the respective year when the codes have changed
 }
 \description{
 This function will download all geographical code changes from
-SSB via API except enumeration areas (\emph{grunnkrets}) between 1980 to
-2001. The code change can be found in the dataset \code{GrunnkretsBefore2002}.
+SSB via API
 
 Basically the downloaded data are those you can see directly
 \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here}, for

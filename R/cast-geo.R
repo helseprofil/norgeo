@@ -4,6 +4,8 @@
 #'
 #' @param year Which year the codes are valid from. If NULL then current year
 #'   will be selected.
+#' @param extra_geo Option to add a vector of extra geolevels. Defaults to NULL, 
+#'   which will result in selecting grunnkrets, kommune, fylke, and bydel. 
 #' @inheritParams get_code
 #'
 #' @import data.table
@@ -13,7 +15,13 @@
 #' @examples
 #'  DT <- cast_geo(2019)
 #' @export
-cast_geo <- function(year = NULL, names = TRUE) {
+cast_geo <- function(year = NULL, names = TRUE, extra_geo = NULL) {
+  default_geo <- c("grunnkrets", "kommune", "fylke", "bydel")
+  valid_extra_geo <- c("levekaar", "okonomisk")
+  if (!is.null(extra_geo) && !all(extra_geo %in% c(default_geo, valid_extra_geo))) {
+    stop("extra_geo must be NULL or only contain 'levekaar' og/eller 'okonomisk'")
+  }
+  
   message("Start casting geo codes from API ...")
   level <- sourceCode <- kommune <- fylke <- okonomisk <- grunnkrets <- bydel <- levekaar <- NULL
 
@@ -21,9 +29,9 @@ cast_geo <- function(year = NULL, names = TRUE) {
     year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
-  geos <- c("fylke", "okonomisk", "kommune", "bydel", "levekaar", "grunnkrets")
-
-  DT <- vector(mode = "list", length = 6)
+  geos <- unique(c("grunnkrets", "kommune", "fylke", "bydel", extra_geo))
+  
+  DT <- vector(mode = "list", length = length(geos))
   ## Get geo codes
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
@@ -32,27 +40,24 @@ cast_geo <- function(year = NULL, names = TRUE) {
 
   dt <- data.table::rbindlist(DT)
 
-  ## SSB has correspond data only for some combinations
+
+  ## SSB has correspond data only for
+  ## - bydel-grunnkrets
+  ## - kommune-grunnkrets
+  ## - fylke-kommue
+  ## - levekaar-grunnkrets
+  ## - okonomisk-kommune
   COR <- list(
     gr_bydel = c("bydel", "grunnkrets"),
-    gr_levekaar = c("levekaar", "grunnkrets"),
     gr_kom = c("kommune", "grunnkrets"),
-    kom_oko = c("okonomisk", "kommune"),
     kom_fylke = c("fylke", "kommune")
   )
+ 
+  if("levekaar" %in% geos) COR[["gr_levekaar"]] <- c("levekaar", "grunnkrets")
+  if("okonomisk" %in% geos) COR[["kom_oko"]] <- c("okonomisk", "kommune")
 
   for (i in seq_along(COR)) {
-    corr_year <- year
-    corr_nrow <- 0
-    attempts <- 1
-    while(corr_nrow == 0 & attempts < 3){
-      new <- find_correspond(COR[[i]][1], COR[[i]][2], from = corr_year)
-      corr_nrow <- nrow(new)
-      corr_year <- corr_year-1
-      attempts <- attempts + 1
-    }
-    COR[[i]] <- new
-    # COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = corr_year)
+    COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = year)
     keepCols <- c("sourceCode", "sourceName", "targetCode", "targetName")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
     COR[[i]][, (delCol) := NULL]
@@ -89,20 +94,31 @@ cast_geo <- function(year = NULL, names = TRUE) {
   dt <- find_missing_bydel(dt, bydel99)
   dt <- find_missing_gr(dt, "99999999", year = year)
   
-  # Add economical region
-  if(nrow(COR$kom_oko) > 0){
+  # Add economical region if in geos
+  if("okonomisk" %in% geos){
     dt <- merge_geo(dt, COR$kom_oko, "okonomisk", year)
-    dt[level == "okonomisk", let(okonomisk = code, fylke = gsub("(\\d{2}).*", "\\1", code))]
+    dt[level == "okonomisk", let(okonomisk = code,
+                                 fylke = gsub("(\\d{2}).*", "\\1", code))]
   }
-
-  # Add levekaar
-  # As some levekaar codes = grunnkrets codes, higher granularities must be set to NA
-  # Bydel codes must be merged manually from level == "grunnkrets" where both levekaar and bydel is present
-  if(nrow(COR$gr_levekaar) > 0){
+  
+  if("levekaar" %in% geos){
+    # Manually set higher granularities from the levekaar code. 
+    # Bydel codes are set to NA if ending in 00, only keeping real bydel codes
     dt <- merge_geo(dt, COR$gr_levekaar, "levekaar", year)
     dt[level == "levekaar", let(kommune = NA, bydel = NA, fylke = NA, levekaar = NA)]
-    dt[level == "levekaar", let(levekaar = code, fylke = sub("^(\\d{2}).*", "\\1", code), kommune = sub("^(\\d{4}).*", "\\1", code))]
+    dt[level == "levekaar", let(levekaar = code,
+                                fylke = sub("^(\\d{2}).*", "\\1", code),
+                                kommune = sub("^(\\d{4}).*", "\\1", code),
+                                bydel = sub("^(\\d{6}).*", "\\1", code))]
+    dt[level == "levekaar" & grepl("00$", bydel), let(bydel = NA)]
   }
+  
+  # Add levekaar
+  
+  data.table::setcolorder(dt,
+                          c("code", "name", "validTo", "level", geos))
+  if (!names)
+    dt[, "name" := NULL]
   
   outnames <- c("code", "name", "validTo", "level", "grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk")
   missing_outnames <- outnames[outnames %notin% names(dt)]
@@ -133,15 +149,21 @@ find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
   stat <- list(rows = 0, from = from)
-  nei <- -1
-  while (nei < 0) {
+  orgfrom <- from
+  nei <- 0
+  while (nei < 1 & from >= orgfrom - 5) {
     dt <- norgeo::get_correspond(type, correspond, from)
     nei <- nrow(dt)
     stat$rows <- nei
     stat$from <- from
     from <- from - 1
+    message("Data for ", correspond, " to ", type, " in ", stat$from, " have ", stat$rows, " rows")
   }
-  message("Data for ", correspond, " to ", type, " in ", stat$from, " have ", stat$rows, " rows")
+  
+  if (nei < 1) {
+    message("Fant ikke data for ", correspond, " til ", type, " i perioden ", orgfrom - 5, " til ", orgfrom)
+  }
+  
   return(dt)
 }
 

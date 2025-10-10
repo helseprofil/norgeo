@@ -1,8 +1,7 @@
 #' Get geo code changes with API
 #'
 #' @description This function will download all geographical code changes from
-#'   SSB via API except enumeration areas (\emph{grunnkrets}) between 1980 to
-#'   2001. The code change can be found in the dataset `GrunnkretsBefore2002`.
+#'   SSB via API 
 #' @description Basically the downloaded data are those you can see directly
 #'   \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here}, for
 #'   example if you looking for code change in municipality (\emph{kommune}).
@@ -42,7 +41,7 @@ get_change <- function(type = c(
     stop(simpleError("Only one type of geographical levels is allowed"))
 
   type <- match.arg(type)
-  type <- grunnkrets_check(type, to)
+  # type <- grunnkrets_check(type, to)
 
   if (type == "bydel")
     stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
@@ -110,8 +109,13 @@ get_change <- function(type = c(
       chgDT <- grunnkrets_00(chgDT)
     }
 
-    if (nrow(chgDT) > 0 && code)
+    if (nrow(chgDT) > 0 && code){
+      ## Codes that were split while keeping the old codes
+      keepDT <- keep_both(dt = chgDT)
       chgDT <- chgDT[oldCode != newCode]
+      if (nrow(keepDT) > 0)
+        chgDT <- data.table::rbindlist(list(chgDT, keepDT))
+    }
 
     ## no error produced but table is empty
     if (quiet == 0 && nrow(chgDT) == 0)
@@ -147,8 +151,8 @@ get_change <- function(type = c(
   delCol <- c("oldShortName", "newShortName")
   DT[, (delCol) := NULL][]
 
-  if (from < 2002)
-    DT <- grunnkrets_before_2002(DT, type, from)
+  # if (from < 2002)
+  #   DT2 <- grunnkrets_before_2002(DT, type, from)
 
   if (!names)
     DT[, (granularityNames) := NULL]
@@ -259,4 +263,16 @@ grunnkrets_00 <- function(x){
 
   x <- data.table::rbindlist(list(y, x))
   x[!duplicated(x)]
+}
+
+## Issue #85
+## When codes split while keeping the old codes
+keep_both <- function(dt){
+  d <- dt[oldCode == newCode]
+
+  d <- d[newName != "Nothing from API"]
+  vv <- c("oldCode", "oldName", "oldShortName")
+  vars <- vv[names(d) %chin% vv]
+
+  d[, (vars) := NA_character_]
 }
