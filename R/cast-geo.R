@@ -120,13 +120,6 @@ cast_geo <- function(year = NULL, names = TRUE, extra_geo = NULL) {
   if (!names)
     dt[, "name" := NULL]
   
-  outnames <- c("code", "name", "validTo", "level", "grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk")
-  missing_outnames <- outnames[outnames %notin% names(dt)]
-  if(length(missing_outnames) > 0) dt[, (missing_outnames) := NA_character_]
-
-  data.table::setcolorder(dt, outnames)
-  if(!names) dt[, "name" := NULL]
-
   setkey(dt, code)
 
   return(dt)
