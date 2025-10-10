@@ -35,7 +35,7 @@ track_change <- function(type = c(
                          fix = FALSE) {
 
   type <- match.arg(type)
-  # type <- grunnkrets_check(type, to)
+  type <- grunnkrets_check(type, to)
 
   data_change(type, from, to)
 
