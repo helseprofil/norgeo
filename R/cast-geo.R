@@ -19,7 +19,7 @@ cast_geo <- function(year = NULL, names = TRUE, extra_geo = NULL) {
   default_geo <- c("grunnkrets", "kommune", "fylke", "bydel")
   valid_extra_geo <- c("levekaar", "okonomisk")
   if (!is.null(extra_geo) && !all(extra_geo %in% c(default_geo, valid_extra_geo))) {
-    stop("extra_geo må være NULL eller kun inneholde 'levekaar' og/eller 'okonomisk'")
+    stop("extra_geo must be NULL or only contain 'levekaar' og/eller 'okonomisk'")
   }
   
   message("Start casting geo codes from API ...")
