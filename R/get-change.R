@@ -41,7 +41,7 @@ get_change <- function(type = c(
     stop(simpleError("Only one type of geographical levels is allowed"))
 
   type <- match.arg(type)
-  # type <- grunnkrets_check(type, to)
+  type <- grunnkrets_check(type, to)
 
   # if (type == "bydel")
   #   stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
@@ -151,8 +151,8 @@ get_change <- function(type = c(
   delCol <- c("oldShortName", "newShortName")
   DT[, (delCol) := NULL][]
 
-  # if (from < 2002)
-  #   DT2 <- grunnkrets_before_2002(DT, type, from)
+  if (from < 2002)
+    DT <- grunnkrets_before_2002(DT, type, from)
 
   if (!names)
     DT[, (granularityNames) := NULL]
