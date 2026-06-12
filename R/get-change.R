@@ -43,8 +43,8 @@ get_change <- function(type = c(
   type <- match.arg(type)
   # type <- grunnkrets_check(type, to)
 
-  if (type == "bydel")
-    stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
+  # if (type == "bydel")
+  #   stop(simpleError("*** Change table for bydel is not available in SSB Klass API ***\n"))
 
   klass <- switch(type,
                   fylke = 104,
