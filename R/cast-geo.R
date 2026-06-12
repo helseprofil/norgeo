@@ -40,6 +40,7 @@ cast_geo <- function(year = NULL, names = TRUE, extra_geo = NULL) {
 
   dt <- data.table::rbindlist(DT)
 
+
   ## SSB has correspond data only for
   ## - bydel-grunnkrets
   ## - kommune-grunnkrets
@@ -60,7 +61,7 @@ cast_geo <- function(year = NULL, names = TRUE, extra_geo = NULL) {
     keepCols <- c("sourceCode", "sourceName", "targetCode", "targetName")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
     COR[[i]][, (delCol) := NULL]
-    data.table::setnames(COR[[i]], "targetCode", "code")
+    data.table::setnames(COR[[i]], "targetCode", "code", skip_absent = T)
   }
 
   dt <- merge_geo(dt, COR$gr_bydel, "bydel", year)

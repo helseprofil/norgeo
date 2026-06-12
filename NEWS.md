@@ -1,3 +1,6 @@
+# norgeo 2.4.9 (2026-06-12)
+- Allow track_change for bydel, as change table is available in KLASS
+
 # norgeo 2.4.8 (2025-10-10)
 - `cast_geo` gains the extra_geo argument. If NULL, only default geo levels (fylke, kommune, bydel, grunnkrets) are included. For now, accepted values are `levekaar` and `okonomisk`
 - Bugfix: get_code does not fail if table is not published in SSB KLASS (e.g. levekaar 2024)
